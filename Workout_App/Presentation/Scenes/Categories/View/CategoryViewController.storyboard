@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Workouts-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="CategoryViewController" id="Y6W-OH-hqX" customClass="CategoryViewController" customModule="Workout_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="olb-lW-YHu">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="6qj-er-ckN"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="uxJ-qb-e4G"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="olb-lW-YHu" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="OxJ-52-TcI"/>
+                            <constraint firstItem="olb-lW-YHu" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="afR-7m-nAv"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="olb-lW-YHu" secondAttribute="bottom" id="avt-fV-b4H"/>
+                            <constraint firstAttribute="trailing" secondItem="olb-lW-YHu" secondAttribute="trailing" id="ntG-3q-aJg"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Workouts" image="workout_icon" landscapeImage="workout_icon" id="Elq-NO-Gxd"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="categoriesTableView" destination="olb-lW-YHu" id="xrV-fH-M5Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46" y="94"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="csk-e4-sOx">
+            <objects>
+                <viewController id="Xc0-Y6-90U" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zZh-t4-Dxs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="front" translatesAutoresizingMaskIntoConstraints="NO" id="S0I-j5-jjK">
+                                <rect key="frame" x="87" y="373" width="240" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="5MP-FN-nZv"/>
+                                    <constraint firstAttribute="width" secondItem="S0I-j5-jjK" secondAttribute="height" multiplier="8:5" id="QAR-MS-iWa"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Ez-1I-zUU">
+                                <rect key="frame" x="87" y="373" width="240" height="150"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zAj-CJ-ZzJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Ez-1I-zUU" firstAttribute="top" secondItem="S0I-j5-jjK" secondAttribute="top" id="FpX-25-fcM"/>
+                            <constraint firstItem="3Ez-1I-zUU" firstAttribute="bottom" secondItem="S0I-j5-jjK" secondAttribute="bottom" id="Pdy-KG-XQH"/>
+                            <constraint firstItem="3Ez-1I-zUU" firstAttribute="leading" secondItem="S0I-j5-jjK" secondAttribute="leading" id="bAS-0J-0xh"/>
+                            <constraint firstItem="S0I-j5-jjK" firstAttribute="centerY" secondItem="zZh-t4-Dxs" secondAttribute="centerY" id="dL7-nU-oSa"/>
+                            <constraint firstItem="S0I-j5-jjK" firstAttribute="centerX" secondItem="zZh-t4-Dxs" secondAttribute="centerX" id="i5D-m5-OIF"/>
+                            <constraint firstItem="3Ez-1I-zUU" firstAttribute="trailing" secondItem="S0I-j5-jjK" secondAttribute="trailing" id="uDU-wP-qbR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ic-nR-jn3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1128" y="83"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="front" width="113" height="200"/>
+        <image name="workout_icon" width="46.5" height="46.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
