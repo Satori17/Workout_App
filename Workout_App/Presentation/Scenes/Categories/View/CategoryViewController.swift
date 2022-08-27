@@ -32,7 +32,7 @@ class CategoryViewController: UIViewController {
     var allCategories: [CategoryViewModel] = [] {
         didSet {
             categoriesTableView.reloadData()
-            ActivityIndicator.shared.activityIndicator.stopAnimating()
+            ActivityIndicatorManager.shared.stopAnimating()
         }
     }
     
@@ -47,7 +47,7 @@ class CategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ActivityIndicator.shared.setupActivityIndicator(self)
+        ActivityIndicatorManager.shared.setupActivityIndicator(self)
         //registering cell
         categoriesTableView.registerNib(class: CategoryCell.self)
         makeRequest()
@@ -64,12 +64,12 @@ class CategoryViewController: UIViewController {
     
     //Making request
     private func makeRequest() {
-        let request = CategoryModel.Request()
-        interactor?.getCategories(request: request)
+        interactor?.getCategories()
     }
     
 }
 
+//MARK: - custom protocol Delegates
 
 extension CategoryViewController: CategoryDisplayLogic {    
     
@@ -82,12 +82,29 @@ extension CategoryViewController: CategoryDisplayLogic {
     }
 }
 
+//MARK: - TableView Delegates
 
-/*
- private func makeEffectView() {
-     let effect: UIBlurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-     effectView = UIVisualEffectView(effect: effect)
-     effectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
-     self.view.addSubview(effectView)
- }
- */
+extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        allCategories.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        130
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as CategoryCell
+        let currentCategory = allCategories[indexPath.row]
+        cell.configure(with: currentCategory)
+                
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCategory = allCategories[indexPath.row]
+        router?.routeToWorkouts(withId: currentCategory.id, name: currentCategory.name)
+    }
+
+}

@@ -5,7 +5,7 @@
 //  Created by Saba Khitaridze on 02.08.22.
 //
 
-import Foundation
+import UIKit
 
 class CategoryConfigurator {
     

@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIView {
-    func gradientForView(with gradientMask: CAGradientLayer, firstColor: UIColor, secondColor: UIColor) {
+    private func gradientForView(with gradientMask: CAGradientLayer, firstColor: UIColor, secondColor: UIColor) {
         gradientMask.colors = [firstColor.cgColor, secondColor.cgColor]
         gradientMask.startPoint = CGPoint(x: 0.5, y: 1.0)
         gradientMask.endPoint = CGPoint(x: 0.5, y: 0.0)

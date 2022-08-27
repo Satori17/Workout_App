@@ -13,7 +13,7 @@
 import UIKit
 
 protocol CategoryBusinessLogic: AnyObject {
-    func getCategories(request: CategoryModel.Request)
+    func getCategories()
 }
 
 class CategoryInteractor {
@@ -24,16 +24,17 @@ class CategoryInteractor {
 
 extension CategoryInteractor: CategoryBusinessLogic {
     
-    //request parameter should be removed
-    func getCategories(request: CategoryModel.Request) {
+    func getCategories() {
         worker = CategoryWorker()
         
-        worker?.getCategories(success: { categories in
-            
-            let response = CategoryModel.Response(categories: categories)
-            self.presenter?.presentCategories(response: response)
-        }, fail: { message in
-            self.presenter?.didFailPresentCategories(error: message)
+        worker?.fetchCategories(completion: { result in
+            switch result {
+            case .success(let categories):
+                let response = CategoryModel.Response(categories: categories)
+                self.presenter?.presentCategories(response: response)
+            case .failure(let error):
+                self.presenter?.didFailPresentCategories(withError: error.rawValue)
+            }
         })
     }
     

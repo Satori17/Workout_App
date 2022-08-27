@@ -14,7 +14,7 @@ import UIKit
 
 protocol CategoryPresentationLogic {
     func presentCategories(response: CategoryModel.Response)
-    func didFailPresentCategories(error: String)
+    func didFailPresentCategories(withError message: String)
 }
 
 
@@ -39,8 +39,8 @@ extension CategoryPresenter: CategoryPresentationLogic {
         viewController?.displayCategory(from: viewModel)
     }
     
-    func didFailPresentCategories(error: String) {
-        viewController?.didFailDisplayCategory(withError: error)
+    func didFailPresentCategories(withError message: String) {
+        viewController?.didFailDisplayCategory(withError: message)
     }
     
 }

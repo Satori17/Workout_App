@@ -37,7 +37,7 @@ class CategoryCell: UITableViewCell {
     //MARK: - Methods
     
     func configure(with categories: CategoryViewModel) {
-        categoryNameLabel.text = categories.name
+        categoryNameLabel.text = " \(categories.name)"
         categoryImageView.image = categories.image        
     }
 

@@ -13,7 +13,7 @@
 import UIKit
 
 protocol CategoryRoutingLogic {
-    func routeToWorkouts(id: Int, name: String)
+    func routeToWorkouts(withId id: Int, name: String)
 }
 
 class CategoryRouter {
@@ -24,11 +24,10 @@ class CategoryRouter {
 
 extension CategoryRouter: CategoryRoutingLogic {
     
-    func routeToWorkouts(id: Int, name: String) {
-        if let workoutsVC = UIStoryboard(name: Ids.VC.workouts, bundle: nil).instantiateViewController(withIdentifier: Ids.VC.workouts) as? WorkoutsViewController {
-            workoutsVC.categoryId = id
+    func routeToWorkouts(withId id: Int, name: String) {
+        if let workoutsVC = UIStoryboard(name: Ids.workouts, bundle: nil).instantiateViewController(withIdentifier: Ids.workouts) as? WorkoutsViewController {
             workoutsVC.title = name
-            WorkoutsConfigurator.configure(vc: workoutsVC)
+            WorkoutsConfigurator.configure(vc: workoutsVC, categoryId: id)
             viewController?.navigationController?.pushViewController(workoutsVC, animated: true)
         }               
     }

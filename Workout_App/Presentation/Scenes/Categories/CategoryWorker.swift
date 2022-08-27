@@ -13,23 +13,22 @@
 import UIKit
 
 protocol CategoryWorkerProtocol {
-    func getCategories(success: @escaping ([Category]) -> (), fail: @escaping (String) -> ())
+    func fetchCategories(completion: @escaping (Result<[Category], FetchingError>) -> Void)
 }
 
 class CategoryWorker: CategoryWorkerProtocol {
     
-    func getCategories(success: @escaping ([Category]) -> (), fail: @escaping (String) -> ()) {
-        
-        Fetcher.shared.fetchData(with: CategoryUrlBuilder.shared.urlString, as: WorkoutData<Category>.self) { category in
-            DispatchQueue.main.async {
-                guard let categories = category.results else { return }
-                success(categories)
-            }
-        } fail: { message in
-            DispatchQueue.main.async {
-                fail(message)
+    func fetchCategories(completion: @escaping (Result<[Category], FetchingError>) -> Void) {
+        Fetcher.shared.fetchData(with: CategoryUrlBuilder.shared, as: WorkoutData<Category>.self) { result in
+            switch result {
+            case .success(let categories):
+                guard let categories = categories.results else { return }
+                completion(.success(categories))
+                
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
-
+    
 }

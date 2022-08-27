@@ -16,4 +16,13 @@ extension UITableView {
     func registerNib<T: UITableViewCell>(class: T.Type) {
         self.register(T.nibFile, forCellReuseIdentifier: T.identifier)
     }
+    
+    func dequeueReusableCell<Cell: UITableViewCell>(forIndexPath indexPath: IndexPath) -> Cell {
+        let identifier = String(describing: Cell.self)
+        guard let cell = self.dequeueReusableCell(withIdentifier: identifier,
+                                                  for: indexPath) as? Cell else {
+            fatalError("Error happened for cell id: \(identifier) at \(indexPath))")
+        }
+        return cell
+    }
 }
