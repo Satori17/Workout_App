@@ -30,17 +30,25 @@
                                 <rect key="frame" x="184.5" y="0.0" width="184.5" height="137"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
+                            <view hidden="YES" alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ise-9Z-mou">
+                                <rect key="frame" x="0.0" y="0.0" width="369" height="137"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="O80-aK-dkY" secondAttribute="bottom" id="0yv-X0-6z0"/>
+                            <constraint firstAttribute="trailing" secondItem="ise-9Z-mou" secondAttribute="trailing" id="8cr-Nc-SZT"/>
                             <constraint firstAttribute="trailing" secondItem="qwe-dx-J26" secondAttribute="trailing" constant="20" id="93m-yV-a3d"/>
                             <constraint firstItem="qwe-dx-J26" firstAttribute="height" secondItem="VPW-QK-H0g" secondAttribute="height" multiplier="0.25" id="9P9-of-QR0"/>
                             <constraint firstAttribute="bottom" secondItem="qwe-dx-J26" secondAttribute="bottom" constant="20" id="NJt-xC-xU1"/>
                             <constraint firstItem="qwe-dx-J26" firstAttribute="leading" secondItem="VPW-QK-H0g" secondAttribute="leading" constant="20" id="NzM-15-Yeg"/>
                             <constraint firstAttribute="trailing" secondItem="O80-aK-dkY" secondAttribute="trailing" id="Qef-Fb-qdj"/>
+                            <constraint firstAttribute="bottom" secondItem="ise-9Z-mou" secondAttribute="bottom" id="RxR-Hx-6fB"/>
                             <constraint firstItem="O80-aK-dkY" firstAttribute="width" secondItem="VPW-QK-H0g" secondAttribute="width" multiplier="0.5" id="Sj9-AM-qNF"/>
                             <constraint firstItem="O80-aK-dkY" firstAttribute="top" secondItem="VPW-QK-H0g" secondAttribute="top" id="f7r-Sr-weT"/>
+                            <constraint firstItem="ise-9Z-mou" firstAttribute="top" secondItem="VPW-QK-H0g" secondAttribute="top" id="gsW-ZD-Qk9"/>
+                            <constraint firstItem="ise-9Z-mou" firstAttribute="width" secondItem="VPW-QK-H0g" secondAttribute="width" id="hEl-VX-Afo"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -56,6 +64,7 @@
                 <outlet property="categoryImageView" destination="O80-aK-dkY" id="Jv3-Oe-oLr"/>
                 <outlet property="categoryNameLabel" destination="qwe-dx-J26" id="z1F-Np-EkG"/>
                 <outlet property="fakeView" destination="VPW-QK-H0g" id="Ol2-H3-9hu"/>
+                <outlet property="imageBackgroundView" destination="ise-9Z-mou" id="4YB-Cq-OLJ"/>
             </connections>
             <point key="canvasLocation" x="39.855072463768117" y="123.88392857142857"/>
         </tableViewCell>

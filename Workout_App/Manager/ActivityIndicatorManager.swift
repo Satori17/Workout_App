@@ -8,7 +8,7 @@
 import UIKit
 
 
-class ActivityIndicatorManager {
+final class ActivityIndicatorManager {
     
     static let shared = ActivityIndicatorManager()
     
@@ -38,7 +38,7 @@ class ActivityIndicatorManager {
     private func backgroundView(vc: UIViewController) -> UIView {
         backgroundView.isHidden = false
         backgroundView.frame = vc.view.frame
-        backgroundView.withAppDesign(layer: gradientMaskLayer)
+        backgroundView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
 
         return backgroundView
     }
@@ -47,6 +47,7 @@ class ActivityIndicatorManager {
         let effect: UIBlurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         effectView = UIVisualEffectView(effect: effect)
         effectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
+        
         return effectView
     }
 }

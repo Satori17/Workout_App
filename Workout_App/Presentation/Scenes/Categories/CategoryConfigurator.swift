@@ -13,17 +13,16 @@ class CategoryConfigurator {
         //interactor
         let interactor = CategoryInteractor()
         vc.interactor = interactor
-        
         //presenter
         let presenter = CategoryPresenter()
         interactor.presenter = presenter
         presenter.viewController = vc
-        
         //router
         let router = CategoryRouter()
         vc.router = router
         router.viewController = vc
-        
+        //dataStore
+        router.dataStore = interactor
         //title
         vc.title = "Workouts"
     }

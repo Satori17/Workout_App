@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-2112" y="648"/>
         </scene>
-        <!--HomeVC-->
+        <!--HomeViewController-->
         <scene sceneID="Hn8-Gw-Sf4">
             <objects>
-                <viewControllerPlaceholder storyboardName="HomeVC" referencedIdentifier="HomeVC" id="3oK-7I-jFq" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="HomeViewController" referencedIdentifier="HomeViewController" id="3oK-7I-jFq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="BtK-nB-Of2"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAn-lc-Y93" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -50,7 +50,7 @@
         <scene sceneID="H4v-DE-ezE">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i1B-2Y-hap" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="YPy-jC-nqZ"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Item" id="YPy-jC-nqZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="AkO-bo-aJj">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>

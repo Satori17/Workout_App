@@ -21,7 +21,7 @@ extension UIImageView {
         let placeholder = "image_placeholder"
         guard path != placeholder else {
             self.image = UIImage(named: placeholder)
-            self.contentMode = .scaleAspectFill
+            self.contentMode = UIDevice.current.orientation.isLandscape ? .scaleAspectFit : .scaleAspectFill
             return
         }
         

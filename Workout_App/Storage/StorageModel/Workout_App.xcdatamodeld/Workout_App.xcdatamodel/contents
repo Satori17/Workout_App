@@ -1,4 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G83" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CoreCategory" representedClassName="CoreCategory" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreWorkout" inverseName="category" inverseEntity="CoreWorkout"/>
+    </entity>
+    <entity name="CoreComment" representedClassName="CoreComment" syncable="YES">
+        <attribute name="comment" optional="YES" attributeType="String"/>
+        <attribute name="exercise" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreWorkout" inverseName="comments" inverseEntity="CoreWorkout"/>
+    </entity>
+    <entity name="CoreEquipment" representedClassName="CoreEquipment" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreWorkout" inverseName="equipments" inverseEntity="CoreWorkout"/>
+    </entity>
+    <entity name="CoreImage" representedClassName="CoreImage" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isMain" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreWorkout" inverseName="images" inverseEntity="CoreWorkout"/>
+    </entity>
+    <entity name="CoreLanguage" representedClassName="CoreLanguage" syncable="YES">
+        <attribute name="fullName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="shortName" optional="YES" attributeType="String"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreWorkout" inverseName="language" inverseEntity="CoreWorkout"/>
+    </entity>
+    <entity name="CoreMuscle" representedClassName="CoreMuscle" syncable="YES">
+        <attribute name="imageUrlMain" optional="YES" attributeType="String"/>
+        <attribute name="imageUrlSecondary" optional="YES" attributeType="String"/>
+        <attribute name="isFront" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreWorkout" inverseName="muscles" inverseEntity="CoreWorkout"/>
+        <relationship name="workout2" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreWorkout" inverseName="musclesSecondary" inverseEntity="CoreWorkout"/>
+    </entity>
+    <entity name="CoreWorkout" representedClassName=".CoreWorkout" syncable="YES">
+        <attribute name="descriptionText" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="reps" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sets" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="weekDay" optional="YES" attributeType="String"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreCategory" inverseName="workout" inverseEntity="CoreCategory"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CoreComment" inverseName="workout" inverseEntity="CoreComment"/>
+        <relationship name="equipments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CoreEquipment" inverseName="workout" inverseEntity="CoreEquipment"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CoreImage" inverseName="workout" inverseEntity="CoreImage"/>
+        <relationship name="language" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CoreLanguage" inverseName="workout" inverseEntity="CoreLanguage"/>
+        <relationship name="muscles" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CoreMuscle" inverseName="workout" inverseEntity="CoreMuscle"/>
+        <relationship name="musclesSecondary" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CoreMuscle" inverseName="workout2" inverseEntity="CoreMuscle"/>
+    </entity>
+    <elements>
+        <element name="CoreCategory" positionX="-18" positionY="36" width="128" height="14"/>
+        <element name="CoreComment" positionX="9" positionY="54" width="128" height="14"/>
+        <element name="CoreEquipment" positionX="27" positionY="72" width="128" height="74"/>
+        <element name="CoreImage" positionX="45" positionY="90" width="128" height="89"/>
+        <element name="CoreLanguage" positionX="0" positionY="45" width="128" height="89"/>
+        <element name="CoreMuscle" positionX="9" positionY="90" width="128" height="119"/>
+        <element name="CoreWorkout" positionX="-45" positionY="0" width="128" height="224"/>
+    </elements>
 </model>

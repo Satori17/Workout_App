@@ -11,5 +11,6 @@ enum Ids {
     static let home = "HomeVC"
     static let category = "CategoryViewController"
     static let workouts = "WorkoutsViewController"
-    static let workoutDetail = "WorkoutDetailViewController"    
+    static let workoutDetail = "WorkoutDetailViewController"
+    static let alert = "AlertViewController"
 }

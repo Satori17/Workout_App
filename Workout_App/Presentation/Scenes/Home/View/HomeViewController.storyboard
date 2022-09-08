@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="Y6W-OH-hqX" customClass="HomeViewController" customModule="Workout_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Jrj-wR-DSM">
+                                <rect key="frame" x="0.0" y="94" width="414" height="719"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="I7l-U7-5Jc"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="VGJ-x4-ba1"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="uHR-CU-59a">
+                                <rect key="frame" x="107" y="54" width="200" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="pTw-iQ-N6U"/>
+                                    <constraint firstAttribute="width" secondItem="uHR-CU-59a" secondAttribute="height" multiplier="5:1" id="u78-cg-M9H"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="Missed"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.30000001189999997" green="0.67000001669999998" blue="0.91000002619999998" alpha="0.60021730130132445" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="segmentControlTapped:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Nz3-d3-2Qt"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Jrj-wR-DSM" firstAttribute="top" secondItem="uHR-CU-59a" secondAttribute="bottom" id="T7f-dd-o4A"/>
+                            <constraint firstItem="uHR-CU-59a" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="aqK-ml-2g4"/>
+                            <constraint firstItem="uHR-CU-59a" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="10" id="bYL-e4-pfQ"/>
+                            <constraint firstItem="Jrj-wR-DSM" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="fiE-tS-y0c"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Jrj-wR-DSM" secondAttribute="bottom" id="raY-Xm-xua"/>
+                            <constraint firstAttribute="trailing" secondItem="Jrj-wR-DSM" secondAttribute="trailing" id="zd6-09-rdb"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" tag="1" title="Home" image="house.fill" catalog="system" id="XtW-in-mQ6"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="homeSegmentControl" destination="uHR-CU-59a" id="mzZ-0u-bhZ"/>
+                        <outlet property="homeTableView" destination="Jrj-wR-DSM" id="ye4-pu-y8D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46" y="94"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
