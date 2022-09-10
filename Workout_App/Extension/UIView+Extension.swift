@@ -49,11 +49,3 @@ extension UIView {
         self.layer.maskedCorners = [corner]
     }
 }
-
-//corner mask for UIView
-extension CACornerMask {
-    static let bottomLeft = CACornerMask.layerMinXMaxYCorner
-    static let bottomRight = CACornerMask.layerMaxXMaxYCorner
-    static let topLeft = CACornerMask.layerMinXMinYCorner
-    static let topRight = CACornerMask.layerMaxXMinYCorner   
-}

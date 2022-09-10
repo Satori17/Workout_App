@@ -16,13 +16,3 @@ struct ContextMenuImage {
     static let addIcon = "calendar.badge.plus"
     static let infoIcon = "info.circle"
 }
-
-//enum ContextMenuTitle: String {
-//    case addWorkout = "Add workout"
-//    case seeMore = "See more"
-//}
-//
-//enum ContextMenuImage: String {
-//    case addIcon = "calendar.badge.plus"
-//    case infoIcon = "info.circle"
-//}

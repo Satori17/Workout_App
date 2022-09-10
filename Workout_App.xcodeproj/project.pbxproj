@@ -51,7 +51,6 @@
 		583FD05728A0644B0025B44D /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD05128A0644B0025B44D /* WorkoutDetailViewController.swift */; };
 		583FD05828A0644B0025B44D /* WorkoutDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD05228A0644B0025B44D /* WorkoutDetailInteractor.swift */; };
 		583FD05A28A068E70025B44D /* WorkoutDetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD05928A068E70025B44D /* WorkoutDetailConfigurator.swift */; };
-		583FD05C28A07CC60025B44D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD05B28A07CC60025B44D /* UIColor+Extension.swift */; };
 		5845915028C4BFF90055AE0A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845914A28C4BFF90055AE0A /* HomePresenter.swift */; };
 		5845915128C4BFF90055AE0A /* HomeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845914B28C4BFF90055AE0A /* HomeWorker.swift */; };
 		5845915228C4BFF90055AE0A /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845914C28C4BFF90055AE0A /* HomeRouter.swift */; };
@@ -77,6 +76,9 @@
 		5877DC74288859E1003A3086 /* Workout_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5877DC73288859E1003A3086 /* Workout_AppUITestsLaunchTests.swift */; };
 		587DB48828CAB907007D704E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 587DB48728CAB907007D704E /* Main.storyboard */; };
 		587DB48A28CB64A5007D704E /* IntensityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48928CB64A5007D704E /* IntensityDataModel.swift */; };
+		587DB48C28CD127E007D704E /* AnimationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48B28CD127E007D704E /* AnimationKeys.swift */; };
+		587DB48E28CD1584007D704E /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48D28CD1584007D704E /* ColorHelper.swift */; };
+		587DB49028CD15E7007D704E /* MaskedCornerKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */; };
 		58D8AC8728999735008BF876 /* CategoryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8AC8628999735008BF876 /* CategoryConfigurator.swift */; };
 		58D8AC8C2899D988008BF876 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8AC8A2899D988008BF876 /* CategoryCell.swift */; };
 		58D8AC8D2899D988008BF876 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D8AC8B2899D988008BF876 /* CategoryCell.xib */; };
@@ -170,7 +172,6 @@
 		583FD05128A0644B0025B44D /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
 		583FD05228A0644B0025B44D /* WorkoutDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailInteractor.swift; sourceTree = "<group>"; };
 		583FD05928A068E70025B44D /* WorkoutDetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailConfigurator.swift; sourceTree = "<group>"; };
-		583FD05B28A07CC60025B44D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		5845914A28C4BFF90055AE0A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		5845914B28C4BFF90055AE0A /* HomeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorker.swift; sourceTree = "<group>"; };
 		5845914C28C4BFF90055AE0A /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -200,6 +201,9 @@
 		5877DC73288859E1003A3086 /* Workout_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		587DB48728CAB907007D704E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		587DB48928CB64A5007D704E /* IntensityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityDataModel.swift; sourceTree = "<group>"; };
+		587DB48B28CD127E007D704E /* AnimationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationKeys.swift; sourceTree = "<group>"; };
+		587DB48D28CD1584007D704E /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
+		587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedCornerKeys.swift; sourceTree = "<group>"; };
 		58D8AC8628999735008BF876 /* CategoryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryConfigurator.swift; sourceTree = "<group>"; };
 		58D8AC8A2899D988008BF876 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		58D8AC8B2899D988008BF876 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
@@ -357,7 +361,10 @@
 			isa = PBXGroup;
 			children = (
 				583C2AFB289087DF0049C2C3 /* Constants.swift */,
+				587DB48B28CD127E007D704E /* AnimationKeys.swift */,
+				587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */,
 				583005AF28C7CED000912DA8 /* ContextMenuHelper.swift */,
+				587DB48D28CD1584007D704E /* ColorHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -659,7 +666,6 @@
 				58762DED289E7A6200C5E223 /* UICollectionView+Extension.swift */,
 				58D8AC98289ABBA0008BF876 /* UIView+Extension.swift */,
 				58D8AC9B289B183D008BF876 /* UIImage+Extension.swift */,
-				583FD05B28A07CC60025B44D /* UIColor+Extension.swift */,
 				582AFADC28C3D219004BDF2D /* UIScrollView+Extension.swift */,
 			);
 			path = Extension;
@@ -831,17 +837,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587DB48C28CD127E007D704E /* AnimationKeys.swift in Sources */,
 				582AFADF28C3F31A004BDF2D /* FetchingError.swift in Sources */,
 				58E9869228952C2700C1F69F /* CategoryWorker.swift in Sources */,
 				58762DF3289EF97E00C5E223 /* WorkoutUrlBuilder.swift in Sources */,
 				583FD05A28A068E70025B44D /* WorkoutDetailConfigurator.swift in Sources */,
-				583FD05C28A07CC60025B44D /* UIColor+Extension.swift in Sources */,
 				58D8ACA6289B1D06008BF876 /* WorkoutsModels.swift in Sources */,
 				58E9869D28987D6C00C1F69F /* BaseUrl.swift in Sources */,
 				583421E628C6282C00ECF814 /* CoreMuscle+CoreDataProperties.swift in Sources */,
 				583421E328C6282C00ECF814 /* CoreImage+CoreDataClass.swift in Sources */,
 				58E9869528952C2700C1F69F /* CategoryViewController.swift in Sources */,
 				58F9A06328A9B47D0001EE6E /* Request.swift in Sources */,
+				587DB49028CD15E7007D704E /* MaskedCornerKeys.swift in Sources */,
 				58E986A028987E3D00C1F69F /* UIImageView+Extension.swift in Sources */,
 				583005D428C8E0D700912DA8 /* AlertConfigurator.swift in Sources */,
 				5845915C28C4CFAD0055AE0A /* WeekDayHeaderView.swift in Sources */,
@@ -849,6 +856,7 @@
 				583421E528C6282C00ECF814 /* CoreMuscle+CoreDataClass.swift in Sources */,
 				58D8AC95289A9DF1008BF876 /* TabBarController.swift in Sources */,
 				5845915328C4BFF90055AE0A /* HomeModels.swift in Sources */,
+				587DB48E28CD1584007D704E /* ColorHelper.swift in Sources */,
 				58D8ACA7289B1D06008BF876 /* WorkoutsViewController.swift in Sources */,
 				583421E728C6282C00ECF814 /* CoreEquipment+CoreDataClass.swift in Sources */,
 				583421E428C6282C00ECF814 /* CoreImage+CoreDataProperties.swift in Sources */,

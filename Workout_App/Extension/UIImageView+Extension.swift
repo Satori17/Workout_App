@@ -11,10 +11,9 @@ import SDWebImage
 extension UIImageView {
     func loadFrom(URLAddress: String) {
         guard let url = URL(string: URLAddress) else { return }
-        
-            DispatchQueue.main.async { [weak self] in
-                self?.sd_setImage(with: url)
-            }
+        DispatchQueue.main.async { [weak self] in
+            self?.sd_setImage(with: url)
+        }
     }
     
     func getImage(from path: String) {

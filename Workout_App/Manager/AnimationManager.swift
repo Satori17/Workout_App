@@ -7,16 +7,6 @@
 
 import UIKit
 
-enum AnimationKeys: String {
-    case shake = "shake"
-    case position = "position"
-    case positionX = "position.x"
-    case transform = "transform"
-    case rotationZ = "transform.rotation.z"
-    case name = "animationName"
-    
-}
-
 final class AnimationManager: NSObject, CAAnimationDelegate {
     
     private let animation = CAKeyframeAnimation()
@@ -32,7 +22,6 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
     }
     
     func movingAnimation(fromView: UIView, toView: UIView, completion: @escaping () -> ()) {
-        
         CATransaction.begin()
            CATransaction.setCompletionBlock({
                completion()
@@ -67,13 +56,13 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
     }
     
     func zoomingAnimation(ofView view: UIView, withShake: Bool, completion: @escaping () -> ()) {
-        UIView.animate(withDuration: 0.5) { [weak self] in
+        UIView.animate(withDuration: 0.3) { [weak self] in
             if withShake {
                 self?.shakeAnimation(ofView: view)
             }
             view.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
         } completion: { _ in
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.3) {
                 view.transform = CGAffineTransform.identity
             } completion: { _ in
                 completion()
