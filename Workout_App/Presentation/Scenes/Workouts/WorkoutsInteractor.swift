@@ -42,7 +42,9 @@ extension WorkoutsInteractor: WorkoutsBusinessLogic {
                     }
                 }
             } catch(let error) {
-                self.presenter?.didFailPresentWorkouts(withError: error as! FetchingError)
+                if let fetchError = error as? FetchingError {
+                self.presenter?.didFailPresentWorkouts(withError: fetchError)
+                }
             }
         }
     }

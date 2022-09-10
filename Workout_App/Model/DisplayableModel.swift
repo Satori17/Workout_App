@@ -102,8 +102,9 @@ struct LicenseDisplayable {
     }
     
     init() {
+        let defaultUrlString = "https://via.placeholder.com/600x400?text=Error+Getting+License"
         licenseInfo = LanguageDisplayable()
-        url = URL(string: "https://via.placeholder.com/600x400?text=Error+Getting+License")!
+        url = URL(string: defaultUrlString) ?? URL(fileURLWithPath: "")
     }
 }
 

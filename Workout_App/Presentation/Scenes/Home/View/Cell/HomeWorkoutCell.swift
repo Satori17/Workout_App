@@ -33,6 +33,7 @@ class HomeWorkoutCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         gradientMaskLayer.frame = self.layer.bounds
+        gradientMaskLayer2.frame = self.layer.bounds
     }
     
     //MARK: - IBAction

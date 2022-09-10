@@ -15,7 +15,7 @@ protocol SaveWorkoutDelegate: AnyObject {
     func saveWorkout()
 }
 
-class WorkoutDetailView: UIView {
+final class WorkoutDetailView: UIView {
     
     //MARK: - IBOutlets
     
@@ -197,12 +197,15 @@ class WorkoutDetailView: UIView {
                 if muscle.isFront {
                     frontMuscleImageViews[index].loadFrom(URLAddress: muscle.imageUrlMain)
                     occupiedFrontImageCounter += 1
-                    frontMuscleNameLabel.text! += !frontMuscleNameLabel.text!.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
-                    
+                    if var frontMuscleText = frontMuscleNameLabel.text {
+                        frontMuscleText += !frontMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                    }
                 } else {
                     backMuscleImageViews[index].loadFrom(URLAddress: muscle.imageUrlMain)
                     occupiedBackImageCounter += 1
-                    backMuscleNameLabel.text! += !backMuscleNameLabel.text!.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                    if var backMuscleText = backMuscleNameLabel.text {
+                        backMuscleText += !backMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                    }
                 }
             }
         }
@@ -212,11 +215,15 @@ class WorkoutDetailView: UIView {
                 if muscle.isFront {
                     frontMuscleImageViews[occupiedFrontImageCounter].loadFrom(URLAddress: muscle.imageUrlSecondary)
                     occupiedFrontImageCounter += 1
-                    frontMuscleNameLabel.text! += !frontMuscleNameLabel.text!.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                    if var frontMuscleText = frontMuscleNameLabel.text {
+                        frontMuscleText += !frontMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                    }
                 } else {
                     backMuscleImageViews[occupiedBackImageCounter].loadFrom(URLAddress: muscle.imageUrlSecondary)
                     occupiedBackImageCounter += 1
-                    backMuscleNameLabel.text! += !backMuscleNameLabel.text!.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                    if var backMuscleText = backMuscleNameLabel.text {
+                        backMuscleText += !backMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                    }
                 }
             }
         }
@@ -265,7 +272,9 @@ extension WorkoutDetailView: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkoutCell
         let currentWorkout = workoutVariations[indexPath.row]
-        cell.configure(with: currentWorkout as! WorkoutViewModel)
+        if let currentWorkout = currentWorkout as? WorkoutViewModel {
+            cell.configure(with: currentWorkout)
+        }
         cell.delegate = self
         
         return cell

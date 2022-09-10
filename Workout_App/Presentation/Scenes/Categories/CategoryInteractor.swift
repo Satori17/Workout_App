@@ -41,7 +41,9 @@ extension CategoryInteractor: CategoryBusinessLogic {
                     }
                 }
             } catch(let error) {
-                self.presenter?.didFailPresentCategories(withError: error as! FetchingError)
+                if let fetchError = error as? FetchingError {
+                    self.presenter?.didFailPresentCategories(withError: fetchError)
+                }
             }
         }
     }
