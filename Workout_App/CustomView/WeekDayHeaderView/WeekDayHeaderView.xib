@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,27 +17,30 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="385" height="103"/>
+            <rect key="frame" x="0.0" y="0.0" width="315" height="89"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeekDay" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0at-xV-LRz">
-                    <rect key="frame" x="30" y="38" width="88.5" height="27.5"/>
-                    <fontDescription key="fontDescription" name="AvenirNext-DemiBoldItalic" family="Avenir Next" pointSize="20"/>
-                    <nil key="textColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeekDay" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0at-xV-LRz">
+                    <rect key="frame" x="106.5" y="29" width="102" height="31.5"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-DemiBoldItalic" family="Avenir Next" pointSize="23"/>
+                    <color key="textColor" name="GradientColor1"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="0at-xV-LRz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FEl-IA-Eis"/>
-                <constraint firstItem="0at-xV-LRz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="KZ6-oJ-ORS"/>
+                <constraint firstItem="0at-xV-LRz" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JhX-sx-yRr"/>
+                <constraint firstItem="0at-xV-LRz" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UqC-oY-zmN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="116.66666666666667" y="-179.12946428571428"/>
+            <point key="canvasLocation" x="65.94202898550725" y="-183.81696428571428"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="GradientColor1">
+            <color red="0.30000001192092896" green="0.67000001668930054" blue="0.9100000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

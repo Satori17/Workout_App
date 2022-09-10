@@ -11,7 +11,7 @@ protocol AlertPresentationLogic {
     func presentWorkoutIntensityData(response: Alert.GetWorkoutIntensity.Response)
 }
 
-class AlertPresenter {
+final class AlertPresenter {
     weak var viewController: AlertDisplayLogic?
     
 }

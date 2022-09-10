@@ -18,7 +18,7 @@ protocol WorkoutDetailDataPassing {
     
 }
 
-class WorkoutDetailRouter {
+final class WorkoutDetailRouter {
     //clean components
   weak var viewController: WorkoutDetailViewController?
   var dataStore: WorkoutDetailDataStore?

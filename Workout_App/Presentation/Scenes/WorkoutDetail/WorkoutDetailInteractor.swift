@@ -17,7 +17,7 @@ protocol WorkoutDetailDataStore {
     var workout: Displayable? { get set }
 }
 
-class WorkoutDetailInteractor {
+final class WorkoutDetailInteractor {
     //clean components
     var presenter: WorkoutDetailPresentationLogic?
     var worker: WorkoutDetailWorker?

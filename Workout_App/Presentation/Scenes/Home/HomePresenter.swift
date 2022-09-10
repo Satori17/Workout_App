@@ -13,15 +13,52 @@ protocol HomePresentationLogic {
     func presentSavedWorkoutDetails(response: HomeModel.ShowSavedWorkoutDetails.Response)
 }
 
-class HomePresenter {
+final class HomePresenter {
     weak var viewController: HomeDisplayLogic?
     
 }
 
+
 extension HomePresenter: HomePresentationLogic {
     
-    func presentSavedWorkouts(response: HomeModel.GetSavedWorkouts.Response) {        
-        let displayedCoreWorkouts = response.savedWorkouts.map({
+    func presentSavedWorkouts(response: HomeModel.GetSavedWorkouts.Response) {
+        let displayedCoreWorkouts = getDisplayed(coreWorkouts: response.savedWorkouts)
+        //filtering week days to populate on tableView
+        let weekDays = Array(Set(displayedCoreWorkouts.map{ $0.weekDay }))
+        let sortedWeekDays = sortWeekDays(weekDays) ?? []
+        //sorting workouts by week day
+        let sortedWorkouts = displayedCoreWorkouts.sorted(by: {
+            if let firstItemIndex = sortedWeekDays.firstIndex(of: $0.weekDay),
+               let secondItemIndex = sortedWeekDays.firstIndex(of: $1.weekDay) {
+                return firstItemIndex < secondItemIndex
+            }
+            return false
+        })
+        
+        //creating 2D array with 'same week day' logic
+        let filteredCoreWorkouts = filterWorkoutsByWeekDay(workouts: sortedWorkouts)
+        //ready to display!
+        let viewModel = HomeModel.GetSavedWorkouts.ViewModel(displayedCoreWorkouts: filteredCoreWorkouts, weekDays: sortedWeekDays)
+        viewController?.displaySavedWorkouts(viewModel: viewModel)
+    }
+    
+    func didFailPresentSavedWorkouts(withError message: StorageManagerError) {
+        viewController?.didFailDisplaySavedWorkouts(withError: message)
+    }
+    
+    func presentSavedWorkoutDetails(response: HomeModel.ShowSavedWorkoutDetails.Response) {
+        let viewModel = HomeModel.ShowSavedWorkoutDetails.ViewModel()
+        viewController?.displaySavedWorkoutDetails(viewModel: viewModel)
+    }
+    
+}
+
+//MARK: - Helper Formatting Methods
+
+extension HomePresenter {
+    
+    private func getDisplayed(coreWorkouts: [CoreWorkout]) -> [CoreWorkoutViewModel] {
+        let displayedCoreWorkouts = coreWorkouts.map({
             CoreWorkoutViewModel(id: Int($0.id),
                                  name: $0.name ?? "",
                                  description: $0.descriptionText ?? "",
@@ -37,23 +74,37 @@ extension HomePresenter: HomePresentationLogic {
                                  weekDay: $0.weekDay ?? "")
         })
         
-        let viewModel = HomeModel.GetSavedWorkouts.ViewModel(displayedCoreWorkouts: displayedCoreWorkouts)
-        viewController?.displaySavedWorkouts(viewModel: viewModel)
+        return displayedCoreWorkouts
     }
     
-    func didFailPresentSavedWorkouts(withError message: StorageManagerError) {
-        viewController?.didFailDisplaySavedWorkouts(withError: message)
+    private func sortWeekDays(_ weekDays: [String]) -> [String]? {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        var correctOrder = formatter.weekdaySymbols
+        if let first = correctOrder?.removeFirst() {
+            correctOrder?.append(first)
+        }
+        let result = weekDays.sorted {
+            if let firstItemIndex = correctOrder?.firstIndex(of: $0),
+               let secondItemIndex = correctOrder?.firstIndex(of: $1) {
+                return firstItemIndex < secondItemIndex
+            }
+            return false
+        }
+        return result
     }
     
-    func presentSavedWorkoutDetails(response: HomeModel.ShowSavedWorkoutDetails.Response) {
-        let viewModel = HomeModel.ShowSavedWorkoutDetails.ViewModel()
-        viewController?.displaySavedWorkoutDetails(viewModel: viewModel)
+    private func filterWorkoutsByWeekDay(workouts: [CoreWorkoutViewModel]) -> [[CoreWorkoutViewModel]] {
+        let workoutsByWeek: [[CoreWorkoutViewModel]] = workouts.reduce(into: []) {
+            if $0.last?.last?.weekDay == $1.weekDay {
+                $0[$0.index(before: $0.endIndex)].append($1)
+            } else {
+                $0.append([$1])
+            }
+        }
+        return workoutsByWeek
     }
-}
-
-//MARK: - Helper Formatting Methods
-
-extension HomePresenter {
     
     //Category
     private func formattedCategories(ofWorkout workout: CoreWorkout) -> CategoryDisplayable {

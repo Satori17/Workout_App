@@ -8,13 +8,25 @@
 import UIKit
 
 extension UIView {
+    
     private func gradientForView(with gradientMask: CAGradientLayer, firstColor: UIColor, secondColor: UIColor) {
         gradientMask.colors = [firstColor.cgColor, secondColor.cgColor]
         gradientMask.startPoint = CGPoint(x: 0.5, y: 1.0)
         gradientMask.endPoint = CGPoint(x: 0.5, y: 0.0)
         gradientMask.locations = [0.0, 0.7]
         gradientMask.frame = bounds
-        layer.insertSublayer(gradientMask, at: 0)
+        self.layer.insertSublayer(gradientMask, at: 0)
+    }
+    
+    func gradientForImageView(gradient: CAGradientLayer) {
+        gradient.colors = [
+            UIColor.Gradient.skyBlueOption.cgColor,
+            UIColor.clear.cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.locations = [0.0, 0.7]
+        gradient.frame = bounds
+        self.layer.insertSublayer(gradient, at: 0)
     }
     
     func withAppDesign(layer: CAGradientLayer, color: UIColor = UIColor.Gradient.lightGrayOption, curvedCorners: Bool) {        

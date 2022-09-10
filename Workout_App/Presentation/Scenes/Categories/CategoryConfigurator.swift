@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryConfigurator {
+final class CategoryConfigurator {
     
     static func configure(vc: CategoryViewController) {
         //interactor

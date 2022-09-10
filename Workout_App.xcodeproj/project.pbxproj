@@ -69,13 +69,14 @@
 		58762DF3289EF97E00C5E223 /* WorkoutUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58762DF2289EF97E00C5E223 /* WorkoutUrlBuilder.swift */; };
 		5877DC4E288859DF003A3086 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5877DC4D288859DF003A3086 /* AppDelegate.swift */; };
 		5877DC50288859DF003A3086 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5877DC4F288859DF003A3086 /* SceneDelegate.swift */; };
-		5877DC55288859DF003A3086 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5877DC53288859DF003A3086 /* Main.storyboard */; };
 		5877DC58288859DF003A3086 /* Workout_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5877DC56288859DF003A3086 /* Workout_App.xcdatamodeld */; };
 		5877DC5A288859E0003A3086 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5877DC59288859E0003A3086 /* Assets.xcassets */; };
 		5877DC5D288859E0003A3086 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5877DC5B288859E0003A3086 /* LaunchScreen.storyboard */; };
 		5877DC68288859E1003A3086 /* Workout_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5877DC67288859E1003A3086 /* Workout_AppTests.swift */; };
 		5877DC72288859E1003A3086 /* Workout_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5877DC71288859E1003A3086 /* Workout_AppUITests.swift */; };
 		5877DC74288859E1003A3086 /* Workout_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5877DC73288859E1003A3086 /* Workout_AppUITestsLaunchTests.swift */; };
+		587DB48828CAB907007D704E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 587DB48728CAB907007D704E /* Main.storyboard */; };
+		587DB48A28CB64A5007D704E /* IntensityDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48928CB64A5007D704E /* IntensityDataModel.swift */; };
 		58D8AC8728999735008BF876 /* CategoryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8AC8628999735008BF876 /* CategoryConfigurator.swift */; };
 		58D8AC8C2899D988008BF876 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8AC8A2899D988008BF876 /* CategoryCell.swift */; };
 		58D8AC8D2899D988008BF876 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D8AC8B2899D988008BF876 /* CategoryCell.xib */; };
@@ -188,7 +189,6 @@
 		5877DC4A288859DF003A3086 /* Workout_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Workout_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5877DC4D288859DF003A3086 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5877DC4F288859DF003A3086 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5877DC54288859DF003A3086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5877DC57288859DF003A3086 /* Workout_App.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Workout_App.xcdatamodel; sourceTree = "<group>"; };
 		5877DC59288859E0003A3086 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5877DC5C288859E0003A3086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -198,6 +198,8 @@
 		5877DC6D288859E1003A3086 /* Workout_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Workout_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5877DC71288859E1003A3086 /* Workout_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout_AppUITests.swift; sourceTree = "<group>"; };
 		5877DC73288859E1003A3086 /* Workout_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		587DB48728CAB907007D704E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		587DB48928CB64A5007D704E /* IntensityDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntensityDataModel.swift; sourceTree = "<group>"; };
 		58D8AC8628999735008BF876 /* CategoryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryConfigurator.swift; sourceTree = "<group>"; };
 		58D8AC8A2899D988008BF876 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		58D8AC8B2899D988008BF876 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
@@ -254,13 +256,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		583005C128C8DE9D00912DA8 /* AlertView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AlertView;
-			sourceTree = "<group>";
-		};
 		583005C328C8E08000912DA8 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +347,7 @@
 			children = (
 				58E9869828987A8A00C1F69F /* DataModel.swift */,
 				583C2AF5288FEB630049C2C3 /* WorkoutModel.swift */,
+				587DB48928CB64A5007D704E /* IntensityDataModel.swift */,
 				583005A528C685E700912DA8 /* DisplayableModel.swift */,
 			);
 			path = Model;
@@ -618,8 +614,8 @@
 		58E98684289494A200C1F69F /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
-				5877DC53288859DF003A3086 /* Main.storyboard */,
 				58D8AC94289A9DF1008BF876 /* TabBarController.swift */,
+				587DB48728CAB907007D704E /* Main.storyboard */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -682,7 +678,6 @@
 		58F9A0A128ADAED60001EE6E /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				583005C128C8DE9D00912DA8 /* AlertView */,
 				5845915628C4C0AD0055AE0A /* WeekDayHeaderView */,
 				58DC51D428BD236100297CD5 /* WorkoutDetailView */,
 			);
@@ -799,6 +794,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587DB48828CAB907007D704E /* Main.storyboard in Resources */,
 				5845916328C4D0870055AE0A /* HomeWorkoutCell.xib in Resources */,
 				5877DC5D288859E0003A3086 /* LaunchScreen.storyboard in Resources */,
 				5845915E28C4CFB90055AE0A /* WeekDayHeaderView.xib in Resources */,
@@ -810,7 +806,6 @@
 				5877DC5A288859E0003A3086 /* Assets.xcassets in Resources */,
 				583C2B0128908D930049C2C3 /* HomeViewController.storyboard in Resources */,
 				583C2B0428908FB10049C2C3 /* WorkoutsViewController.storyboard in Resources */,
-				5877DC55288859DF003A3086 /* Main.storyboard in Resources */,
 				58F9A0A528ADAF210001EE6E /* WorkoutDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -913,6 +908,7 @@
 				583FD05528A0644B0025B44D /* WorkoutDetailRouter.swift in Sources */,
 				58D8AC99289ABBA0008BF876 /* UIView+Extension.swift in Sources */,
 				58E9869428952C2700C1F69F /* CategoryModels.swift in Sources */,
+				587DB48A28CB64A5007D704E /* IntensityDataModel.swift in Sources */,
 				583005A628C685E700912DA8 /* DisplayableModel.swift in Sources */,
 				583421DC28C6282C00ECF814 /* CoreComment+CoreDataProperties.swift in Sources */,
 				583005DD28C9E53400912DA8 /* CoreWorkout+CoreDataProperties.swift in Sources */,
@@ -953,14 +949,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5877DC53288859DF003A3086 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5877DC54288859DF003A3086 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5877DC5B288859E0003A3086 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1098,7 +1086,6 @@
 				INFOPLIST_FILE = Workout_App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1127,7 +1114,6 @@
 				INFOPLIST_FILE = Workout_App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

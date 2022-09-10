@@ -23,9 +23,9 @@ final class CategoryViewController: UIViewController {
     
     //clean components
     var interactor: CategoryBusinessLogic?
-    var router: CategoryRoutingLogic?
+    var router: (CategoryRoutingLogic & CategoryDataPassing)?
     //category data
-    var allCategories = [CategoryViewModel]()
+    private var allCategories = [CategoryViewModel]()
     
     //MARK: - Object Lifecycle
     

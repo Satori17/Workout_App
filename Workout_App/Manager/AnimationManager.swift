@@ -65,4 +65,20 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         fromView.layer.add(animGroup, forKey: "curvedAnim")
         CATransaction.commit()
     }
+    
+    func zoomingAnimation(ofView view: UIView, withShake: Bool, completion: @escaping () -> ()) {
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            if withShake {
+                self?.shakeAnimation(ofView: view)
+            }
+            view.transform = CGAffineTransform.identity.scaledBy(x: 1.5, y: 1.5)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5) {
+                view.transform = CGAffineTransform.identity
+            } completion: { _ in
+                completion()
+            }
+        }
+    }
+    
 }

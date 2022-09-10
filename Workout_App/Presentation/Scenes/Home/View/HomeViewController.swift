@@ -18,7 +18,7 @@ final class HomeViewController: UIViewController {
     //MARK: - IBOutlets
     
     @IBOutlet weak var homeSegmentControl: UISegmentedControl!
-    @IBOutlet weak var homeTableView: UITableView!
+    @IBOutlet weak var savedWorkoutsTableView: UITableView!
     
     //MARK: - Properties
     
@@ -26,7 +26,9 @@ final class HomeViewController: UIViewController {
     var interactor: HomeBusinessLogic?
     var router: (HomeRoutingLogic & HomeDataPassing)?
     //workouts data
-    var savedWorkouts: [CoreWorkoutViewModel] = []
+    private var savedWorkouts = [[CoreWorkoutViewModel]]()
+    //week days data
+    private var weekDays = [String]()
     
     //MARK: - Object Lifecycle
     
@@ -39,7 +41,7 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeTableView.registerNib(class: HomeWorkoutCell.self)
+        savedWorkoutsTableView.registerNib(class: HomeWorkoutCell.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,16 +55,16 @@ final class HomeViewController: UIViewController {
         
     }
     
-    
     //MARK: - Methods
     
     private func makeRequest() {
         interactor?.getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request())
     }
     
-    private func setupSavedWorkouts(data: [CoreWorkoutViewModel]) {
+    private func setupSavedWorkouts(data: [[CoreWorkoutViewModel]], weekDays: [String]) {
         self.savedWorkouts = data
-        homeTableView.reloadData()
+        self.weekDays = weekDays
+        savedWorkoutsTableView.reloadData()
     }
 }
 
@@ -71,7 +73,7 @@ final class HomeViewController: UIViewController {
 extension HomeViewController: HomeDisplayLogic {
     
     func displaySavedWorkouts(viewModel: HomeModel.GetSavedWorkouts.ViewModel) {
-        setupSavedWorkouts(data: viewModel.displayedCoreWorkouts)
+        setupSavedWorkouts(data: viewModel.displayedCoreWorkouts, weekDays: viewModel.weekDays)
     }
     
     func didFailDisplaySavedWorkouts(withError message: StorageManagerError) {
@@ -90,11 +92,12 @@ extension HomeViewController: HomeDisplayLogic {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        weekDays.count
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        savedWorkouts.count
+        return savedWorkouts[section].count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -103,7 +106,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HomeWorkoutCell
-        let currentWorkout = savedWorkouts[indexPath.row]
+        let currentWorkout = savedWorkouts[indexPath.section][indexPath.row]
         cell.configure(with: currentWorkout)
         
         return cell
@@ -111,18 +114,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let currentWorkout = savedWorkouts[indexPath.row]
+        let currentWorkout = savedWorkouts[indexPath.section][indexPath.row]
         let request = HomeModel.ShowSavedWorkoutDetails.Request(savedWorkout: currentWorkout)
         interactor?.getSavedWorkoutDetails(request: request)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        30
+        50
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = WeekDayHeaderView()
-        view.weekDayLabel.text = "Monday"
+        view.weekDayLabel.text = weekDays[section]
         
         return view
     }
@@ -133,10 +136,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let currentWorkout = savedWorkouts[indexPath.row]
+            let currentWorkout = savedWorkouts[indexPath.section][indexPath.row]
             interactor?.removeWorkout(withId: Int(currentWorkout.id))
-            self.savedWorkouts.remove(at: indexPath.row)
-            self.homeTableView.reloadData()
+            self.savedWorkouts[indexPath.section].remove(at: indexPath.row)
+            if savedWorkouts[indexPath.section].isEmpty {
+                savedWorkouts.remove(at: indexPath.section)
+                weekDays.remove(at: indexPath.section)
+            }
+            self.savedWorkoutsTableView.reloadData()
         }
     }
     

@@ -17,7 +17,7 @@ protocol AlertDataStore {
     var workoutToSave: Displayable? { get set }
 }
 
-class AlertInteractor: AlertDataStore {
+final class AlertInteractor: AlertDataStore {
     //clean components
     var presenter: AlertPresentationLogic?
     var worker: AlertWorker?

@@ -21,13 +21,13 @@ class HomeWorkoutCell: UITableViewCell {
     //MARK: - Properties
     
     private let gradientMaskLayer = CAGradientLayer()
+    private let gradientMaskLayer2 = CAGradientLayer()
 
     //MARK: - Cell Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCellComponents()
-        imageBackgroundView.addShadow(ofRadius: 20.0)
     }
     
     override func layoutSubviews() {
@@ -41,13 +41,13 @@ class HomeWorkoutCell: UITableViewCell {
         sender.isSelected = !sender.isSelected
     }
     
-    
     //MARK: - Methods
     
     private func setupCellComponents() {
-        fakeView.withAppDesign(layer: gradientMaskLayer, curvedCorners: false)
+        fakeView.withAppDesign(layer: gradientMaskLayer, color: UIColor.Gradient.whiteOption.withAlphaComponent(0.5), curvedCorners: false)
         checkmarkBtn.layer.masksToBounds = true
         checkmarkBtn.layer.cornerRadius = checkmarkBtn.frame.width/2
+        workoutImageView.gradientForImageView(gradient: gradientMaskLayer2)
     }
     
     func configure(with workout: CoreWorkoutViewModel) {
@@ -56,11 +56,6 @@ class HomeWorkoutCell: UITableViewCell {
         }
         workoutNameLabel.text = workout.name
         workoutSetsAndRepsLabel.text = "\(workout.sets)x \(workout.reps) reps"
-        
     }
     
-    
-    func gradientForImageView() {
-        
-    }
 }

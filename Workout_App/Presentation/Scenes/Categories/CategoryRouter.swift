@@ -15,7 +15,7 @@ protocol CategoryDataPassing {
     var dataStore: CategoryDataStore? { get set }
 }
 
-class CategoryRouter: CategoryDataPassing {
+final class CategoryRouter: CategoryDataPassing {
     //clean components
     weak var viewController: UIViewController?
     var dataStore: CategoryDataStore?

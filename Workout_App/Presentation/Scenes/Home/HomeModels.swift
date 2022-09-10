@@ -23,7 +23,8 @@ enum HomeModel {
         }
         
         struct ViewModel {
-            let displayedCoreWorkouts: [displayedCoreWorkout]
+            let displayedCoreWorkouts: [[displayedCoreWorkout]]
+            let weekDays: [String]
             
             struct displayedCoreWorkout: Displayable {
                 var id: Int

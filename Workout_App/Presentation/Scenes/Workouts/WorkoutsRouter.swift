@@ -19,7 +19,7 @@ protocol WorkoutsDataPassing {
 }
 
 
-class WorkoutsRouter: WorkoutsDataPassing {
+final class WorkoutsRouter: WorkoutsDataPassing {
     //clean components
     weak var viewController: WorkoutsViewController?
     var dataStore: WorkoutsDataStore?
@@ -32,6 +32,7 @@ extension WorkoutsRouter: WorkoutsRoutingLogic {
     func routeToWorkoutDetails() {
         guard let workout = dataStore?.selectedWorkout, let animated = dataStore?.isTransitionAnimated else { return }
         let detailsVC = instantiateDetailsVC(withWorkout: workout)
+        detailsVC.isSaved = false
         //viewController?.navigationController?.delegate = viewController?.transitionManager
         viewController?.navigationController?.pushViewController(detailsVC, animated: animated)
     }
@@ -60,6 +61,7 @@ extension WorkoutsRouter: WorkoutsRoutingLogic {
     func instantiateDetailsVC(withWorkout workout: WorkoutViewModel) -> WorkoutDetailViewController {
         if let workoutDetailVC = UIStoryboard(name: Ids.workoutDetail, bundle: nil).instantiateViewController(withIdentifier: Ids.workoutDetail) as? WorkoutDetailViewController {
             WorkoutDetailConfigurator.configure(vc: workoutDetailVC)
+            workoutDetailVC.isSaved = true
             if var workoutDetailDS = workoutDetailVC.router?.dataStore {
                 passDetailsData(ofWorkout: workout, destination: &workoutDetailDS)
             }

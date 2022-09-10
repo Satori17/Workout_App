@@ -22,7 +22,8 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var triggerView: UIView!
-    @IBOutlet weak var bannerView: UIView!
+    @IBOutlet weak var homeIcon: UIImageView!
+    @IBOutlet weak var fakeTabBar: UITabBar!
     
     //MARK: - Properties
     
@@ -32,10 +33,10 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     //gradient
     private let gradientMaskLayer = CAGradientLayer()
     //data
-    var sets = [String]()
-    var reps = [String]()
-    var weekDays = [String]()
-    var selectedData: (sets: Int, reps: Int, weekDay: String)?
+    private var sets = [String]()
+    private var reps = [String]()
+    private var weekDays = [String]()
+    private var selectedData: (sets: Int, reps: Int, weekDay: String)?
     //animation manager
     let animationManager = AnimationManager()
     
@@ -53,6 +54,7 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
         super.viewDidLoad()
         getIntensityData()
         setupAlertView()
+        fakeTabBar.backgroundImage = UIImage()
     }
     
     //MARK: - IBAction
@@ -98,7 +100,7 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     private func repRangeAlert(repCount: Int=0) {
         if repCount >= 5 {
             alertViewTitle.text = "Choose Wisely"
-            alertViewTitle.textColor = UIColor(named: UIColor.GradientColor.lightGray.rawValue )
+            alertViewTitle.textColor = UIColor(named: UIColor.GradientColor.skyBlue.rawValue )
         } else {
             alertViewTitle.text = "Rep Range is too low"
             alertViewTitle.textColor = .systemRed
@@ -108,7 +110,13 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     private func animateSaving() {
         self.animationManager.movingAnimation(fromView: self.alertView, toView: self.triggerView) { [weak self] in
             self?.alertView.removeFromSuperview()
-            self?.dismiss(animated: true)
+            self?.view.backgroundColor = .clear
+            self?.homeIcon.isHidden = false
+            if let icon = self?.homeIcon {
+                self?.animationManager.zoomingAnimation(ofView: icon, withShake: true) { [weak self] in
+                    self?.dismiss(animated: true)
+                }
+            }
         }
     }
     
@@ -117,7 +125,7 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
 //MARK: - Display Logic protocol
 
 extension AlertViewController: AlertDisplayLogic {
-        
+    
     func displayIntensityData(viewModel: Alert.GetWorkoutIntensity.ViewModel) {
         setupIntensity(data: (viewModel.sets, viewModel.reps, viewModel.weekDays))
     }

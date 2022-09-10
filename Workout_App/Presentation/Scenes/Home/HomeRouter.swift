@@ -17,7 +17,7 @@ protocol HomeDataPassing {
     var dataStore: HomeDataStore? { get }
 }
 
-class HomeRouter: HomeDataPassing {
+final class HomeRouter: HomeDataPassing {
     //clean components
     weak var viewController: HomeViewController?
     var dataStore: HomeDataStore?

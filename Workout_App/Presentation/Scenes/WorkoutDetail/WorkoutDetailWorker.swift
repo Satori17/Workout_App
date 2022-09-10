@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WorkoutDetailWorker {
+final class WorkoutDetailWorker {
   func doSomeWork() {
       
   }

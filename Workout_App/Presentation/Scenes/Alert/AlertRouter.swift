@@ -15,7 +15,7 @@ protocol AlertDataPassing {
     var dataStore: AlertDataStore? { get }
 }
 
-class AlertRouter {
+final class AlertRouter {
     weak var viewController: AlertViewController?
     var dataStore: AlertDataStore?
     

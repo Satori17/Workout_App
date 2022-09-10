@@ -18,7 +18,7 @@ protocol WorkoutsDataStore {
     var isTransitionAnimated: Bool? { get }
 }
 
-class WorkoutsInteractor: WorkoutsDataStore {
+final class WorkoutsInteractor: WorkoutsDataStore {
     //clean components
     var presenter: WorkoutsPresentationLogic?
     var worker: WorkoutsWorker?

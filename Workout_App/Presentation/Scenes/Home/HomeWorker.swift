@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol HomeWorkerProtocol {
+protocol HomeWorkerLogic {
     func fetchSavedWorkouts(completion: (Result<[CoreWorkout], StorageManagerError>) -> Void)
 }
 
-class HomeWorker {
-    var storageManager: WorkoutStorageManager?
+final class HomeWorker {
+    private var storageManager: WorkoutStorageManager?
     
     init(storageManager: WorkoutStorageManager) {
         self.storageManager = storageManager
@@ -20,7 +20,8 @@ class HomeWorker {
     
 }
 
-extension HomeWorker: HomeWorkerProtocol {
+
+extension HomeWorker: HomeWorkerLogic {
     
     func fetchSavedWorkouts(completion: (Result<[CoreWorkout], StorageManagerError>) -> Void) {
         do {

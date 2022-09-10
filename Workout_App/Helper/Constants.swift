@@ -8,7 +8,7 @@
 import Foundation
 
 enum Ids {
-    static let home = "HomeVC"
+    static let home = "HomeViewController"
     static let category = "CategoryViewController"
     static let workouts = "WorkoutsViewController"
     static let workoutDetail = "WorkoutDetailViewController"

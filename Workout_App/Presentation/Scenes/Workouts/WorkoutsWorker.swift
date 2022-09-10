@@ -11,7 +11,7 @@ protocol WorkoutsWorkerProtocol {
     func fetchWorkouts() async throws -> [Workout]
 }
 
-class WorkoutsWorker: WorkoutsWorkerProtocol {
+final class WorkoutsWorker: WorkoutsWorkerProtocol {
     
     func fetchWorkouts() async throws -> [Workout] {
         let data = try await Fetcher.shared.fetchData(with: WorkoutUrlBuilder.shared, as: WorkoutData<Workout>.self)

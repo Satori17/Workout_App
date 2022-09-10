@@ -14,7 +14,7 @@ protocol WorkoutDetailPresentationLogic {
     func presentSaveAlert(response: WorkoutDetailModel.ShowSaveAlert.Response)
 }
 
-class WorkoutDetailPresenter {
+final class WorkoutDetailPresenter {
     weak var viewController: WorkoutDetailDisplayLogic?
     
 }

@@ -11,7 +11,7 @@ protocol CategoryWorkerProtocol {
     func fetchCategories() async throws -> [Category]
 }
 
-class CategoryWorker: CategoryWorkerProtocol {
+final class CategoryWorker: CategoryWorkerProtocol {
     
     func fetchCategories() async throws -> [Category] {
         let data = try await Fetcher.shared.fetchData(with: CategoryUrlBuilder.shared, as: WorkoutData<Category>.self)

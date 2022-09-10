@@ -14,31 +14,17 @@ protocol WorkoutsPresentationLogic {
     func presentSaveAlert(response: WorkoutModel.ShowSaveAlert.Response)
 }
 
-class WorkoutsPresenter {
+final class WorkoutsPresenter {
     weak var viewController: WorkoutsDisplayLogic?
     
 }
 
+//MARK: - Presentation Logic
 
 extension WorkoutsPresenter: WorkoutsPresentationLogic {
     
     func presentWorkouts(response: WorkoutModel.GetWorkouts.Response) {
-        
-        let displayedWorkouts = response.workouts.map({
-            WorkoutViewModel(id: $0.id ?? 0,
-                             name: $0.name ?? "",
-                             description: formattedDescriptionnn(ofWorkout: $0),
-                             category: formattedCategories(ofWorkout: $0),
-                             muscles: formattedMuscles(ofWorkout: $0, isMain: true),
-                             musclesSecondary: formattedMuscles(ofWorkout: $0, isMain: false),
-                             equipment: formattedEquipments(ofWorkout: $0),
-                             language: formattedLanguage(ofWorkout: $0),
-                             license: formattedLicense(ofWorkout: $0),
-                             licenseAuthor: $0.licenseAuthor ?? "",
-                             images: formattedImages(ofWorkout: $0),
-                             comments: formattedComments(ofWorkout: $0),
-                             variations: formattedVariations(from: response, ofWorkout: $0))
-        })
+        let displayedWorkouts = getDisplayed(workoutsData: response)
         
         let viewModel = WorkoutModel.GetWorkouts.ViewModel(displayedWorkouts: displayedWorkouts)
         viewController?.displayWorkouts(viewModel: viewModel)
@@ -62,6 +48,26 @@ extension WorkoutsPresenter: WorkoutsPresentationLogic {
 //MARK: - Helper Formatting Methods
 
 extension WorkoutsPresenter {
+    
+    private func getDisplayed(workoutsData: WorkoutModel.GetWorkouts.Response) -> [WorkoutViewModel] {
+        let displayedWorkouts = workoutsData.workouts.map({
+            WorkoutViewModel(id: $0.id ?? 0,
+                             name: $0.name ?? "",
+                             description: formattedDescriptionnn(ofWorkout: $0),
+                             category: formattedCategories(ofWorkout: $0),
+                             muscles: formattedMuscles(ofWorkout: $0, isMain: true),
+                             musclesSecondary: formattedMuscles(ofWorkout: $0, isMain: false),
+                             equipment: formattedEquipments(ofWorkout: $0),
+                             language: formattedLanguage(ofWorkout: $0),
+                             license: formattedLicense(ofWorkout: $0),
+                             licenseAuthor: $0.licenseAuthor ?? "",
+                             images: formattedImages(ofWorkout: $0),
+                             comments: formattedComments(ofWorkout: $0),
+                             variations: formattedVariations(from: workoutsData, ofWorkout: $0))
+        })
+        
+        return displayedWorkouts
+    }
     
     //formatted string to clear out html symbols
     private func formattedDescriptionnn(ofWorkout workout: Workout) -> String {

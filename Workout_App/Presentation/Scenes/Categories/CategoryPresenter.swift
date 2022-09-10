@@ -14,7 +14,7 @@ protocol CategoryPresentationLogic {
 }
 
 
-class CategoryPresenter {
+final class CategoryPresenter {
     weak var viewController: CategoryDisplayLogic?
     
 }

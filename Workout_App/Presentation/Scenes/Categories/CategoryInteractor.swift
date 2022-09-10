@@ -18,7 +18,7 @@ protocol CategoryDataStore {
     
 }
 
-class CategoryInteractor: CategoryDataStore {
+final class CategoryInteractor: CategoryDataStore {
     //clean components
     var presenter: CategoryPresentationLogic?
     private var worker: CategoryWorker?

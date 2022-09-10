@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WorkoutDetailConfigurator {
+final class WorkoutDetailConfigurator {
 
     static func configure(vc: WorkoutDetailViewController) {
         //interactor

@@ -17,7 +17,7 @@ protocol HomeDataStore {
     var selectedSavedWorkout: CoreWorkoutViewModel? { get }    
 }
 
-class HomeInteractor: HomeDataStore {
+final class HomeInteractor: HomeDataStore {
     //clean components
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?

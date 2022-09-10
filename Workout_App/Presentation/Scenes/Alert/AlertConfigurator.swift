@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AlertConfigurator {
+final class AlertConfigurator {
 
     static func configure(vc: AlertViewController) {
         //interactor

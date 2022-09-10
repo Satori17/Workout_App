@@ -7,13 +7,11 @@
 
 import UIKit
 
-class AlertWorker {
+final class AlertWorker {
+    
+    let intensityData = IntensityData()
     
     func fetchWorkoutIntensityData() -> (sets: [String], reps: [String], weekDays: [String]) {
-        let sets = Array(1...20).map { String($0) }
-        let reps = Array(1...50).map { String($0)}
-        let weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        
-        return (sets, reps, weekDays)
+        intensityData.getIntensityData()
     }
 }

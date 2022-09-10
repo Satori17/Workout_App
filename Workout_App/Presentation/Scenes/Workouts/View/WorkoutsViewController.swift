@@ -128,8 +128,6 @@ extension WorkoutsViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkoutCell
         let currentWorkout = workouts[indexPath.row]
         cell.configure(with: currentWorkout)
-        //TODO: - FIX THIS check why i did write this here
-        cell.clipsToBounds = true
         cell.delegate = self
         
         return cell

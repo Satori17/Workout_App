@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="418" height="162"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7E5-jt-cuu">
-                                <rect key="frame" x="0.0" y="0.0" width="162" height="162"/>
+                                <rect key="frame" x="256" y="0.0" width="162" height="162"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aby-hl-8yl">
                                         <rect key="frame" x="0.0" y="0.0" width="162" height="162"/>
@@ -37,30 +38,24 @@
                                     <constraint firstItem="aby-hl-8yl" firstAttribute="leading" secondItem="7E5-jt-cuu" secondAttribute="leading" id="hPo-lc-29G"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zoh-8g-sbZ">
-                                <rect key="frame" x="172" y="103" width="47.5" height="23.5"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-DemiBoldItalic" family="Avenir Next" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sets &amp; Reps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-UH-RhE">
-                                <rect key="frame" x="172" y="136.5" width="80.5" height="20.5"/>
+                                <rect key="frame" x="61" y="136.5" width="80.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-MediumItalic" family="Avenir Next" pointSize="15"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tco-Mj-U9x">
-                                <rect key="frame" x="377" y="68" width="26" height="26"/>
+                                <rect key="frame" x="15" y="68" width="26" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tco-Mj-U9x" secondAttribute="height" multiplier="1:1" id="mxN-dH-Dlk"/>
                                     <constraint firstAttribute="width" constant="26" id="wMr-zP-QJ3"/>
                                 </constraints>
-                                <color key="tintColor" red="0.37022723864818097" green="0.6157311667344485" blue="0.83591777146464641" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" name="Checkmark"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal">
                                     <imageReference key="image" image="circle" catalog="system" symbolScale="large" renderingMode="hierarchical">
                                         <hierarchicalColors>
-                                            <color name="GradientColor1"/>
+                                            <color name="Checkmark"/>
                                             <color systemColor="secondaryLabelColor"/>
                                             <color systemColor="tertiaryLabelColor"/>
                                         </hierarchicalColors>
@@ -81,19 +76,25 @@
                                     <action selector="workoutChecked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Cx1-xA-wVC"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zoh-8g-sbZ">
+                                <rect key="frame" x="61" y="103" width="47.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBoldItalic" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="Zoh-8g-sbZ" firstAttribute="leading" secondItem="tco-Mj-U9x" secondAttribute="trailing" constant="20" id="3Xb-nq-3AI"/>
+                            <constraint firstAttribute="trailing" secondItem="7E5-jt-cuu" secondAttribute="trailing" id="7wX-Z1-9a7"/>
                             <constraint firstItem="tco-Mj-U9x" firstAttribute="centerY" secondItem="hBN-cT-Zfb" secondAttribute="centerY" id="83i-Wr-AFB"/>
                             <constraint firstItem="7E5-jt-cuu" firstAttribute="top" secondItem="hBN-cT-Zfb" secondAttribute="top" id="Dvh-XR-hKY"/>
                             <constraint firstItem="Zoh-8g-sbZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hBN-cT-Zfb" secondAttribute="top" constant="10" id="E8U-Xu-TLS"/>
                             <constraint firstAttribute="bottom" secondItem="oNh-UH-RhE" secondAttribute="bottom" constant="5" id="Maj-dJ-WUw"/>
+                            <constraint firstItem="tco-Mj-U9x" firstAttribute="leading" secondItem="hBN-cT-Zfb" secondAttribute="leading" constant="15" id="QPE-xr-qKR"/>
+                            <constraint firstItem="7E5-jt-cuu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zoh-8g-sbZ" secondAttribute="trailing" constant="10" id="Rva-io-ohb"/>
                             <constraint firstItem="oNh-UH-RhE" firstAttribute="leading" secondItem="Zoh-8g-sbZ" secondAttribute="leading" id="YmM-Zb-T8N"/>
-                            <constraint firstItem="tco-Mj-U9x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zoh-8g-sbZ" secondAttribute="trailing" constant="20" id="Za3-VI-BZh"/>
-                            <constraint firstItem="7E5-jt-cuu" firstAttribute="leading" secondItem="hBN-cT-Zfb" secondAttribute="leading" id="hVE-4O-1Qv"/>
                             <constraint firstItem="oNh-UH-RhE" firstAttribute="top" secondItem="Zoh-8g-sbZ" secondAttribute="bottom" constant="10" id="tSo-xg-6lQ"/>
-                            <constraint firstItem="oNh-UH-RhE" firstAttribute="leading" secondItem="7E5-jt-cuu" secondAttribute="trailing" constant="10" id="uvo-cH-0NI"/>
                             <constraint firstAttribute="bottom" secondItem="7E5-jt-cuu" secondAttribute="bottom" id="zHl-Do-qCg"/>
-                            <constraint firstAttribute="trailing" secondItem="tco-Mj-U9x" secondAttribute="trailing" constant="15" id="zxo-LJ-EwB"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -120,6 +121,9 @@
     <resources>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <namedColor name="Checkmark">
+            <color red="0.30258011779999999" green="0.58745242580000001" blue="0.78432099570000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="GradientColor1">
             <color red="0.30000001192092896" green="0.67000001668930054" blue="0.9100000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

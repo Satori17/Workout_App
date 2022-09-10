@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeConfigurator {
+final class HomeConfigurator {
     
     static func configure(vc: HomeViewController) {
         //interactor
