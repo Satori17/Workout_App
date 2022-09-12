@@ -11,6 +11,7 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
     
     private let animation = CAKeyframeAnimation()
     private let bezierPath = UIBezierPath()
+    var isButtonsAppeared = false
     
     func shakeAnimation(ofView view: UIView) {
         animation.keyPath = AnimationKeys.positionX.rawValue
@@ -21,11 +22,11 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         view.layer.add(animation, forKey: AnimationKeys.shake.rawValue)
     }
     
-    func movingAnimation(fromView: UIView, toView: UIView, completion: @escaping () -> ()) {
+    func movingAnimation(fromView: UIView, toView: UIView, isRotated: Bool, completion: @escaping () -> ()) {
         CATransaction.begin()
-           CATransaction.setCompletionBlock({
-               completion()
-           })
+        CATransaction.setCompletionBlock({
+            completion()
+        })
         
         bezierPath.move(to: fromView.center)
         bezierPath.addLine(to: toView.center)
@@ -49,7 +50,10 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         let animGroup = CAAnimationGroup()
         animGroup.delegate = self
         animGroup.setValue("curvedAnim", forKey: AnimationKeys.name.rawValue)
-        animGroup.animations = [moveAnimation, scaleAnimation, rotationAnimation]
+        animGroup.animations = [moveAnimation, scaleAnimation]
+        if isRotated {
+            animGroup.animations?.append(rotationAnimation)
+        }
         animGroup.duration = 0.5
         fromView.layer.add(animGroup, forKey: "curvedAnim")
         CATransaction.commit()
@@ -66,6 +70,24 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
                 view.transform = CGAffineTransform.identity
             } completion: { _ in
                 completion()
+            }
+        }
+    }
+    
+    func toggleAppearence(ofViews views: [UIView], actorView: UIView, completion: (() -> ())? = nil) {
+        UIView.transition(with: actorView, duration: 0.3, options: .allowAnimatedContent) {
+            views.forEach{ $0.alpha = $0.alpha == 1 ? 0 : 1 }
+        } completion: { _ in
+                completion?()
+        }
+    }
+    
+    func toggleAppearence(ofButtons buttons: [UIButton]) {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            buttons.forEach{
+                $0.alpha = $0.alpha == 1 ? 0 : 1
+                $0.isHidden = $0.alpha == 0
+                self?.isButtonsAppeared = $0.alpha == 1
             }
         }
     }

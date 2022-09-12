@@ -52,6 +52,7 @@ final class WorkoutDetailView: UIView {
     private let gradientMaskLayer = CAGradientLayer()
     //data
     private var workoutVariations: [Displayable] = []
+    var chosenVariation: Displayable?
     //delegates
     weak var licenseDelegate: licenseDetailsDelegate?
     weak var workoutSaverDelegate: SaveWorkoutDelegate?
@@ -83,7 +84,6 @@ final class WorkoutDetailView: UIView {
     @IBAction func licenseDetailsBtnTapped(_ sender: UIButton) {
         licenseDelegate?.openLicenseDetails()
     }
-    
     
     //MARK: - Initial methods
     
@@ -255,6 +255,7 @@ extension WorkoutDetailView: WorkoutDetailsDelegate {
         if let indexPath = workoutVariationsCollectionView.indexPath(for: cell) {
             let currentWorkout = workoutVariations[indexPath.row]
             self.configure(with: currentWorkout)
+            chosenVariation = currentWorkout
             workoutVariationsCollectionView.reloadData()
         }
     }

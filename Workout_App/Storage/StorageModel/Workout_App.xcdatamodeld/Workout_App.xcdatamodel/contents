@@ -51,6 +51,11 @@
         <relationship name="muscles" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CoreMuscle" inverseName="workout" inverseEntity="CoreMuscle"/>
         <relationship name="musclesSecondary" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CoreMuscle" inverseName="workout2" inverseEntity="CoreMuscle"/>
     </entity>
+    <entity name="WeekDay" representedClassName="WeekDay" syncable="YES" codeGenerationType="class">
+        <attribute name="isScheduled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="scheduledTime" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="CoreCategory" positionX="-18" positionY="36" width="128" height="14"/>
         <element name="CoreComment" positionX="9" positionY="54" width="128" height="14"/>
@@ -59,5 +64,6 @@
         <element name="CoreLanguage" positionX="0" positionY="45" width="128" height="89"/>
         <element name="CoreMuscle" positionX="9" positionY="90" width="128" height="119"/>
         <element name="CoreWorkout" positionX="-45" positionY="0" width="128" height="224"/>
+        <element name="WeekDay" positionX="0" positionY="108" width="128" height="74"/>
     </elements>
 </model>

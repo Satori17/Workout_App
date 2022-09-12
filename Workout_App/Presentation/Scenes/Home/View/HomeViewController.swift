@@ -25,6 +25,8 @@ final class HomeViewController: UIViewController {
     //clean components
     var interactor: HomeBusinessLogic?
     var router: (HomeRoutingLogic & HomeDataPassing)?
+    //notification manager
+    private let notificationManager = NotificationManager()
     //workouts data
     private var savedWorkouts = [[CoreWorkoutViewModel]]()
     //week days data
@@ -42,6 +44,13 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         savedWorkoutsTableView.registerNib(class: HomeWorkoutCell.self)
+        notificationManager.checkUserPermission { granted in
+            if granted {
+                print("Granted")
+            } else {
+                print("Denied")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,7 +129,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        50
+        60
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

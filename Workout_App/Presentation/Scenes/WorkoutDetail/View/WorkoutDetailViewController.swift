@@ -27,6 +27,7 @@ final class WorkoutDetailViewController: UIViewController {
     //clean components
     var interactor: WorkoutDetailBusinessLogic?
     var router: (WorkoutDetailRoutingLogic & WorkoutDetailDataPassing)?
+    //'add workout' button disappears depend on condition
     var isSaved = false
     
     // MARK: View Lifecycle

@@ -79,6 +79,9 @@
 		587DB48C28CD127E007D704E /* AnimationKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48B28CD127E007D704E /* AnimationKeys.swift */; };
 		587DB48E28CD1584007D704E /* ColorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48D28CD1584007D704E /* ColorHelper.swift */; };
 		587DB49028CD15E7007D704E /* MaskedCornerKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */; };
+		587DB49228CE0C36007D704E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49128CE0C36007D704E /* NotificationManager.swift */; };
+		587DB49528CE4659007D704E /* WeekDayKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49428CE4659007D704E /* WeekDayKeys.swift */; };
+		587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49628CE9AD9007D704E /* Timer+Extension.swift */; };
 		58D8AC8728999735008BF876 /* CategoryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8AC8628999735008BF876 /* CategoryConfigurator.swift */; };
 		58D8AC8C2899D988008BF876 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8AC8A2899D988008BF876 /* CategoryCell.swift */; };
 		58D8AC8D2899D988008BF876 /* CategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58D8AC8B2899D988008BF876 /* CategoryCell.xib */; };
@@ -204,6 +207,9 @@
 		587DB48B28CD127E007D704E /* AnimationKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationKeys.swift; sourceTree = "<group>"; };
 		587DB48D28CD1584007D704E /* ColorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHelper.swift; sourceTree = "<group>"; };
 		587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedCornerKeys.swift; sourceTree = "<group>"; };
+		587DB49128CE0C36007D704E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		587DB49428CE4659007D704E /* WeekDayKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayKeys.swift; sourceTree = "<group>"; };
+		587DB49628CE9AD9007D704E /* Timer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Extension.swift"; sourceTree = "<group>"; };
 		58D8AC8628999735008BF876 /* CategoryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryConfigurator.swift; sourceTree = "<group>"; };
 		58D8AC8A2899D988008BF876 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		58D8AC8B2899D988008BF876 /* CategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCell.xib; sourceTree = "<group>"; };
@@ -363,6 +369,7 @@
 				583C2AFB289087DF0049C2C3 /* Constants.swift */,
 				587DB48B28CD127E007D704E /* AnimationKeys.swift */,
 				587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */,
+				587DB49428CE4659007D704E /* WeekDayKeys.swift */,
 				583005AF28C7CED000912DA8 /* ContextMenuHelper.swift */,
 				587DB48D28CD1584007D704E /* ColorHelper.swift */,
 			);
@@ -563,6 +570,7 @@
 				583005D628C937F500912DA8 /* TransitionManager.swift */,
 				583FD04628A05CC90025B44D /* ActivityIndicatorManager.swift */,
 				5838075128CA3001002C40C9 /* AnimationManager.swift */,
+				587DB49128CE0C36007D704E /* NotificationManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -667,6 +675,7 @@
 				58D8AC98289ABBA0008BF876 /* UIView+Extension.swift */,
 				58D8AC9B289B183D008BF876 /* UIImage+Extension.swift */,
 				582AFADC28C3D219004BDF2D /* UIScrollView+Extension.swift */,
+				587DB49628CE9AD9007D704E /* Timer+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -875,6 +884,7 @@
 				583C2AF6288FEB630049C2C3 /* WorkoutModel.swift in Sources */,
 				5845915228C4BFF90055AE0A /* HomeRouter.swift in Sources */,
 				582AFADD28C3D219004BDF2D /* UIScrollView+Extension.swift in Sources */,
+				587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */,
 				583005CE28C8E0A300912DA8 /* AlertViewController.swift in Sources */,
 				583005CD28C8E0A300912DA8 /* AlertModels.swift in Sources */,
 				583005B028C7CED000912DA8 /* ContextMenuHelper.swift in Sources */,
@@ -889,6 +899,7 @@
 				5845915528C4BFF90055AE0A /* HomeInteractor.swift in Sources */,
 				58F9A0A328ADAF130001EE6E /* WorkoutDetailView.swift in Sources */,
 				5877DC4E288859DF003A3086 /* AppDelegate.swift in Sources */,
+				587DB49228CE0C36007D704E /* NotificationManager.swift in Sources */,
 				583421DF28C6282C00ECF814 /* CoreCategory+CoreDataClass.swift in Sources */,
 				583421E828C6282C00ECF814 /* CoreEquipment+CoreDataProperties.swift in Sources */,
 				58E9869128952C2700C1F69F /* CategoryPresenter.swift in Sources */,
@@ -904,6 +915,7 @@
 				583FD05628A0644B0025B44D /* WorkoutDetailModels.swift in Sources */,
 				583421E128C6282C00ECF814 /* CoreLanguage+CoreDataClass.swift in Sources */,
 				58E9869628952C2700C1F69F /* CategoryInteractor.swift in Sources */,
+				587DB49528CE4659007D704E /* WeekDayKeys.swift in Sources */,
 				583FD05328A0644B0025B44D /* WorkoutDetailPresenter.swift in Sources */,
 				583421DB28C6282C00ECF814 /* CoreComment+CoreDataClass.swift in Sources */,
 				58762DEB289E741D00C5E223 /* WorkoutCell.swift in Sources */,
@@ -1087,9 +1099,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Workout_App/Workout_App.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RNA58LVUWN;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Workout_App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1104,6 +1118,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sabakhitaridze.Workout-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1115,9 +1130,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Workout_App/Workout_App.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RNA58LVUWN;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Workout_App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1132,6 +1149,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sabakhitaridze.Workout-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

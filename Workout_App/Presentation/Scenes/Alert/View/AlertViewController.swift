@@ -52,9 +52,10 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //adding imageView to tabBar for transparent backgroudn
+        fakeTabBar.backgroundImage = UIImage()
         getIntensityData()
         setupAlertView()
-        fakeTabBar.backgroundImage = UIImage()
     }
     
     //MARK: - IBAction
@@ -100,7 +101,7 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     private func repRangeAlert(repCount: Int=0) {
         if repCount >= 5 {
             alertViewTitle.text = "Choose Wisely"
-            alertViewTitle.textColor = UIColor(named: UIColor.GradientColor.skyBlue.rawValue )
+            alertViewTitle.textColor = UIColor(named: UIColor.GradientKey.skyBlue.rawValue )
         } else {
             alertViewTitle.text = "Rep Range is too low"
             alertViewTitle.textColor = .systemRed
@@ -108,7 +109,7 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     }
     
     private func animateSaving() {
-        self.animationManager.movingAnimation(fromView: self.alertView, toView: self.triggerView) { [weak self] in
+        self.animationManager.movingAnimation(fromView: self.alertView, toView: self.triggerView, isRotated: true) { [weak self] in
             self?.alertView.removeFromSuperview()
             self?.view.backgroundColor = .clear
             self?.homeIcon.isHidden = false

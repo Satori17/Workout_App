@@ -42,7 +42,12 @@ extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassi
         if let alertVC = UIStoryboard(name: Ids.alert, bundle: nil).instantiateViewController(withIdentifier: Ids.alert) as? AlertViewController {
             AlertConfigurator.configure(vc: alertVC)
             if var alertDS = alertVC.router?.dataStore {
-                passToSave(workout: workout, destination: &alertDS)
+                if let chosenVariation = viewController?.contentView.chosenVariation {
+                    passToSave(workout: chosenVariation, destination: &alertDS)
+                } else {
+                    passToSave(workout: workout, destination: &alertDS)
+                }
+                
             }
             viewController?.present(alertVC, animated: true)
         }

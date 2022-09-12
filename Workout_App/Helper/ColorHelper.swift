@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIColor {
-    enum GradientColor: String {
+    enum GradientKey: String {
         case skyBlue = "GradientColor1"
         case lightGray = "GradientColor2"
     }
@@ -17,14 +17,14 @@ extension UIColor {
   struct Gradient {
       //gray
     static var lightGrayOption: UIColor {
-        if let lightGrayColor = UIColor(named: GradientColor.lightGray.rawValue)?.withAlphaComponent(0.3) {
+        if let lightGrayColor = UIColor(named: GradientKey.lightGray.rawValue)?.withAlphaComponent(0.3) {
             return lightGrayColor
         }
         return UIColor.clear
     }
       //skyBlue
       static var skyBlueOption: UIColor {
-          if let skyBlueColor = UIColor(named: GradientColor.skyBlue.rawValue)?.withAlphaComponent(0.5) {
+          if let skyBlueColor = UIColor(named: GradientKey.skyBlue.rawValue)?.withAlphaComponent(0.5) {
               return skyBlueColor
           }
           return UIColor.clear
