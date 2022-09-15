@@ -8,31 +8,32 @@
 import UIKit
 
 extension UIColor {
-    enum GradientKey: String {
-        case skyBlue = "GradientColor1"
-        case lightGray = "GradientColor2"
+    enum ColorKey {
+        static let skyBlue = UIColor(named: "GradientColor1")
+        static let lightGray = UIColor(named: "GradientColor2")
+        static let adaptive = UIColor(named: "AdaptiveColor")
     }
     
-    
-  struct Gradient {
-      //gray
+  enum Gradient {
+      //MARK: - Gray
     static var lightGrayOption: UIColor {
-        if let lightGrayColor = UIColor(named: GradientKey.lightGray.rawValue)?.withAlphaComponent(0.3) {
+        if let lightGrayColor = UIColor.ColorKey.lightGray?.withAlphaComponent(0.3) {
             return lightGrayColor
         }
         return UIColor.clear
     }
-      //skyBlue
+      
+      //MARK: - SkyBlue
       static var skyBlueOption: UIColor {
-          if let skyBlueColor = UIColor(named: GradientKey.skyBlue.rawValue)?.withAlphaComponent(0.5) {
+          if let skyBlueColor = UIColor.ColorKey.skyBlue?.withAlphaComponent(0.5) {
               return skyBlueColor
           }
           return UIColor.clear
       }
-      //white
+      
+      //MARK: - White
     static var whiteOption: UIColor {
         return UIColor.white
     }
   }
-    
 }

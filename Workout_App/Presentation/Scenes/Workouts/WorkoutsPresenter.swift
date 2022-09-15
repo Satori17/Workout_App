@@ -15,8 +15,9 @@ protocol WorkoutsPresentationLogic {
 }
 
 final class WorkoutsPresenter {
-    weak var viewController: WorkoutsDisplayLogic?
     
+    //MARK: - Clean components
+    weak var viewController: WorkoutsDisplayLogic?
 }
 
 //MARK: - Presentation Logic
@@ -41,9 +42,7 @@ extension WorkoutsPresenter: WorkoutsPresentationLogic {
     func presentSaveAlert(response: WorkoutModel.ShowSaveAlert.Response) {
         viewController?.displaySaveAlert(viewModel: WorkoutModel.ShowSaveAlert.ViewModel())
     }
-    
 }
-
 
 //MARK: - Helper Formatting Methods
 
@@ -51,19 +50,21 @@ extension WorkoutsPresenter {
     
     private func getDisplayed(workoutsData: WorkoutModel.GetWorkouts.Response) -> [WorkoutViewModel] {
         let displayedWorkouts = workoutsData.workouts.map({
-            WorkoutViewModel(id: $0.id ?? 0,
-                             name: $0.name ?? "",
-                             description: formattedDescriptionnn(ofWorkout: $0),
-                             category: formattedCategories(ofWorkout: $0),
-                             muscles: formattedMuscles(ofWorkout: $0, isMain: true),
-                             musclesSecondary: formattedMuscles(ofWorkout: $0, isMain: false),
-                             equipment: formattedEquipments(ofWorkout: $0),
-                             language: formattedLanguage(ofWorkout: $0),
-                             license: formattedLicense(ofWorkout: $0),
-                             licenseAuthor: $0.licenseAuthor ?? "",
-                             images: formattedImages(ofWorkout: $0),
-                             comments: formattedComments(ofWorkout: $0),
-                             variations: formattedVariations(from: workoutsData, ofWorkout: $0))
+            WorkoutViewModel(
+                id: $0.id ?? 0,
+                name: $0.name ?? "",
+                description: formattedDescriptionnn(ofWorkout: $0),
+                category: formattedCategories(ofWorkout: $0),
+                muscles: formattedMuscles(ofWorkout: $0, isMain: true),
+                musclesSecondary: formattedMuscles(ofWorkout: $0, isMain: false),
+                equipment: formattedEquipments(ofWorkout: $0),
+                language: formattedLanguage(ofWorkout: $0),
+                license: formattedLicense(ofWorkout: $0),
+                licenseAuthor: $0.licenseAuthor ?? "",
+                images: formattedImages(ofWorkout: $0),
+                comments: formattedComments(ofWorkout: $0),
+                variations: formattedVariations(from: workoutsData, ofWorkout: $0)
+            )
         })
         
         return displayedWorkouts
@@ -82,7 +83,10 @@ extension WorkoutsPresenter {
         if let category = workout.category {
             if let categoryId = category.id,
                let categoryName = category.name {
-                return CategoryDisplayable(id: categoryId, name: categoryName)
+                return CategoryDisplayable(
+                    id: categoryId,
+                    name: categoryName
+                )
             }
         }
         return CategoryDisplayable()
@@ -96,10 +100,12 @@ extension WorkoutsPresenter {
             //Muscles
             if let muscles = workout.muscles {
                 let musclesArray: [MuscleDisplayable] = muscles.map({
-                    MuscleDisplayable(name: $0.name ?? "",
-                                      isFront: $0.isFront ?? false,
-                                      imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
-                                      imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? ""))
+                    MuscleDisplayable(
+                        name: $0.name ?? "",
+                        isFront: $0.isFront ?? false,
+                        imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
+                        imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? "")
+                    )
                 })
                 
                 return musclesArray
@@ -108,10 +114,12 @@ extension WorkoutsPresenter {
             //Secondary muscles
             if let musclesSecondary = workout.musclesSecondary {
                 let secondaryMusclesArray: [MuscleDisplayable] = musclesSecondary.map({
-                    MuscleDisplayable(name: $0.name ?? "",
-                                      isFront: $0.isFront ?? false,
-                                      imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
-                                      imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? ""))
+                    MuscleDisplayable(
+                        name: $0.name ?? "",
+                        isFront: $0.isFront ?? false,
+                        imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
+                        imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? "")
+                    )
                 })
                 
                 return secondaryMusclesArray
@@ -124,8 +132,10 @@ extension WorkoutsPresenter {
     private func formattedEquipments(ofWorkout workout: Workout) -> [EquipmentDisplayable] {
         if let equipment = workout.equipment {
             let equipmentsArray = equipment.map({
-                EquipmentDisplayable(id: $0.id ?? 0,
-                                     name: $0.name ?? "")
+                EquipmentDisplayable(
+                    id: $0.id ?? 0,
+                    name: $0.name ?? ""
+                )
             })
             
             return equipmentsArray
@@ -139,9 +149,11 @@ extension WorkoutsPresenter {
             if let languageId = language.id,
                let shortName = language.shortName,
                let fullName = language.fullName {
-                return LanguageDisplayable(id: languageId,
-                                           shortName: shortName,
-                                           fullName: fullName)
+                return LanguageDisplayable(
+                    id: languageId,
+                    shortName: shortName,
+                    fullName: fullName
+                )
             }
         }
         return LanguageDisplayable()
@@ -154,10 +166,13 @@ extension WorkoutsPresenter {
                let shortName = license.shortName,
                let fullName = license.fullName,
                let url = license.url {
-                return LicenseDisplayable(licenseInfo: LanguageDisplayable(id: licenseId,
-                                                                           shortName: shortName,
-                                                                           fullName: fullName),
-                                          url: url)
+                return LicenseDisplayable(
+                    licenseInfo: LanguageDisplayable(id: licenseId,
+                                                     shortName: shortName,
+                                                     fullName: fullName
+                                                    ),
+                    url: url
+                )
             }
         }
         return LicenseDisplayable()
@@ -175,11 +190,24 @@ extension WorkoutsPresenter {
             images.forEach({
                 if let id = $0.id,
                    let isMain = $0.isMain {
-                    isMain ? imagesArray.append(ImageDisplayable(id: id, image: mainImage, isMain: isMain)) : imagesArray.append(ImageDisplayable(id: id, image: secondaryImage, isMain:isMain))
+                    isMain ? imagesArray.append(ImageDisplayable(
+                        id: id,
+                        image: mainImage,
+                        isMain: isMain
+                    )) :
+                    imagesArray.append(ImageDisplayable(
+                        id: id,
+                        image: secondaryImage,
+                        isMain:isMain
+                    ))
                 }
             })
             if images.isEmpty {
-                imagesArray.append(ImageDisplayable(id: 0, image: imagePlaceholder, isMain: true))
+                imagesArray.append(ImageDisplayable(
+                    id: 0,
+                    image: imagePlaceholder,
+                    isMain: true
+                ))
             }
         }
         return imagesArray
@@ -189,9 +217,11 @@ extension WorkoutsPresenter {
     private func formattedComments(ofWorkout workout: Workout) -> [CommentDisplayable] {
         if let comments = workout.comments {
             let commentsArray = comments.map({
-                CommentDisplayable(id: $0.id ?? 0,
-                                   exercise: $0.exercise ?? 0,
-                                   comment: "🔘 \($0.comment ?? "")")
+                CommentDisplayable(
+                    id: $0.id ?? 0,
+                    exercise: $0.exercise ?? 0,
+                    comment: "🔘 \($0.comment ?? "")"
+                )
             })
             
             return commentsArray
@@ -213,24 +243,25 @@ extension WorkoutsPresenter {
                        let name = currentWorkout.name,
                        let licenseAuthor = currentWorkout.licenseAuthor,
                        currentWorkout.id != workout.id {
-                        variationsArray.append(WorkoutViewModel(id: id,
-                                                                name: name,
-                                                                description: formattedDescriptionnn(ofWorkout: currentWorkout),
-                                                                category: formattedCategories(ofWorkout: currentWorkout),
-                                                                muscles: formattedMuscles(ofWorkout: currentWorkout, isMain: true),
-                                                                musclesSecondary: formattedMuscles(ofWorkout: currentWorkout, isMain: false),
-                                                                equipment: formattedEquipments(ofWorkout: currentWorkout),
-                                                                language: formattedLanguage(ofWorkout: currentWorkout),
-                                                                license: formattedLicense(ofWorkout: currentWorkout),
-                                                                licenseAuthor: licenseAuthor,
-                                                                images: formattedImages(ofWorkout: currentWorkout),
-                                                                comments: formattedComments(ofWorkout: currentWorkout),
-                                                                variations: []))
+                        variationsArray.append(WorkoutViewModel(
+                            id: id,
+                            name: name,
+                            description: formattedDescriptionnn(ofWorkout: currentWorkout),
+                            category: formattedCategories(ofWorkout: currentWorkout),
+                            muscles: formattedMuscles(ofWorkout: currentWorkout, isMain: true),
+                            musclesSecondary: formattedMuscles(ofWorkout: currentWorkout, isMain: false),
+                            equipment: formattedEquipments(ofWorkout: currentWorkout),
+                            language: formattedLanguage(ofWorkout: currentWorkout),
+                            license: formattedLicense(ofWorkout: currentWorkout),
+                            licenseAuthor: licenseAuthor,
+                            images: formattedImages(ofWorkout: currentWorkout),
+                            comments: formattedComments(ofWorkout: currentWorkout),
+                            variations: [])
+                        )
                     }
                 }
             })
         }
         return variationsArray
     }
-    
 }

@@ -18,20 +18,23 @@ protocol WorkoutDetailDataStore {
 }
 
 final class WorkoutDetailInteractor {
-    //clean components
+    
+    //MARK: - Clean Components
     var presenter: WorkoutDetailPresentationLogic?
     var worker: WorkoutDetailWorker?
-    var workout: Displayable?
-    //storage manager
-    var storageManager: WorkoutStorageManager?
     
+    //MARK: - DataStore Properties
+    var workout: Displayable?
+    
+    //MARK: - Storage Manager
+    var storageManager: WorkoutStorageManager?
 }
-
 
 extension WorkoutDetailInteractor: WorkoutDetailBusinessLogic, WorkoutDetailDataStore {
     
     func showWorkoutDetails(request: WorkoutDetailModel.GetWorkoutDetails.Request) {
         guard let workout = workout else {
+            //TODO: - FIX  THIS with alerts
             presenter?.didFailPresentWorkoutDetails(withError: "workout details data did not passed")
             return
         }
@@ -48,5 +51,4 @@ extension WorkoutDetailInteractor: WorkoutDetailBusinessLogic, WorkoutDetailData
     func showSaveAlert(request: WorkoutDetailModel.ShowSaveAlert.Request) {
         presenter?.presentSaveAlert(response: WorkoutDetailModel.ShowSaveAlert.Response())
     }
-
 }

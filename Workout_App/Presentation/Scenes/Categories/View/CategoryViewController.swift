@@ -19,13 +19,15 @@ final class CategoryViewController: UIViewController {
     
     @IBOutlet weak var categoriesTableView: UITableView!
     
-    //MARK: - Properties
-    
-    //clean components
+    //MARK: - Clean Components
     var interactor: CategoryBusinessLogic?
     var router: (CategoryRoutingLogic & CategoryDataPassing)?
-    //category data
+    
+    //MARK: - Categories Data
     private var allCategories = [CategoryViewModel]()
+    
+    //MARK: - Activity Indicator Manager
+    private lazy var activityIndicator = ActivityIndicatorManager.shared
     
     //MARK: - Object Lifecycle
     
@@ -38,13 +40,17 @@ final class CategoryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ActivityIndicatorManager.shared.setupActivityIndicator(self)
-        //registering cell
-        categoriesTableView.registerNib(class: CategoryCell.self)
-        makeRequest()
+        setupView()
+        activityIndicator.startAnimating()
     }
     
     //MARK: - Methods
+    
+    private func setupView() {
+        activityIndicator.setupActivityIndicator(self)
+        categoriesTableView.registerNib(class: CategoryCell.self)
+        makeRequest()
+    }
     
     private func makeRequest() {
         interactor?.getCategories(request: CategoryModel.GetCategories.Request())
@@ -53,9 +59,8 @@ final class CategoryViewController: UIViewController {
     private func setupCategory(data: [CategoryViewModel]) {
         self.allCategories = data
         categoriesTableView.reloadData()
-        ActivityIndicatorManager.shared.stopAnimating()
+        activityIndicator.stopAnimating()
     }
-    
 }
 
 //MARK: - Display Logic protocol
@@ -101,5 +106,4 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         let request = CategoryModel.ShowCategoryWorkouts.Request(id: currentCategory.id, name: currentCategory.name)
         interactor?.showCategoryWorkouts(request: request)
     }
-    
 }

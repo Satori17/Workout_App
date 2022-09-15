@@ -80,7 +80,6 @@ final class WorkoutDetailView: UIView {
         workoutSaverDelegate?.saveWorkout()
     }
     
-    
     @IBAction func licenseDetailsBtnTapped(_ sender: UIButton) {
         licenseDelegate?.openLicenseDetails()
     }
@@ -99,16 +98,13 @@ final class WorkoutDetailView: UIView {
     }
     
     private func setupCollectionView() {
-        //registering cell
         workoutVariationsCollectionView.registerNib(class: WorkoutCell.self)
         workoutVariationsCollectionView.delegate = self
         workoutVariationsCollectionView.dataSource = self
-        //flow layout
         if let flowLayout = self.workoutVariationsCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumLineSpacing = 10
             flowLayout.scrollDirection = .horizontal
         }
-        //shadow
         workoutVariationsCollectionView.addShadow(ofRadius: 5.0)
     }
     
@@ -244,7 +240,6 @@ final class WorkoutDetailView: UIView {
     private func formattedLicense(ofWorkout workout: Displayable) -> String {
         "\(workout.license.licenseInfo.fullName) (\(workout.license.licenseInfo.shortName))"
     }
-    
 }
 
 //MARK: - delegate protocol
@@ -259,7 +254,6 @@ extension WorkoutDetailView: WorkoutDetailsDelegate {
             workoutVariationsCollectionView.reloadData()
         }
     }
-    
 }
 
 //MARK: - ColletionView Delegate, DataSource & FlowLayout
@@ -285,5 +279,4 @@ extension WorkoutDetailView: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 250)
     }
-    
 }

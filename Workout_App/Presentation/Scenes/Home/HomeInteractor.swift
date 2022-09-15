@@ -11,6 +11,7 @@ protocol HomeBusinessLogic {
     func getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request)
     func getSavedWorkoutDetails(request: HomeModel.ShowSavedWorkoutDetails.Request)
     func removeWorkout(withId id: Int)
+    func isMissedWorkout(_ isMissed: Bool, weekDay: String)
 }
 
 protocol HomeDataStore {
@@ -18,13 +19,16 @@ protocol HomeDataStore {
 }
 
 final class HomeInteractor: HomeDataStore {
-    //clean components
+    
+    //MARK: - Clean Components
     var presenter: HomePresentationLogic?
     var worker: HomeWorker?
-    private(set) var selectedSavedWorkout: CoreWorkoutViewModel?
-    //storage manager
-    var storageManager: WorkoutStorageManager?
     
+    //MARK: - DataStore
+    private(set) var selectedSavedWorkout: CoreWorkoutViewModel?
+    
+    //MARK: - Storage Manager
+    var storageManager: WorkoutStorageManager?
 }
 
 extension HomeInteractor: HomeBusinessLogic {
@@ -52,8 +56,16 @@ extension HomeInteractor: HomeBusinessLogic {
             try storageManager?.removeWorkout(withId: id)
         } catch {
             //TODO: - FIX THIS with alerts
-            print(StorageManagerError.removeFailed)
+            print(StorageManagerError.removeWorkoutFailed)
         }
     }
     
+    func isMissedWorkout(_ isMissed: Bool, weekDay: String) {
+        do {
+            try storageManager?.addMissedWorkout(isMissed, weekDay: weekDay)
+        } catch {
+            //TODO: - FIX  THIS with alerts
+            print(StorageManagerError.addToMissedWorkoutFailed)
+        }
+    }
 }

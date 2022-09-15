@@ -12,14 +12,14 @@ protocol HomeWorkerLogic {
 }
 
 final class HomeWorker {
+    
+    //MARK: - Storage Manager
     private var storageManager: WorkoutStorageManager?
     
     init(storageManager: WorkoutStorageManager) {
         self.storageManager = storageManager
     }
-    
 }
-
 
 extension HomeWorker: HomeWorkerLogic {
     
@@ -31,5 +31,4 @@ extension HomeWorker: HomeWorkerLogic {
             completion(.failure(StorageManagerError.fetchFailed))
         }
     }
-    
 }

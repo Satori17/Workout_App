@@ -14,4 +14,5 @@ enum AnimationKeys: String {
     case transform = "transform"
     case rotationZ = "transform.rotation.z"
     case name = "animationName"
+    case curvedAnim = "curvedAnim"
 }

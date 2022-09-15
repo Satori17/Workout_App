@@ -8,15 +8,27 @@
 import UIKit
 import CoreData
 import SDWebImageSVGCoder
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
     let SVGCoder = SDImageSVGCoder.shared
+    let notificationManager = NotificationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         SDImageCodersManager.shared.addCoder(SVGCoder)
+        UNUserNotificationCenter.current().delegate = self
+        
+        notificationManager.checkUserPermission { granted in
+            if granted {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                    print("granted")
+                }
+            }
+        }
+        
         return true
     }
 
@@ -78,6 +90,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let identifier = response.notification.request.content.title
+        NotificationCenter.default.post(name: NotificationName.openFromNotification, object: identifier)
+        completionHandler()
+    }
+}

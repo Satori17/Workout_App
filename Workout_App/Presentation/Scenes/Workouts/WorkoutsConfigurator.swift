@@ -11,7 +11,7 @@ final class WorkoutsConfigurator {
 
     static func configure(vc: WorkoutsViewController, categoryId: Int) {
         //interactor
-        let interactor = WorkoutsInteractor()
+        let interactor = WorkoutsInteractor(categoryId: categoryId)
         vc.interactor = interactor
         //presenter
         let presenter = WorkoutsPresenter()
@@ -26,8 +26,5 @@ final class WorkoutsConfigurator {
         //worker
         let worker = WorkoutsWorker()
         interactor.worker = worker
-        //category id
-        vc.categoryId = categoryId
-        
     }
 }

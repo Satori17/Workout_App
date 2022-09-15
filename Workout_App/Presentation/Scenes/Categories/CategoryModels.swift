@@ -35,7 +35,6 @@ enum CategoryModel {
                 }
             }
         }
-        
     }
     
     //MARK: - Show Category Workouts Use Case
@@ -51,5 +50,4 @@ enum CategoryModel {
         
         struct ViewModel { }
     }
-    
 }

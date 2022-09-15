@@ -9,7 +9,6 @@ import UIKit
 
 typealias CoreWorkoutViewModel = HomeModel.GetSavedWorkouts.ViewModel.displayedCoreWorkout
 
-
 enum HomeModel {
     
     //MARK: - Get Saved Workouts Use Case
@@ -24,7 +23,7 @@ enum HomeModel {
         
         struct ViewModel {
             let displayedCoreWorkouts: [[displayedCoreWorkout]]
-            let weekDays: [String]
+            let weekDays: [WeekDayModel]
             
             struct displayedCoreWorkout: Displayable {
                 var id: Int
@@ -39,9 +38,9 @@ enum HomeModel {
                 var comments: [CommentDisplayable]
                 var sets: Int
                 var reps: Int
-                var weekDay: String
+                var weekDay: WeekDayModel
+                var isMissed: Bool
             }
-            
         }
     }
     
@@ -57,5 +56,4 @@ enum HomeModel {
         
         struct ViewModel { }
     }
-    
 }

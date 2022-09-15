@@ -20,36 +20,35 @@ final class WorkoutsViewController: UIViewController {
     
     @IBOutlet weak var workoutsCollectionView: UICollectionView!
     
-    //MARK: - Properties
-    
-    //clean components
+    //MARK: - Clean Components
     var interactor: WorkoutsBusinessLogic?
     var router: (WorkoutsRoutingLogic & WorkoutsDataPassing)?
-    //workouts data
+    
+    //MARK: - Workouts Data
     private var workouts = [WorkoutViewModel]()
-    var categoryId: Int?
     
-    
-    var currentCell: WorkoutCell?
-    let transitionManager = TransitionManager(duration: 0.5)
-    
+    //MARK: - Activity Indicator Manager
+    let activityIndicator = ActivityIndicatorManager.shared
     
     // MARK: View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = false
-        ActivityIndicatorManager.shared.setupActivityIndicator(self)
-        makeRequest()
-        setupCollectionView()
+        setupView()
+        activityIndicator.startAnimating()
     }
     
     //MARK: - Methods
     
+    private func setupView() {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        activityIndicator.setupActivityIndicator(self)
+        makeRequest()
+        setupCollectionView()
+    }
+    
     private func setupCollectionView() {
-        //registering cell
         workoutsCollectionView.registerNib(class: WorkoutCell.self)
-        //flow layout
         if let flowLayout = self.workoutsCollectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumLineSpacing = 10
             flowLayout.scrollDirection = .horizontal
@@ -59,15 +58,12 @@ final class WorkoutsViewController: UIViewController {
     private func setupWorkouts(data: [WorkoutViewModel]) {
         self.workouts = data
         workoutsCollectionView.reloadData()
-        ActivityIndicatorManager.shared.stopAnimating()
+        activityIndicator.stopAnimating()
     }
     
     private func makeRequest() {
-        guard let categoryId = categoryId else { return }
-        let request = WorkoutModel.GetWorkouts.Request(categoryId: categoryId)
-        interactor?.getWorkouts(request: request)
+        interactor?.getWorkouts(request: WorkoutModel.GetWorkouts.Request())
     }
-    
     
     private func makeContextMenu(for workout: WorkoutViewModel) -> UIMenu {
         let addWorkout = UIAction(title: ContextMenuTitle.addWorkout, image: UIImage(systemName: ContextMenuImage.addIcon)) { [weak self] action in
@@ -81,21 +77,23 @@ final class WorkoutsViewController: UIViewController {
         }
         return UIMenu(title: "", children: [addWorkout, goToWorkoutDetails])
     }
-    
 }
 
-//MARK: - Display Logic & delegate protocol
+//MARK: - Cell Delegate protocol
 
-extension WorkoutsViewController: WorkoutsDisplayLogic, WorkoutDetailsDelegate {    
-    
+extension WorkoutsViewController: WorkoutDetailsDelegate {
     func getWorkoutDetails(cell: WorkoutCell) {
         if let indexPath = workoutsCollectionView.indexPath(for: cell) {
             let currentWorkout = workouts[indexPath.row]
             let request = WorkoutModel.ShowWorkoutDetails.Request(workout: currentWorkout, isAnimated: true)
             interactor?.showWorkoutDetails(request: request)
-            currentCell = cell
         }
     }
+}
+
+//MARK: - Display Logic protocol
+
+extension WorkoutsViewController: WorkoutsDisplayLogic {
     
     func displayWorkouts(viewModel: WorkoutModel.GetWorkouts.ViewModel) {
         setupWorkouts(data: viewModel.displayedWorkouts)
@@ -113,7 +111,6 @@ extension WorkoutsViewController: WorkoutsDisplayLogic, WorkoutDetailsDelegate {
     func displaySaveAlert(viewModel: WorkoutModel.ShowSaveAlert.ViewModel) {
         router?.routeToSaveAlert()
     }
-    
 }
 
 //MARK: - CollectionView Delegate, DataSource & FlowLayout
@@ -144,10 +141,6 @@ extension WorkoutsViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if UIDevice.current.orientation.isLandscape {
-            return CGSize(width: view.frame.width/4, height: view.frame.height/2.7)
-        }
-        return CGSize(width: view.frame.width/2.6, height: view.frame.height/4)
+        return UIDevice.current.orientation.isLandscape ? CGSize(width: view.frame.width/4, height: view.frame.height/2.7) : CGSize(width: view.frame.width/2.6, height: view.frame.height/4)
     }
-    
 }

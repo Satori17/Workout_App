@@ -9,7 +9,7 @@ import UIKit
 
 extension Timer {
     
-    func setDismissTimer(duration: Int,completion: @escaping () -> ()) {
+    func setDismissTimer(duration: Int, completion: @escaping () -> ()) {
         let timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(duration), repeats: false) { timer in
             completion()
             timer.invalidate()

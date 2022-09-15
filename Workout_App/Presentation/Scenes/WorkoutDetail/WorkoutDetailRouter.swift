@@ -15,14 +15,13 @@ protocol WorkoutDetailRoutingLogic {
 
 protocol WorkoutDetailDataPassing {
   var dataStore: WorkoutDetailDataStore? { get }
-    
 }
 
 final class WorkoutDetailRouter {
-    //clean components
+    
+    //MARK: - Clean Components
   weak var viewController: WorkoutDetailViewController?
   var dataStore: WorkoutDetailDataStore?
-  
 }
 
 extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassing {
@@ -47,7 +46,6 @@ extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassi
                 } else {
                     passToSave(workout: workout, destination: &alertDS)
                 }
-                
             }
             viewController?.present(alertVC, animated: true)
         }

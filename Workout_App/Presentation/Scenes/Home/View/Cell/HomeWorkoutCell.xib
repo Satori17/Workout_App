@@ -122,7 +122,7 @@
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
         <namedColor name="Checkmark">
-            <color red="0.30258011779999999" green="0.58745242580000001" blue="0.78432099570000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.30300000309944153" green="0.58700001239776611" blue="0.7839999794960022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="GradientColor1">
             <color red="0.30000001192092896" green="0.67000001668930054" blue="0.9100000262260437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

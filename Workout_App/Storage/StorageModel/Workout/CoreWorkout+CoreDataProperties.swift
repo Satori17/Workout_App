@@ -2,7 +2,7 @@
 //  CoreWorkout+CoreDataProperties.swift
 //  Workout_App
 //
-//  Created by Saba Khitaridze on 08.09.22.
+//  Created by Saba Khitaridze on 14.09.22.
 //
 //
 
@@ -21,7 +21,7 @@ extension CoreWorkout {
     @NSManaged public var name: String?
     @NSManaged public var reps: Int64
     @NSManaged public var sets: Int64
-    @NSManaged public var weekDay: String?
+    @NSManaged public var isMissed: Bool
     @NSManaged public var category: CoreCategory?
     @NSManaged public var comments: NSOrderedSet?
     @NSManaged public var equipments: NSOrderedSet?
@@ -29,6 +29,7 @@ extension CoreWorkout {
     @NSManaged public var language: CoreLanguage?
     @NSManaged public var muscles: NSOrderedSet?
     @NSManaged public var musclesSecondary: NSOrderedSet?
+    @NSManaged public var weekDay: CoreWeekDay?
 
 }
 

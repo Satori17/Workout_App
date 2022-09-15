@@ -16,12 +16,11 @@ protocol CategoryDataPassing {
 }
 
 final class CategoryRouter: CategoryDataPassing {
-    //clean components
+    
+    //MARK: - Clean Components
     weak var viewController: UIViewController?
     var dataStore: CategoryDataStore?
-    
 }
-
 
 extension CategoryRouter: CategoryRoutingLogic {
     

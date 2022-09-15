@@ -11,6 +11,7 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
     
     private let animation = CAKeyframeAnimation()
     private let bezierPath = UIBezierPath()
+    //TODO: - FIX  this with protocols
     var isButtonsAppeared = false
     
     func shakeAnimation(ofView view: UIView) {
@@ -49,13 +50,13 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         
         let animGroup = CAAnimationGroup()
         animGroup.delegate = self
-        animGroup.setValue("curvedAnim", forKey: AnimationKeys.name.rawValue)
+        animGroup.setValue(AnimationKeys.curvedAnim.rawValue, forKey: AnimationKeys.name.rawValue)
         animGroup.animations = [moveAnimation, scaleAnimation]
         if isRotated {
             animGroup.animations?.append(rotationAnimation)
         }
         animGroup.duration = 0.5
-        fromView.layer.add(animGroup, forKey: "curvedAnim")
+        fromView.layer.add(animGroup, forKey: AnimationKeys.curvedAnim.rawValue)
         CATransaction.commit()
     }
     
@@ -78,7 +79,7 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         UIView.transition(with: actorView, duration: 0.3, options: .allowAnimatedContent) {
             views.forEach{ $0.alpha = $0.alpha == 1 ? 0 : 1 }
         } completion: { _ in
-                completion?()
+            completion?()
         }
     }
     
@@ -91,5 +92,4 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
             }
         }
     }
-    
 }

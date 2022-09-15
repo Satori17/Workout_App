@@ -25,19 +25,20 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     @IBOutlet weak var homeIcon: UIImageView!
     @IBOutlet weak var fakeTabBar: UITabBar!
     
-    //MARK: - Properties
-    
-    //clean components
+    //MARK: - Clean Components
     var interactor: AlertBusinessLogic?
     var router: (AlertRoutingLogic & AlertDataPassing)?
-    //gradient
+    
+    //MARK: - Gradient Mask
     private let gradientMaskLayer = CAGradientLayer()
-    //data
+    
+    //MARK: - Alert Data
     private var sets = [String]()
     private var reps = [String]()
     private var weekDays = [String]()
     private var selectedData: (sets: Int, reps: Int, weekDay: String)?
-    //animation manager
+    
+    //MARK: - Animation Manager
     let animationManager = AnimationManager()
     
     //MARK: - Object Lifecycle
@@ -70,7 +71,7 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
             return
         }
         
-        let request = Alert.SaveWorkout.Request(sets: sets, reps: reps, weekDay: weekDay)
+        let request = Alert.SaveWorkout.Request(sets: sets, reps: reps, weekDay: WeekDayModel(name: weekDay))
         interactor?.saveWorkout(request: request)
         animateSaving()
     }
@@ -100,11 +101,11 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     
     private func repRangeAlert(repCount: Int=0) {
         if repCount >= 5 {
-            alertViewTitle.text = "Choose Wisely"
-            alertViewTitle.textColor = UIColor(named: UIColor.GradientKey.skyBlue.rawValue )
+            alertViewTitle.text = AlertTitle.initialText
+            alertViewTitle.textColor = AlertTitle.initialColor
         } else {
-            alertViewTitle.text = "Rep Range is too low"
-            alertViewTitle.textColor = .systemRed
+            alertViewTitle.text = AlertTitle.alertText
+            alertViewTitle.textColor = AlertTitle.alertColor
         }
     }
     
@@ -120,7 +121,6 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
             }
         }
     }
-    
 }
 
 //MARK: - Display Logic protocol
@@ -130,7 +130,6 @@ extension AlertViewController: AlertDisplayLogic {
     func displayIntensityData(viewModel: Alert.GetWorkoutIntensity.ViewModel) {
         setupIntensity(data: (viewModel.sets, viewModel.reps, viewModel.weekDays))
     }
-    
 }
 
 //MARK: - PickerView Delegate & DataSource
@@ -193,5 +192,4 @@ extension AlertViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             repRangeAlert(repCount: repRange)
         }
     }
-    
 }

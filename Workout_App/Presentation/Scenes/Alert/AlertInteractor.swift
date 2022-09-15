@@ -18,13 +18,14 @@ protocol AlertDataStore {
 }
 
 final class AlertInteractor: AlertDataStore {
-    //clean components
+    
+    //MARK: - Clean Components
     var presenter: AlertPresentationLogic?
     var worker: AlertWorker?
     var workoutToSave: Displayable?
-    //storage manager
-    var storageManager: WorkoutStorageManager?
     
+    //MARK: - Storage Manager
+    var storageManager: WorkoutStorageManager?
 }
 
 extension AlertInteractor: AlertBusinessLogic {
@@ -41,11 +42,9 @@ extension AlertInteractor: AlertBusinessLogic {
         guard let workout = workoutToSave else { return }
         do {
             let _ = try storageManager?.addWorkout(fromModel: workout, sets: request.sets, reps: request.reps, weekDay: request.weekDay)
-            print("workout is saved!")
         } catch {
             //TODO: - FIX THIS with alers
-            print(StorageManagerError.addFailed)
+            print(StorageManagerError.saveWorkoutFailed)
         }
     }
-    
 }

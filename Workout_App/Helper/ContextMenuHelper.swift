@@ -7,12 +7,12 @@
 
 import UIKit
 
-struct ContextMenuTitle {
+enum ContextMenuTitle {
     static let addWorkout = "Add workout"
     static let seeMore = "See more"
 }
 
-struct ContextMenuImage {
+enum ContextMenuImage {
     static let addIcon = "calendar.badge.plus"
     static let infoIcon = "info.circle"
 }

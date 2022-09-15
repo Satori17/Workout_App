@@ -15,8 +15,9 @@ protocol WorkoutDetailPresentationLogic {
 }
 
 final class WorkoutDetailPresenter {
-    weak var viewController: WorkoutDetailDisplayLogic?
     
+    //MARK: - Clean Components
+    weak var viewController: WorkoutDetailDisplayLogic?
 }
 
 extension WorkoutDetailPresenter: WorkoutDetailPresentationLogic {
@@ -38,5 +39,4 @@ extension WorkoutDetailPresenter: WorkoutDetailPresentationLogic {
     func presentSaveAlert(response: WorkoutDetailModel.ShowSaveAlert.Response) {
         viewController?.displaySaveAlert(viewModel: WorkoutDetailModel.ShowSaveAlert.ViewModel())
     }
-    
 }

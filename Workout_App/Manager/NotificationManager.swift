@@ -20,19 +20,13 @@ final class NotificationManager {
     
     func checkUserPermission(completionHandler: @escaping (Bool) -> Void) {
         notificationCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
-            if let _ = error {
+            guard error == nil else {
+                //TODO: - FIX  this with alert
                 print(NotificationError.authFailed)
+                return
             }
             completionHandler(granted)
         }
-    }
-    
-    func getPendingRequests() {
-        notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
-            for request in requests {
-                print(request)
-            }
-        })
     }
     
     func createNotification(withTitle title: String, description text: String, weekDay: Int, hourDate: Date) {
@@ -41,20 +35,26 @@ final class NotificationManager {
         content.title = title
         content.body = text
         content.sound = .default
-        content.badge = NSNumber(value: UIApplication.shared.applicationIconBadgeNumber + 1)
         //trigger configuration
         let id = UUID().uuidString
         userDefaults.set(id, forKey: title)
         let timeInterval = hourDate.addingTimeInterval(60 * 60 * 24 * 7)
-        var dateComponents = Calendar.current.dateComponents([.hour, .minute],
-                                                            from: timeInterval)
+        var dateComponents = Calendar.current.dateComponents(
+            [.hour, .minute],
+            from: timeInterval
+        )
         dateComponents.weekday = weekDay
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
-                                                    repeats: true)
+        let trigger = UNCalendarNotificationTrigger(
+            dateMatching: dateComponents,
+            repeats: true
+        )
+        
         //creating request object
-        let notificationRequest = UNNotificationRequest(identifier: id,
-                                                        content: content,
-                                                        trigger: trigger)
+        let notificationRequest = UNNotificationRequest(
+            identifier: id,
+            content: content,
+            trigger: trigger
+        )
         //scheduling request
         notificationCenter.add(notificationRequest) { error in
             guard error == nil else {
@@ -64,10 +64,6 @@ final class NotificationManager {
         }
     }
     
-    func removeAllPendingRequests() {
-        notificationCenter.removeAllPendingNotificationRequests()
-    }
-    
     func removePendingNotification(key: String?) {        
         if let key = key,
            let identifier = userDefaults.string(forKey: key) {
@@ -75,5 +71,4 @@ final class NotificationManager {
             userDefaults.removeObject(forKey: key)
         }
     }
-
 }

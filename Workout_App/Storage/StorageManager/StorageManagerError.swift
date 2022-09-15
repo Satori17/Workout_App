@@ -9,10 +9,10 @@ import UIKit
 
 enum StorageManagerError: Error {
     case managedContextFailed
-    case addFailed
-    case saveFailed
-    case removeFailed
-    case editFailed
     case fetchFailed
-    case addToFavoritesFailed
+    case saveWorkoutFailed
+    case saveScheduleFailed
+    case removeWorkoutFailed
+    case removeScheduleFailed
+    case addToMissedWorkoutFailed
 }

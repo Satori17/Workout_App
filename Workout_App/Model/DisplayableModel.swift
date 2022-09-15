@@ -21,6 +21,7 @@ protocol Displayable {
     var images: [ImageDisplayable] { get set }
     var comments: [CommentDisplayable] { get set }
     var variations: [Displayable] { get set }
+    var isMissed: Bool { get set }
 }
 
 extension Displayable {
@@ -39,6 +40,13 @@ extension Displayable {
     var variations: [Displayable] {
         get {
             []
+        }
+        set {}
+    }
+    
+    var isMissed: Bool {
+        get {
+            false
         }
         set {}
     }
@@ -120,4 +128,3 @@ struct CommentDisplayable {
     let id, exercise: Int
     let comment: String
 }
-

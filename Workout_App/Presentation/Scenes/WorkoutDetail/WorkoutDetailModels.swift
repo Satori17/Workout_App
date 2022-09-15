@@ -21,7 +21,6 @@ enum WorkoutDetailModel {
         
         struct ViewModel {
             let workout: Displayable
-            
         }
     }
     
@@ -46,5 +45,4 @@ enum WorkoutDetailModel {
         
         struct ViewModel { }
     }
-    
 }

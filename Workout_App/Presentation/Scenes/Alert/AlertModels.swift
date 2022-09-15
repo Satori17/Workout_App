@@ -32,13 +32,11 @@ enum Alert {
         struct Request {
             let sets: Int
             let reps: Int
-            let weekDay: String
+            let weekDay: WeekDayModel
         }
         
         struct Response { }
         
         struct ViewModel { }
-        
     }
-    
 }

@@ -12,8 +12,9 @@ protocol AlertPresentationLogic {
 }
 
 final class AlertPresenter {
-    weak var viewController: AlertDisplayLogic?
     
+    //MARK: - Clean Components
+    weak var viewController: AlertDisplayLogic?
 }
 
 extension AlertPresenter: AlertPresentationLogic {
@@ -22,5 +23,4 @@ extension AlertPresenter: AlertPresentationLogic {
         let viewModel = Alert.GetWorkoutIntensity.ViewModel(sets: response.intensityData.sets, reps: response.intensityData.reps, weekDays: response.intensityData.weekDays)
         viewController?.displayIntensityData(viewModel: viewModel)
     }
-    
 }

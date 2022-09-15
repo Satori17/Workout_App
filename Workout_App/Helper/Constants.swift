@@ -13,4 +13,9 @@ enum Ids {
     static let workouts = "WorkoutsViewController"
     static let workoutDetail = "WorkoutDetailViewController"
     static let alert = "AlertViewController"
+    static let headerView = "WeekDayHeaderView"
+}
+
+enum NotificationName {
+    static let openFromNotification = Notification.Name("com.sabakhitaridze.Workout-App.receiveNotification")
 }

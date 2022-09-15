@@ -10,18 +10,127 @@ import CoreData
 
 protocol WorkoutStorageManagerLogic {
     func getAllWorkouts() throws -> [CoreWorkout]
-    func addWorkout(fromModel model: Displayable, sets: Int, reps: Int, weekDay: String) throws -> CoreWorkout
+    func addWorkout(fromModel model: Displayable, sets: Int, reps: Int, weekDay: WeekDayModel) throws -> CoreWorkout
     func removeWorkout(withId id: Int) throws
+    func addSchedule(ofWeekDay day: String, time: String) throws
+    func removeSchedule(ofWeekDay day: String) throws
+    func addMissedWorkout(_ missed: Bool, weekDay: String) throws
 }
 
 class WorkoutStorageManager {
     
     //MARK: - Properties
+    private let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    lazy private var managedContext = appDelegate?.persistentContainer.viewContext
+}
+
+//MARK: - Storage Manager Logic
+
+extension WorkoutStorageManager: WorkoutStorageManagerLogic {
     
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    lazy var managedContext = appDelegate?.persistentContainer.viewContext
+    func getAllWorkouts() throws -> [CoreWorkout] {
+        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
+        do {
+            let result = try managedContext.fetch(CoreWorkout.fetchRequest())
+            return result
+        } catch {
+            throw StorageManagerError.fetchFailed
+        }
+    }
     
-    //MARK: - configurator Methods
+    func addWorkout(fromModel model: Displayable, sets: Int, reps: Int, weekDay: WeekDayModel) throws -> CoreWorkout {
+        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
+        let workoutToAdd = CoreWorkout(context: managedContext)
+        workoutToAdd.id = Int64(model.id)
+        workoutToAdd.name = model.name
+        workoutToAdd.descriptionText = model.description
+        workoutToAdd.sets = Int64(sets)
+        workoutToAdd.reps = Int64(reps)
+        workoutToAdd.isMissed = model.isMissed
+        weekDaysConfigurator(ofWorkout: workoutToAdd, withModel: weekDay, managedContext: managedContext)
+        categoryConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
+        musclesConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext, isSecondary: false)
+        musclesConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext, isSecondary: true)
+        equipmentConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
+        languageConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
+        imagesConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
+        commentsConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
+        do {
+            try managedContext.save()
+        } catch {
+            throw StorageManagerError.saveWorkoutFailed
+        }
+        
+        return workoutToAdd
+    }
+    
+    func removeWorkout(withId id: Int) throws {
+        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
+        let request = CoreWorkout.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "id = %i", id)
+        let result = try managedContext.fetch(request)
+        if let objectToDelete = result.first {
+            managedContext.delete(objectToDelete)
+        }
+        
+        do {
+            try managedContext.save()
+        } catch {
+            throw StorageManagerError.removeWorkoutFailed
+        }
+    }
+    
+    func addSchedule(ofWeekDay day: String, time: String) throws {
+        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
+        let request = CoreWorkout.fetchRequest()
+        request.predicate = NSPredicate(format: "weekDay.name == %@", day)
+        let result = try managedContext.fetch(request)
+        result.forEach({
+            $0.weekDay?.scheduledTime = time
+        })
+        
+        do {
+            try managedContext.save()
+        } catch {
+            throw StorageManagerError.saveScheduleFailed
+        }
+    }
+    
+    func removeSchedule(ofWeekDay day: String) throws {
+        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
+        let request = CoreWorkout.fetchRequest()
+        request.predicate = NSPredicate(format: "weekDay.name == %@", day)
+        let result = try managedContext.fetch(request)
+        result.forEach({
+            $0.weekDay?.scheduledTime = nil
+        })
+        
+        do {
+            try managedContext.save()
+        } catch {
+            throw StorageManagerError.removeScheduleFailed
+        }
+    }
+    
+    func addMissedWorkout(_ missed: Bool, weekDay: String) throws {
+        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
+        let request = CoreWorkout.fetchRequest()
+        request.predicate = NSPredicate(format: "weekDay.name == %@", weekDay)
+        let result = try managedContext.fetch(request)
+        result.forEach{ $0.isMissed = missed }
+        
+        do {
+            try managedContext.save()
+        } catch {
+            throw StorageManagerError.addToMissedWorkoutFailed
+        }
+    }
+}
+
+//MARK: - configurator Methods
+
+extension WorkoutStorageManager {
     
     private func categoryConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
         let categoryObject = CoreCategory(context: managedContext)
@@ -88,63 +197,11 @@ class WorkoutStorageManager {
         }
     }
     
-}
-
-
-extension WorkoutStorageManager: WorkoutStorageManagerLogic {
-    
-    func getAllWorkouts() throws -> [CoreWorkout] {
-        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
-        do {
-            let result = try managedContext.fetch(CoreWorkout.fetchRequest())
-            return result
-        } catch {
-            throw StorageManagerError.fetchFailed
-        }
+    private func weekDaysConfigurator(ofWorkout workout: CoreWorkout, withModel model: WeekDayModel, managedContext: NSManagedObjectContext) {
+        let weekDayObject = CoreWeekDay(context: managedContext)
+        weekDayObject.name = model.name
+        weekDayObject.scheduledTime = model.scheduledTime
+        weekDayObject.isScheduled = model.isScheduled
+        workout.weekDay = weekDayObject
     }
-    
-    func addWorkout(fromModel model: Displayable, sets: Int, reps: Int, weekDay: String) throws -> CoreWorkout {
-        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
-        let workoutToAdd = CoreWorkout(context: managedContext)
-        workoutToAdd.id = Int64(model.id)
-        workoutToAdd.name = model.name
-        workoutToAdd.descriptionText = model.description
-        workoutToAdd.sets = Int64(sets)
-        workoutToAdd.reps = Int64(reps)
-        workoutToAdd.weekDay = weekDay
-        categoryConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
-        musclesConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext, isSecondary: false)
-        musclesConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext, isSecondary: true)
-        equipmentConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
-        languageConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
-        imagesConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
-        commentsConfigurator(ofWorkout: workoutToAdd, withModel: model, managedContext: managedContext)
-        
-        do {
-            try managedContext.save()
-        } catch {
-            throw StorageManagerError.saveFailed
-        }
-        
-        return workoutToAdd
-    }
-    
-    func removeWorkout(withId id: Int) throws {
-        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
-        let request = CoreWorkout.fetchRequest()
-        
-        request.predicate = NSPredicate(format: "id = %i", id)
-        let result = try managedContext.fetch(request)
-        if let objectToDelete = result.first {
-            managedContext.delete(objectToDelete)
-        }
-        
-        do {
-            try managedContext.save()
-        } catch {
-            throw StorageManagerError.removeFailed
-        }
-    }
-    
-    
 }

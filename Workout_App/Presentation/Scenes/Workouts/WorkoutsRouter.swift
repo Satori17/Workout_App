@@ -18,12 +18,11 @@ protocol WorkoutsDataPassing {
     var dataStore: WorkoutsDataStore? { get set }
 }
 
-
 final class WorkoutsRouter: WorkoutsDataPassing {
-    //clean components
+    
+    //MARK: - Clean Components
     weak var viewController: WorkoutsViewController?
     var dataStore: WorkoutsDataStore?
-    
 }
 
 extension WorkoutsRouter: WorkoutsRoutingLogic {
@@ -33,7 +32,6 @@ extension WorkoutsRouter: WorkoutsRoutingLogic {
         guard let workout = dataStore?.selectedWorkout, let animated = dataStore?.isTransitionAnimated else { return }
         let detailsVC = instantiateDetailsVC(withWorkout: workout)
         detailsVC.isSaved = false
-        //viewController?.navigationController?.delegate = viewController?.transitionManager
         viewController?.navigationController?.pushViewController(detailsVC, animated: animated)
     }
     

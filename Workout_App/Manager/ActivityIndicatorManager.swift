@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 final class ActivityIndicatorManager {
     
     static let shared = ActivityIndicatorManager()
@@ -17,9 +16,18 @@ final class ActivityIndicatorManager {
     private let backgroundView = UIView()
     private let gradientMaskLayer = CAGradientLayer()
     
+    private init() {}
+    
+    func startAnimating() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopAnimating() {
+        activityIndicator.stopAnimating()
+        backgroundView.isHidden = true
+    }
     
     func setupActivityIndicator(_ vc: UIViewController) {
-        activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = UIActivityIndicatorView.Style.large
         activityIndicator.center = vc.view.center
@@ -27,12 +35,6 @@ final class ActivityIndicatorManager {
         backgroundView.addSubview(setupEffectView())
         backgroundView.addSubview(activityIndicator)
         vc.view.addSubview(backgroundView)
-    }
-    
-    func stopAnimating() {
-        activityIndicator.stopAnimating()
-        backgroundView.isHidden = true
-        
     }
     
     private func backgroundView(vc: UIViewController) -> UIView {

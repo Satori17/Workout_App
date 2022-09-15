@@ -52,5 +52,4 @@ class WorkoutCell: UICollectionViewCell {
         workoutNameLabel.text = workouts.name
         workoutDescriptionLabel.text = workouts.description
     }
-    
 }

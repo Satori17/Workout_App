@@ -19,14 +19,22 @@ protocol WorkoutsDataStore {
 }
 
 final class WorkoutsInteractor: WorkoutsDataStore {
-    //clean components
+    
+    //MARK: - Clean Components
     var presenter: WorkoutsPresentationLogic?
     var worker: WorkoutsWorker?
+    
+    //MARK: - DataStore Properties
     private(set) var selectedWorkout: WorkoutViewModel?
     private(set) var isTransitionAnimated: Bool?
-
+    
+    //MARK: - Properties
+    var categoryId: Int?
+    
+    init(categoryId: Int) {
+        self.categoryId = categoryId
+    }
 }
-
 
 extension WorkoutsInteractor: WorkoutsBusinessLogic {
     
@@ -36,14 +44,14 @@ extension WorkoutsInteractor: WorkoutsBusinessLogic {
                 let workouts = try await worker?.fetchWorkouts()
                 DispatchQueue.main.async { [weak self] in
                     if let workouts = workouts {
-                        let categorizedWorkouts = workouts.filter{ $0.category?.id == request.categoryId }
+                        let categorizedWorkouts = workouts.filter{ $0.category?.id == self?.categoryId }
                         let response = WorkoutModel.GetWorkouts.Response(workouts: categorizedWorkouts)                        
                         self?.presenter?.presentWorkouts(response: response)
                     }
                 }
             } catch(let error) {
                 if let fetchError = error as? FetchingError {
-                self.presenter?.didFailPresentWorkouts(withError: fetchError)
+                    self.presenter?.didFailPresentWorkouts(withError: fetchError)
                 }
             }
         }
@@ -59,7 +67,5 @@ extension WorkoutsInteractor: WorkoutsBusinessLogic {
     func showSaveAlert(request: WorkoutModel.ShowSaveAlert.Request) {
         self.selectedWorkout = request.workout
         presenter?.presentSaveAlert(response: WorkoutModel.ShowSaveAlert.Response())
-        
     }
-    
 }

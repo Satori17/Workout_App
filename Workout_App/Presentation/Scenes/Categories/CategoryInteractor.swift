@@ -15,16 +15,17 @@ protocol CategoryBusinessLogic: AnyObject {
 protocol CategoryDataStore {
     var categoryId: Int? { get }
     var categoryName: String? { get }
-    
 }
 
 final class CategoryInteractor: CategoryDataStore {
-    //clean components
+    
+    //MARK: - Clean Components
     var presenter: CategoryPresentationLogic?
     private var worker: CategoryWorker?
+    
+    //MARK: - DataStore Properties
     private(set) var categoryId: Int?
     private(set) var categoryName: String?
-    
 }
 
 extension CategoryInteractor: CategoryBusinessLogic {
@@ -54,5 +55,4 @@ extension CategoryInteractor: CategoryBusinessLogic {
         let response = CategoryModel.ShowCategoryWorkouts.Response()
         presenter?.showCategoryWorkouts(response: response)
     }
-    
 }

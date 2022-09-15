@@ -18,10 +18,10 @@ protocol HomeDataPassing {
 }
 
 final class HomeRouter: HomeDataPassing {
-    //clean components
+    
+    //MARK: - Clean Components
     weak var viewController: HomeViewController?
     var dataStore: HomeDataStore?
-    
 }
 
 extension HomeRouter: HomeRoutingLogic {
@@ -52,5 +52,4 @@ extension HomeRouter: HomeRoutingLogic {
         }
         return WorkoutDetailViewController()
     }
-    
 }

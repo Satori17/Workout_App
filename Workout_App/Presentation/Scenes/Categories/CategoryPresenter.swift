@@ -13,12 +13,11 @@ protocol CategoryPresentationLogic {
     func showCategoryWorkouts(response: CategoryModel.ShowCategoryWorkouts.Response)
 }
 
-
 final class CategoryPresenter {
-    weak var viewController: CategoryDisplayLogic?
     
+    //MARK: - Clean Components
+    weak var viewController: CategoryDisplayLogic?
 }
-
 
 extension CategoryPresenter: CategoryPresentationLogic {
     
@@ -40,5 +39,4 @@ extension CategoryPresenter: CategoryPresentationLogic {
         let viewModel = CategoryModel.ShowCategoryWorkouts.ViewModel()
         viewController?.displayCategoryWorkouts(viewModel: viewModel)
     }
-    
 }

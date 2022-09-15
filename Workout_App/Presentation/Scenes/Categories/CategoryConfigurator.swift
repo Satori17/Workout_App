@@ -22,8 +22,6 @@ final class CategoryConfigurator {
         vc.router = router
         router.viewController = vc
         //dataStore
-        router.dataStore = interactor
-        //title
-        vc.title = "Workouts"
+        router.dataStore = interactor       
     }
 }

@@ -20,17 +20,16 @@ final class HomeViewController: UIViewController {
     @IBOutlet weak var homeSegmentControl: UISegmentedControl!
     @IBOutlet weak var savedWorkoutsTableView: UITableView!
     
-    //MARK: - Properties
-    
-    //clean components
+    //MARK: - Clean Components
     var interactor: HomeBusinessLogic?
     var router: (HomeRoutingLogic & HomeDataPassing)?
-    //notification manager
+    
+    //MARK: - Notification Manager
     private let notificationManager = NotificationManager()
-    //workouts data
+    
+    //MARK: - Saved Workouts Data
     private var savedWorkouts = [[CoreWorkoutViewModel]]()
-    //week days data
-    private var weekDays = [String]()
+    private var weekDays = [WeekDayModel]()
     
     //MARK: - Object Lifecycle
     
@@ -44,18 +43,11 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         savedWorkoutsTableView.registerNib(class: HomeWorkoutCell.self)
-        notificationManager.checkUserPermission { granted in
-            if granted {
-                print("Granted")
-            } else {
-                print("Denied")
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        makeRequest()
+        makeDataRequest()
     }
     
     //MARK: - IBAction
@@ -66,14 +58,47 @@ final class HomeViewController: UIViewController {
     
     //MARK: - Methods
     
-    private func makeRequest() {
+    private func makeDataRequest() {
         interactor?.getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request())
     }
     
-    private func setupSavedWorkouts(data: [[CoreWorkoutViewModel]], weekDays: [String]) {
+    private func setupSavedWorkouts(data: [[CoreWorkoutViewModel]], weekDays: [WeekDayModel]) {
         self.savedWorkouts = data
         self.weekDays = weekDays
         savedWorkoutsTableView.reloadData()
+    }
+}
+
+//MARK: - HeaderView Delegate protocol
+
+extension HomeViewController: notificationReceivedProtocol {
+    
+    func dismissCheckMark(cell: HomeWorkoutCell) {
+        if let indexPath = savedWorkoutsTableView.indexPath(for: cell) {
+            let currentSavedWorkout = savedWorkouts[indexPath.section][indexPath.row]
+            interactor?.isMissedWorkout(false, weekDay: currentSavedWorkout.weekDay.name)
+        }
+    }
+    
+    func appearMissedWorkouts(cell: HomeWorkoutCell, weekDay: String) {
+        if let indexPath = savedWorkoutsTableView.indexPath(for: cell) {
+            let currentSavedWorkout = savedWorkouts[indexPath.section][indexPath.row]
+            if currentSavedWorkout.weekDay.name == weekDay {
+                interactor?.isMissedWorkout(true, weekDay: currentSavedWorkout.weekDay.name)
+                DispatchQueue.main.async { [weak self] in
+                    self?.makeDataRequest()
+                }
+            }
+        }
+    }
+}
+
+//MARK: - Cell Delegate protocol
+
+extension HomeViewController: updateHeaderDataProtocol {
+    
+    func getScheduledTime() {
+        makeDataRequest()
     }
 }
 
@@ -93,7 +118,6 @@ extension HomeViewController: HomeDisplayLogic {
     func displaySavedWorkoutDetails(viewModel: HomeModel.ShowSavedWorkoutDetails.ViewModel) {
         router?.routeToWorkoutDetails()
     }
-    
 }
 
 //MARK: - TableView Delegate & DataSource
@@ -103,7 +127,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         weekDays.count
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedWorkouts[section].count
@@ -117,6 +140,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HomeWorkoutCell
         let currentWorkout = savedWorkouts[indexPath.section][indexPath.row]
         cell.configure(with: currentWorkout)
+        cell.delegate = self
         
         return cell
     }
@@ -134,7 +158,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = WeekDayHeaderView()
-        view.weekDayLabel.text = weekDays[section]
+        view.configure(weekDay: weekDays[section])
+        view.delegate = self
+        view.workoutCategories = savedWorkouts[section].map({$0.category.name})
         
         return view
     }
@@ -146,7 +172,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let currentWorkout = savedWorkouts[indexPath.section][indexPath.row]
-            interactor?.removeWorkout(withId: Int(currentWorkout.id))
+            interactor?.removeWorkout(withId: currentWorkout.id)
             self.savedWorkouts[indexPath.section].remove(at: indexPath.row)
             if savedWorkouts[indexPath.section].isEmpty {
                 savedWorkouts.remove(at: indexPath.section)
@@ -155,5 +181,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             self.savedWorkoutsTableView.reloadData()
         }
     }
-    
 }

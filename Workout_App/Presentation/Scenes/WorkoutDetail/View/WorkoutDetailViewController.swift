@@ -22,11 +22,11 @@ final class WorkoutDetailViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: WorkoutDetailView!
     
-    //MARK: - Properties
-    
-    //clean components
+    //MARK: - Clean Components
     var interactor: WorkoutDetailBusinessLogic?
     var router: (WorkoutDetailRoutingLogic & WorkoutDetailDataPassing)?
+    
+    //MARK: - Properties
     //'add workout' button disappears depend on condition
     var isSaved = false
     
@@ -42,28 +42,30 @@ final class WorkoutDetailViewController: UIViewController {
     private func requestMovieDetails() {
         interactor?.showWorkoutDetails(request: WorkoutDetailModel.GetWorkoutDetails.Request())
     }
-    
 }
 
-//MARK: - Delegate protocol
+//MARK: - License Delegate protocol
 
-extension WorkoutDetailViewController : licenseDetailsDelegate, SaveWorkoutDelegate {
-    
-    func saveWorkout() {
-        interactor?.showSaveAlert(request: WorkoutDetailModel.ShowSaveAlert.Request())
-    }
+extension WorkoutDetailViewController: licenseDetailsDelegate {
     
     func openLicenseDetails() {
         interactor?.showWorkoutLicense(request: WorkoutDetailModel.GetLicense.Request())
     }
+}
+
+//MARK: - Save Delegate protocol
+
+extension WorkoutDetailViewController: SaveWorkoutDelegate {
     
+    func saveWorkout() {
+        interactor?.showSaveAlert(request: WorkoutDetailModel.ShowSaveAlert.Request())
+    }
 }
 
 //MARK: - Display Logic protocol
 
 extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     
-    //workout details
     func displayWorkoutDetails(viewModel: WorkoutDetailModel.GetWorkoutDetails.ViewModel) {
         contentView.addWorkoutBtn.isHidden = isSaved
         contentView.configure(with: viewModel.workout)
@@ -89,5 +91,4 @@ extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     func displaySaveAlert(viewModel: WorkoutDetailModel.ShowSaveAlert.ViewModel) {
         router?.routeToSaveAlert()
     }
-    
 }
