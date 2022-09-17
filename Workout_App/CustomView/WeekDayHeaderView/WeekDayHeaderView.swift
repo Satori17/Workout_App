@@ -103,7 +103,7 @@ class WeekDayHeaderView: UIView {
     
     @IBAction func editReminderBtnTapped(_ sender: UIButton) {
         animationManager.toggleAppearence(ofButtons: [cancelReminderBtn, saveReminderBtn])
-        datePicker.isEnabled = animationManager.isButtonsAppeared
+        datePicker.isEnabled = animationManager.checkIfButtonsAppeared([cancelReminderBtn, saveReminderBtn])
         isEditing = true
         dismissViewToInitialState()
         startDate = Date()

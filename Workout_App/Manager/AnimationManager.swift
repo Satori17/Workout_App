@@ -11,8 +11,6 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
     
     private let animation = CAKeyframeAnimation()
     private let bezierPath = UIBezierPath()
-    //TODO: - FIX  this with protocols
-    var isButtonsAppeared = false
     
     func shakeAnimation(ofView view: UIView) {
         animation.keyPath = AnimationKeys.positionX.rawValue
@@ -84,12 +82,20 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
     }
     
     func toggleAppearence(ofButtons buttons: [UIButton]) {
-        UIView.animate(withDuration: 0.3) { [weak self] in
+        UIView.animate(withDuration: 0.3) {
             buttons.forEach{
                 $0.alpha = $0.alpha == 1 ? 0 : 1
                 $0.isHidden = $0.alpha == 0
-                self?.isButtonsAppeared = $0.alpha == 1
             }
         }
+    }
+    
+    func checkIfButtonsAppeared(_ buttons: [UIButton]) -> Bool {
+        var result = false
+        buttons.forEach{
+            result = $0.alpha == 1
+        }
+        
+        return result
     }
 }
