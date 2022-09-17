@@ -10,21 +10,21 @@ import UIKit
 final class WorkoutDetailConfigurator {
 
     static func configure(vc: WorkoutDetailViewController) {
-        //interactor
+        //MARK: - Interactor
         let interactor = WorkoutDetailInteractor()
         vc.interactor = interactor
-        //presenter
+        
+        //MARK: - Presenter
         let presenter = WorkoutDetailPresenter()
         presenter.viewController = vc
         interactor.presenter = presenter
-        //router
+        
+        //MARK: - Router
         let router = WorkoutDetailRouter()
         vc.router = router
         router.viewController = vc
-        //dataStore
+        
+        //MARK: - DataStore
         router.dataStore = interactor
-        //storage manager
-        let storageManager = WorkoutStorageManager()
-        interactor.storageManager = storageManager
     }
 }

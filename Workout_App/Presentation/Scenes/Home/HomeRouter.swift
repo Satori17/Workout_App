@@ -11,6 +11,7 @@ protocol HomeRoutingLogic {
     func instantiateDetailsVC(withWorkout workout: CoreWorkoutViewModel) -> WorkoutDetailViewController
     func passDetailsData(ofWorkout workout: CoreWorkoutViewModel, destination: inout WorkoutDetailDataStore)
     func routeToWorkoutDetails()
+    func routeToShowAlert(withTitle text: String, success: Bool)
 }
 
 protocol HomeDataPassing {
@@ -33,6 +34,13 @@ extension HomeRouter: HomeRoutingLogic {
         detailsVC.sheetPresentationController?.detents = [.medium(), .large()]
         detailsVC.isSaved = true
         viewController?.present(detailsVC, animated: true)
+    }
+    
+    func routeToShowAlert(withTitle text: String, success: Bool) {
+        if let alertVC = UIStoryboard(name: Ids.alert, bundle: nil).instantiateViewController(withIdentifier: Ids.alert) as? AlertViewController {
+            AlertConfigurator.configure(vc: alertVC, alertTitle: text, success: success)
+            viewController?.present(alertVC, animated: true)
+        }
     }
     
     // MARK: Passing data

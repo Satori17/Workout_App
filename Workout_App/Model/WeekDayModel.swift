@@ -9,6 +9,14 @@ import Foundation
 
 struct WeekDayModel: Equatable, Hashable {
     
+    static func ==(lhs: WeekDayModel, rhs: WeekDayModel) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
+    
     let name: String
     let scheduledTime: String?
     var isScheduled: Bool = false

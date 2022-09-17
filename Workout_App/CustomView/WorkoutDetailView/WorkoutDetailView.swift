@@ -18,7 +18,6 @@ protocol SaveWorkoutDelegate: AnyObject {
 final class WorkoutDetailView: UIView {
     
     //MARK: - IBOutlets
-    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var mainImageView: UIImageView!
@@ -47,7 +46,6 @@ final class WorkoutDetailView: UIView {
     @IBOutlet weak var variationsHeaderTopRightConstraint: NSLayoutConstraint!
     
     //MARK: - Properties
-    
     var scrollView: UIScrollView?
     private let gradientMaskLayer = CAGradientLayer()
     //data
@@ -58,7 +56,6 @@ final class WorkoutDetailView: UIView {
     weak var workoutSaverDelegate: SaveWorkoutDelegate?
     
     //MARK: - Object Lifecycle
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initSubviews()
@@ -75,7 +72,6 @@ final class WorkoutDetailView: UIView {
     }
     
     //MARK: - IBActions
-    
     @IBAction func addWorkoutBtnTapped(_ sender: UIButton) {
         workoutSaverDelegate?.saveWorkout()
     }
@@ -85,7 +81,6 @@ final class WorkoutDetailView: UIView {
     }
     
     //MARK: - Initial methods
-    
     private func initSubviews() {
         let nib = UINib(nibName: "WorkoutDetailView", bundle: nil)
         nib.instantiate(withOwner: self, options: nil)
@@ -126,7 +121,6 @@ final class WorkoutDetailView: UIView {
     }
     
     //MARK: - Reconfigure some constraints
-    
     private func reconfigureVariationConstraints() {
         guard !workoutVariations.isEmpty else {
             variationsHeaderLabel.isHidden = true
@@ -168,7 +162,6 @@ final class WorkoutDetailView: UIView {
     }
     
     //MARK: - Setup Helper methods
-    
     private func setupImages(ofWorkout workout: Displayable) {
         if let firstImage = workout.images.first {
             mainImageView.getImage(from: firstImage.image)
@@ -243,7 +236,6 @@ final class WorkoutDetailView: UIView {
 }
 
 //MARK: - delegate protocol
-
 extension WorkoutDetailView: WorkoutDetailsDelegate {
     
     func getWorkoutDetails(cell: WorkoutCell) {
@@ -257,7 +249,6 @@ extension WorkoutDetailView: WorkoutDetailsDelegate {
 }
 
 //MARK: - ColletionView Delegate, DataSource & FlowLayout
-
 extension WorkoutDetailView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

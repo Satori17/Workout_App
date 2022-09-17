@@ -12,7 +12,6 @@ typealias CoreWorkoutViewModel = HomeModel.GetSavedWorkouts.ViewModel.displayedC
 enum HomeModel {
     
     //MARK: - Get Saved Workouts Use Case
-    
     enum GetSavedWorkouts {
         
         struct Request { }
@@ -45,7 +44,6 @@ enum HomeModel {
     }
     
     //MARK: - Show Saved Workout Details Use Case
-    
     enum ShowSavedWorkoutDetails {
         
         struct Request {
@@ -55,5 +53,20 @@ enum HomeModel {
         struct Response { }
         
         struct ViewModel { }
+    }
+    
+    //MARK: - Get Missed Workouts Use Case
+    enum getMissedWorkouts {
+        
+        struct Request { }
+        
+        struct Response {
+            let missedWorkouts: [CoreWorkout]
+        }
+        
+        struct ViewModel {
+            let displayedMissedWorkouts: [[CoreWorkoutViewModel]]
+            let missedWorkoutWeekDays: [WeekDayModel]            
+        }
     }
 }

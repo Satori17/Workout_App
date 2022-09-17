@@ -8,15 +8,15 @@
 import UIKit
 
 protocol AlertDisplayLogic: AnyObject {
-    func displayIntensityData(viewModel: Alert.GetWorkoutIntensity.ViewModel)
+    func displayIntensityData(viewModel: AlertModel.GetWorkoutIntensity.ViewModel)
+    func displayAlert(viewModel: AlertModel.ShowAlert.ViewModel)
 }
 
-final class AlertViewController: UIViewController, CAAnimationDelegate {
+final class AlertViewController: UIViewController {
     
     //MARK: - IBOutlets
-    
-    @IBOutlet weak var alertView: UIView!
-    @IBOutlet weak var alertViewTitle: UILabel!
+    @IBOutlet weak var saveView: UIView!
+    @IBOutlet weak var saveViewTitle: UILabel!
     @IBOutlet weak var setsAndRepsPickerView: UIPickerView!
     @IBOutlet weak var weekDayPickerView: UIPickerView!
     @IBOutlet weak var saveBtn: UIButton!
@@ -32,46 +32,49 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
     //MARK: - Gradient Mask
     private let gradientMaskLayer = CAGradientLayer()
     
-    //MARK: - Alert Data
+    //MARK: - Save Alert Data
     private var sets = [String]()
     private var reps = [String]()
     private var weekDays = [String]()
     private var selectedData: (sets: Int, reps: Int, weekDay: String)?
     
     //MARK: - Animation Manager
-    let animationManager = AnimationManager()
+    private let animationManager = AnimationManager()
+    
+    //MARK: - Custom Alert Components
+    private let alertView = UIView()
+    private let alertLabel = UILabel()
+    private let alertButton = UIButton()
+    private let timer = Timer()
     
     //MARK: - Object Lifecycle
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
     }
     
-    // MARK: View Lifecycle
-    
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //adding imageView to tabBar for transparent backgroudn
-        fakeTabBar.backgroundImage = UIImage()
-        getIntensityData()
-        setupAlertView()
+        setupView()
     }
     
     //MARK: - IBAction
-    
     @IBAction func saveBtnTapped(_ sender: UIButton) {
         guard let sets = selectedData?.sets,
               let reps = selectedData?.reps,
               let weekDay = selectedData?.weekDay,
               reps >= 5 else {
             repRangeAlert()
-            animationManager.shakeAnimation(ofView: alertView)
+            animationManager.shakeAnimation(ofView: saveView)
             return
         }
-        
-        let request = Alert.SaveWorkout.Request(sets: sets, reps: reps, weekDay: WeekDayModel(name: weekDay))
+        let request = AlertModel.SaveWorkout.Request(
+            sets: sets,
+            reps: reps,
+            weekDay: WeekDayModel(name: weekDay)
+        )
         interactor?.saveWorkout(request: request)
         animateSaving()
     }
@@ -80,17 +83,28 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
         dismiss(animated: true)
     }
     
-    //MARK: - Methods
-    
-    private func getIntensityData() {
-        let request = Alert.GetWorkoutIntensity.Request()
-        interactor?.getWorkoutIntensityData(request: request)
+    //MARK: - Setup Methods
+    private func setupView() {
+        //adding imageView to tabBar for transparent background
+        fakeTabBar.backgroundImage = UIImage()
+        makeAlertRequest()
     }
     
-    private func setupAlertView() {
-        alertView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
+    private func makeAlertRequest() {
+        interactor?.showAlert(request: AlertModel.ShowAlert.Request())
+    }
+    
+    private func setupSaveView() {
+        saveView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
         saveBtn.maskCurved()
         cancelBtn.maskCurved()
+    }
+    
+    private func setupAlertView(withTitle text: String, success: Bool) {
+        saveView.removeFromSuperview()
+        getAlertView(success: success)
+        getAlertTitle(withText: text, success: success)
+        getAlertButton(success: success)
     }
     
     private func setupIntensity(data: (sets: [String], reps: [String], weekDays: [String])) {
@@ -99,19 +113,20 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
         self.weekDays = data.weekDays
     }
     
+    //MARK: - Helper Methods
     private func repRangeAlert(repCount: Int=0) {
         if repCount >= 5 {
-            alertViewTitle.text = AlertTitle.initialText
-            alertViewTitle.textColor = AlertTitle.initialColor
+            saveViewTitle.text = SaveTitle.initialText
+            saveViewTitle.textColor = SaveTitle.initialColor
         } else {
-            alertViewTitle.text = AlertTitle.alertText
-            alertViewTitle.textColor = AlertTitle.alertColor
+            saveViewTitle.text = SaveTitle.alertText
+            saveViewTitle.textColor = SaveTitle.alertColor
         }
     }
     
     private func animateSaving() {
-        self.animationManager.movingAnimation(fromView: self.alertView, toView: self.triggerView, isRotated: true) { [weak self] in
-            self?.alertView.removeFromSuperview()
+        self.animationManager.movingAnimation(fromView: self.saveView, toView: self.triggerView, isRotated: true) { [weak self] in
+            self?.saveView.removeFromSuperview()
             self?.view.backgroundColor = .clear
             self?.homeIcon.isHidden = false
             if let icon = self?.homeIcon {
@@ -124,16 +139,19 @@ final class AlertViewController: UIViewController, CAAnimationDelegate {
 }
 
 //MARK: - Display Logic protocol
-
 extension AlertViewController: AlertDisplayLogic {
     
-    func displayIntensityData(viewModel: Alert.GetWorkoutIntensity.ViewModel) {
+    func displayIntensityData(viewModel: AlertModel.GetWorkoutIntensity.ViewModel) {
         setupIntensity(data: (viewModel.sets, viewModel.reps, viewModel.weekDays))
+        setupSaveView()
+    }
+    
+    func displayAlert(viewModel: AlertModel.ShowAlert.ViewModel) {
+        setupAlertView(withTitle: viewModel.alertText, success: viewModel.success)
     }
 }
 
 //MARK: - PickerView Delegate & DataSource
-
 extension AlertViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -193,3 +211,153 @@ extension AlertViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
+
+//MARK: - Creating custom components programatically
+extension AlertViewController {
+    
+    private func getAlertView(success: Bool) {
+        alertView.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: self.view.frame.width-40, height: success ? self.view.frame.height/6 : self.view.frame.height/4)
+        alertView.center = self.view.center
+        alertView.clipsToBounds = true
+        alertView.backgroundColor = .white
+        alertView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
+        self.view.addSubview(alertView)
+    }
+    
+    private func getAlertTitle(withText text: String, success: Bool) {
+        alertLabel.center = alertView.center
+        alertLabel.translatesAutoresizingMaskIntoConstraints = false
+        alertLabel.text = text
+        alertLabel.numberOfLines = 0
+        alertLabel.textAlignment = .center
+        alertLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        alertLabel.textColor = success ? .darkGray : .systemRed
+        alertView.addSubview(alertLabel)
+        
+        let leading = NSLayoutConstraint(
+            item: alertLabel,
+            attribute: .leading,
+            relatedBy: .equal,
+            toItem: alertView,
+            attribute: .leading,
+            multiplier: 1,
+            constant: 10
+        )
+        let trailing = NSLayoutConstraint(
+            item: alertLabel,
+            attribute: .trailing,
+            relatedBy: .equal,
+            toItem: alertView,
+            attribute: .trailing,
+            multiplier: 1,
+            constant: -10
+        )
+        let top = NSLayoutConstraint(
+            item: alertLabel,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: alertView,
+            attribute: .top,
+            multiplier: 1,
+            constant: success ? 50 : 20
+        )
+        NSLayoutConstraint.activate([top, leading, trailing])
+    }
+    
+    private func getAlertButton(success: Bool) {
+        //if alert is displaying dismissable info, view&button disappears automatically
+        alertButton.isHidden = success
+        timer.setDismissTimer(duration: 1) { [weak self] in
+            self?.dismiss(animated: true)
+        }
+        alertButton.translatesAutoresizingMaskIntoConstraints = false
+        alertButton.tintColor = .white
+        alertButton.maskCurved()
+        alertButton.backgroundColor = UIColor.ColorKey.skyBlue
+        alertButton.setTitle("Cancel", for: .normal)
+        alertButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+        alertView.addSubview(alertButton)
+        
+        let top = NSLayoutConstraint(
+            item: alertButton,
+            attribute: .top,
+            relatedBy: .equal,
+            toItem: alertLabel,
+            attribute: .bottom,
+            multiplier: 1,
+            constant: 10
+        )
+        let bottom = NSLayoutConstraint(
+            item: alertButton,
+            attribute: .bottom,
+            relatedBy: .equal,
+            toItem: alertView,
+            attribute: .bottom,
+            multiplier: 1,
+            constant: -10
+        )
+        let height = NSLayoutConstraint(
+            item: alertButton,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 40
+        )
+        let aspectRatio = NSLayoutConstraint(
+            item: alertButton,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: alertButton,
+            attribute: .height,
+            multiplier: 4,
+            constant: 0
+        )
+        let centerX = NSLayoutConstraint(
+            item: alertButton,
+            attribute: .centerX,
+            relatedBy: .equal,
+            toItem: alertView,
+            attribute: .centerX,
+            multiplier: 1,
+            constant: 0
+        )
+        NSLayoutConstraint.activate([top, bottom, height, aspectRatio, centerX])
+    }
+    
+    @objc func buttonTapped(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+}
+
+
+////MARK: - Preview
+//
+//import SwiftUI
+//
+//struct PreviewViewController: PreviewProvider {
+//    static var previews: some View {
+//        ViewControllerPreview {
+//            AlertViewController()
+//
+//        }.previewDevice("iPhone 13 Pro").previewInterfaceOrientation(.portrait)
+//    }
+//}
+//
+//struct ViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
+//    let viewControllerBuilder: () -> UIViewController
+//
+//    init(_ viewControllerBuilder: @escaping () -> UIViewController) {
+//        self.viewControllerBuilder = viewControllerBuilder
+//    }
+//
+//
+//    func makeUIViewController(context: Context) -> some UIViewController {
+//        return viewControllerBuilder()
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+//
+//    }
+//}

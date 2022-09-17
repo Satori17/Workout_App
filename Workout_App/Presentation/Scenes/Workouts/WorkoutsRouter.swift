@@ -12,6 +12,7 @@ protocol WorkoutsRoutingLogic {
     func passDetailsData(ofWorkout workout: WorkoutViewModel, destination: inout WorkoutDetailDataStore)
     func routeToWorkoutDetails()
     func routeToSaveAlert()
+    func routeToShowAlert(withTitle text: String, success: Bool)
 }
 
 protocol WorkoutsDataPassing {
@@ -38,10 +39,17 @@ extension WorkoutsRouter: WorkoutsRoutingLogic {
     func routeToSaveAlert() {
         guard let workout = dataStore?.selectedWorkout else { return }
         if let alertVC = UIStoryboard(name: Ids.alert, bundle: nil).instantiateViewController(withIdentifier: Ids.alert) as? AlertViewController {
-            AlertConfigurator.configure(vc: alertVC)
+            AlertConfigurator.configure(vc: alertVC, alertTitle: nil, success: false)
             if var alertDS = alertVC.router?.dataStore {
                 passToSave(workout: workout, destination: &alertDS)
             }            
+            viewController?.present(alertVC, animated: true)
+        }
+    }
+    
+    func routeToShowAlert(withTitle text: String, success: Bool) {
+        if let alertVC = UIStoryboard(name: Ids.alert, bundle: nil).instantiateViewController(withIdentifier: Ids.alert) as? AlertViewController {
+            AlertConfigurator.configure(vc: alertVC, alertTitle: text, success: success)
             viewController?.present(alertVC, animated: true)
         }
     }

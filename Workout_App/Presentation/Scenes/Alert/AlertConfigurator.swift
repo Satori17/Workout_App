@@ -9,25 +9,29 @@ import UIKit
 
 final class AlertConfigurator {
 
-    static func configure(vc: AlertViewController) {
-        //interactor
-        let interactor = AlertInteractor()
+    static func configure(vc: AlertViewController, alertTitle text: String?, success: Bool) {
+        //MARK: - Interactor
+        let interactor = AlertInteractor(alertText: text, success: success)
         vc.interactor = interactor
-        //presenter
+        
+        //MARK: - Presenter
         let presenter = AlertPresenter()
         presenter.viewController = vc
         interactor.presenter = presenter
-        //router
+        
+        //MARK: - Router
         let router = AlertRouter()
         vc.router = router
         router.viewController = vc
-        //dataStore
+        
+        //MARK: - DataStore
         router.dataStore = interactor
-        //worker
-        let worker = AlertWorker()
-        interactor.worker = worker
-        //storage manager
+        
+        //MARK: - Storage Manager
         let storageManager = WorkoutStorageManager()
-        interactor.storageManager = storageManager
+        
+        //MARK: - Worker
+        let worker = AlertWorker(storageManager: storageManager)
+        interactor.worker = worker
     }
 }

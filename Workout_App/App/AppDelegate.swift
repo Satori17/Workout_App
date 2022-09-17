@@ -20,15 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         SDImageCodersManager.shared.addCoder(SVGCoder)
         UNUserNotificationCenter.current().delegate = self
         
-        notificationManager.checkUserPermission { granted in
-            if granted {
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
-                    print("granted")
-                }
-            }
-        }
-        
         return true
     }
 
@@ -45,6 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    
+    //TODO: - FIX  notification system for changing missed workout fonts
+//    func applicationDidBecomeActive(_ application: UIApplication) {
+//        print("🔴")
+//    }
+//    
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        <#code#>
+//    }
 
     // MARK: - Core Data stack
 

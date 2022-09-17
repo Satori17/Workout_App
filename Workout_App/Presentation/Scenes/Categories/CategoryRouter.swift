@@ -9,6 +9,7 @@ import UIKit
 
 protocol CategoryRoutingLogic {
     func routeToWorkouts()
+    func routeToShowAlert(withTitle text: String, success: Bool)
 }
 
 protocol CategoryDataPassing {
@@ -32,5 +33,12 @@ extension CategoryRouter: CategoryRoutingLogic {
             WorkoutsConfigurator.configure(vc: workoutsVC, categoryId: id)
             viewController?.navigationController?.pushViewController(workoutsVC, animated: true)
         }               
+    }
+    
+    func routeToShowAlert(withTitle text: String, success: Bool) {
+        if let alertVC = UIStoryboard(name: Ids.alert, bundle: nil).instantiateViewController(withIdentifier: Ids.alert) as? AlertViewController {
+            AlertConfigurator.configure(vc: alertVC, alertTitle: text, success: success)
+            viewController?.present(alertVC, animated: true)
+        }
     }
 }

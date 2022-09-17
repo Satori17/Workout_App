@@ -15,7 +15,6 @@ protocol notificationReceivedProtocol: AnyObject {
 class HomeWorkoutCell: UITableViewCell {
     
     //MARK: - IBOutlets
-    
     @IBOutlet weak var fakeView: UIView!
     @IBOutlet weak var workoutImageView: UIImageView!
     @IBOutlet weak var imageBackgroundView: UIView!
@@ -24,18 +23,17 @@ class HomeWorkoutCell: UITableViewCell {
     @IBOutlet weak var checkmarkBtn: UIButton!
     
     //MARK: - Properties
-    
     private let gradientMaskLayer = CAGradientLayer()
     private let gradientMaskLayer2 = CAGradientLayer()
     private let timer = Timer()
     weak var delegate: notificationReceivedProtocol?
 
     //MARK: - Cell Lifecycle
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCellComponents()
         NotificationCenter.default.addObserver(self, selector: #selector(notificationReceived), name: NotificationName.openFromNotification, object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(notificationReceived(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func layoutSubviews() {
@@ -45,10 +43,9 @@ class HomeWorkoutCell: UITableViewCell {
     }
     
     //MARK: - IBAction
-    
     @IBAction func workoutChecked(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected        
-        timer.setDismissTimer(duration: 2) { [weak self] in
+        timer.setDismissTimer(duration: 0.5) { [weak self] in
                 sender.isSelected = false
             self?.workoutNameLabel.textColor = UIColor.ColorKey.adaptive
             if let cell = self {
@@ -59,6 +56,7 @@ class HomeWorkoutCell: UITableViewCell {
     
     //MARK: - Methods
     
+    //TODO: - FIX  To get red cells without passing object as weekday
     @objc func notificationReceived(_ sender: Notification) {
         guard let object = sender.object as? String else { return }
         delegate?.appearMissedWorkouts(cell: self, weekDay: object)

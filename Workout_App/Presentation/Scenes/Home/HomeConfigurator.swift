@@ -10,24 +10,28 @@ import UIKit
 final class HomeConfigurator {
     
     static func configure(vc: HomeViewController) {
-        //interactor
+        //MARK: - Interactor
         let interactor = HomeInteractor()
         vc.interactor = interactor
-        //presenter
+        
+        //MARK: - Presenter
         let presenter = HomePresenter()
         presenter.viewController = vc
-        interactor.presenter = presenter        
-        //router
+        interactor.presenter = presenter
+        
+        //MARK: - Router
         let router = HomeRouter()
         vc.router = router
         router.viewController = vc
-        //dataStore
+        
+        //MARK: - DataStore
         router.dataStore = interactor
-        //storage manager
+        
+        //MARK: - Storage Manager
         let storageManager = WorkoutStorageManager()
-        //worker
+        
+        //MARK: - Worker
         let worker = HomeWorker(storageManager: storageManager)
         interactor.worker = worker
-        interactor.storageManager = storageManager
     }
 }

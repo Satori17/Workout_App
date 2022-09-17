@@ -9,7 +9,6 @@ import UIKit
 
 
 //MARK: - Workout Data
-
 struct WorkoutData<T: Decodable>: Decodable {
     let results: [T]?
 }

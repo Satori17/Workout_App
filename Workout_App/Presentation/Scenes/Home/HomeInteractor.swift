@@ -11,24 +11,22 @@ protocol HomeBusinessLogic {
     func getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request)
     func getSavedWorkoutDetails(request: HomeModel.ShowSavedWorkoutDetails.Request)
     func removeWorkout(withId id: Int)
-    func isMissedWorkout(_ isMissed: Bool, weekDay: String)
+    func toggleMissedWorkout(_ isMissed: Bool, weekDay: String, id: Int)
+    func getMissedWorkouts(request: HomeModel.getMissedWorkouts.Request)
 }
 
 protocol HomeDataStore {
-    var selectedSavedWorkout: CoreWorkoutViewModel? { get }    
+    var selectedSavedWorkout: CoreWorkoutViewModel? { get }
 }
 
 final class HomeInteractor: HomeDataStore {
     
     //MARK: - Clean Components
     var presenter: HomePresentationLogic?
-    var worker: HomeWorker?
+    var worker: HomeWorkerLogic?
     
     //MARK: - DataStore
     private(set) var selectedSavedWorkout: CoreWorkoutViewModel?
-    
-    //MARK: - Storage Manager
-    var storageManager: WorkoutStorageManager?
 }
 
 extension HomeInteractor: HomeBusinessLogic {
@@ -52,20 +50,31 @@ extension HomeInteractor: HomeBusinessLogic {
     }
     
     func removeWorkout(withId id: Int) {
-        do {
-            try storageManager?.removeWorkout(withId: id)
-        } catch {
-            //TODO: - FIX THIS with alerts
-            print(StorageManagerError.removeWorkoutFailed)
-        }
+        worker?.removeSavedWorkout(withId: id, completion: { result in
+            switch result {
+            case .success(_):
+                presenter?.presentRemoveWorkoutAlert(withMessage: AlertKeys.removeSuccess)
+            case .failure(let error):
+                presenter?.didFailPresentRemoveWorkoutAlert(withError: error)
+            }
+        })
     }
     
-    func isMissedWorkout(_ isMissed: Bool, weekDay: String) {
-        do {
-            try storageManager?.addMissedWorkout(isMissed, weekDay: weekDay)
-        } catch {
-            //TODO: - FIX  THIS with alerts
-            print(StorageManagerError.addToMissedWorkoutFailed)
-        }
+    func toggleMissedWorkout(_ isMissed: Bool, weekDay: String, id: Int) {
+        worker?.toggleMissedWorkout(isMissed, weekDay: weekDay, id: id, completion: { error in
+            presenter?.didFailPresentToggleMissedWorkout(withError: error)
+        })
+    }
+    
+    func getMissedWorkouts(request: HomeModel.getMissedWorkouts.Request) {
+        worker?.fetchMissedWorkouts(completion: { result in
+            switch result {
+            case .success(let missedWorkouts):
+                let response = HomeModel.getMissedWorkouts.Response(missedWorkouts: missedWorkouts)
+                presenter?.presentMissedWorkouts(response: response)
+            case .failure(let error):
+                presenter?.didFailPresentMissedWorkouts(withError: error)
+            }
+        })
     }
 }

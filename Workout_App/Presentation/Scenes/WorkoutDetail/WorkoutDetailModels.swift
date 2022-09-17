@@ -10,7 +10,6 @@ import UIKit
 enum WorkoutDetailModel {
     
     //MARK: - Get Workout Details Use Case
-    
     enum GetWorkoutDetails {
         
         struct Request { }
@@ -25,7 +24,6 @@ enum WorkoutDetailModel {
     }
     
     //MARK: - Get License Use Case
-    
     enum GetLicense {
         
         struct Request { }
@@ -36,7 +34,6 @@ enum WorkoutDetailModel {
     }
     
     //MARK: - Show Save Alert Use Case
-    
     enum ShowSaveAlert {
         
         struct Request { }

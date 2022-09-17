@@ -21,13 +21,10 @@ final class WorkoutDetailInteractor {
     
     //MARK: - Clean Components
     var presenter: WorkoutDetailPresentationLogic?
-    var worker: WorkoutDetailWorker?
+    //var worker: WorkoutDetailWorker?
     
     //MARK: - DataStore Properties
     var workout: Displayable?
-    
-    //MARK: - Storage Manager
-    var storageManager: WorkoutStorageManager?
 }
 
 extension WorkoutDetailInteractor: WorkoutDetailBusinessLogic, WorkoutDetailDataStore {

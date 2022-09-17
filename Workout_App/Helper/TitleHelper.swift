@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum AlertTitle {
+enum SaveTitle {
     static let initialText = "Choose Wisely"
     static let initialColor = UIColor.ColorKey.skyBlue
     static let alertText = "Rep Range is too low"

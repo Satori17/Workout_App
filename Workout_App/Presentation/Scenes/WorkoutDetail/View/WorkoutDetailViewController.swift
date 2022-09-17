@@ -18,7 +18,6 @@ protocol WorkoutDetailDisplayLogic: AnyObject {
 final class WorkoutDetailViewController: UIViewController {
     
     //MARK: - IBOutlets
-    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: WorkoutDetailView!
     
@@ -31,21 +30,18 @@ final class WorkoutDetailViewController: UIViewController {
     var isSaved = false
     
     // MARK: View Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         requestMovieDetails()
     }
     
     //MARK: - Methods
-    
     private func requestMovieDetails() {
         interactor?.showWorkoutDetails(request: WorkoutDetailModel.GetWorkoutDetails.Request())
     }
 }
 
 //MARK: - License Delegate protocol
-
 extension WorkoutDetailViewController: licenseDetailsDelegate {
     
     func openLicenseDetails() {
@@ -54,7 +50,6 @@ extension WorkoutDetailViewController: licenseDetailsDelegate {
 }
 
 //MARK: - Save Delegate protocol
-
 extension WorkoutDetailViewController: SaveWorkoutDelegate {
     
     func saveWorkout() {
@@ -63,7 +58,6 @@ extension WorkoutDetailViewController: SaveWorkoutDelegate {
 }
 
 //MARK: - Display Logic protocol
-
 extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     
     func displayWorkoutDetails(viewModel: WorkoutDetailModel.GetWorkoutDetails.ViewModel) {

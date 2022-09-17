@@ -21,7 +21,6 @@ final class WorkoutsPresenter {
 }
 
 //MARK: - Presentation Logic
-
 extension WorkoutsPresenter: WorkoutsPresentationLogic {
     
     func presentWorkouts(response: WorkoutModel.GetWorkouts.Response) {
@@ -45,7 +44,6 @@ extension WorkoutsPresenter: WorkoutsPresentationLogic {
 }
 
 //MARK: - Helper Formatting Methods
-
 extension WorkoutsPresenter {
     
     private func getDisplayed(workoutsData: WorkoutModel.GetWorkouts.Response) -> [WorkoutViewModel] {

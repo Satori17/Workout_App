@@ -12,5 +12,5 @@ enum FetchingError: String, Error {
     case responseError = "There's an error in data response"
     case statusCodeError = "Unsuccessful response status code"
     case urlComponentError = "Error happened when attaching url components"
-    case dataError = "Could not get data when decoding"
+    case dataError = "Could not get data"
 }

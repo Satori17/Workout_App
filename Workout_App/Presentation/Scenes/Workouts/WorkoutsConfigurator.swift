@@ -10,20 +10,24 @@ import UIKit
 final class WorkoutsConfigurator {
 
     static func configure(vc: WorkoutsViewController, categoryId: Int) {
-        //interactor
+        //MARK: - Interactor
         let interactor = WorkoutsInteractor(categoryId: categoryId)
         vc.interactor = interactor
-        //presenter
+        
+        //MARK: - Presenter
         let presenter = WorkoutsPresenter()
         presenter.viewController = vc
         interactor.presenter = presenter
-        //router
+        
+        //MARK: - Router
         let router = WorkoutsRouter()
         vc.router = router
         router.viewController = vc
-        //dataStore
+        
+        //MARK: - DataStore
         router.dataStore = interactor
-        //worker
+        
+        //MARK: - Worker
         let worker = WorkoutsWorker()
         interactor.worker = worker
     }

@@ -14,20 +14,19 @@ protocol WorkoutDetailRoutingLogic {
 }
 
 protocol WorkoutDetailDataPassing {
-  var dataStore: WorkoutDetailDataStore? { get }
+    var dataStore: WorkoutDetailDataStore? { get }
 }
 
 final class WorkoutDetailRouter {
     
     //MARK: - Clean Components
-  weak var viewController: WorkoutDetailViewController?
-  var dataStore: WorkoutDetailDataStore?
+    weak var viewController: WorkoutDetailViewController?
+    var dataStore: WorkoutDetailDataStore?
 }
 
 extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassing {
     
     //MARK: - Routing
-    
     func routeToWorkoutLicense() {
         guard let licenseUrl = dataStore?.workout?.license.url  else {
             viewController?.didFailDisplayWorkoutLicense(withError: "License Couldn't be loaded")
@@ -39,7 +38,7 @@ extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassi
     func routeToSaveAlert() {
         guard let workout = dataStore?.workout else { return }
         if let alertVC = UIStoryboard(name: Ids.alert, bundle: nil).instantiateViewController(withIdentifier: Ids.alert) as? AlertViewController {
-            AlertConfigurator.configure(vc: alertVC)
+            AlertConfigurator.configure(vc: alertVC, alertTitle: nil, success: false)
             if var alertDS = alertVC.router?.dataStore {
                 if let chosenVariation = viewController?.contentView.chosenVariation {
                     passToSave(workout: chosenVariation, destination: &alertDS)
@@ -52,7 +51,6 @@ extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassi
     }
     
     //MARK: - Passing data
-    
     func passToSave(workout: Displayable, destination: inout AlertDataStore) {
         destination.workoutToSave = workout
     }

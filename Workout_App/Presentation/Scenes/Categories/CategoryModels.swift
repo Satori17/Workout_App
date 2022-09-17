@@ -12,7 +12,6 @@ typealias CategoryViewModel = CategoryModel.GetCategories.ViewModel.displayedCat
 enum CategoryModel {
     
     //MARK: - Get Categories Use Case
-    
     enum GetCategories {
         
         struct Request {}
@@ -38,7 +37,6 @@ enum CategoryModel {
     }
     
     //MARK: - Show Category Workouts Use Case
-    
     enum ShowCategoryWorkouts {
         
         struct Request {

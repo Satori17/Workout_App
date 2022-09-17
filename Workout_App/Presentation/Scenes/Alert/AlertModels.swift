@@ -7,9 +7,9 @@
 
 import UIKit
 
-enum Alert {
-    // MARK: Get Workout Intensity Data Use case
+enum AlertModel {
     
+    // MARK: Get Workout Intensity Data Use case
     enum GetWorkoutIntensity {
         
         struct Request { }
@@ -26,7 +26,6 @@ enum Alert {
     }
     
     //MARK: - Save Workout Use Case
-    
     enum SaveWorkout {
         
         struct Request {
@@ -38,5 +37,21 @@ enum Alert {
         struct Response { }
         
         struct ViewModel { }
+    }
+    
+    //MARK: - Show Failed Alert Use Case
+    enum ShowAlert {
+        
+        struct Request { }
+        
+        struct Response {
+            let alertText: String
+            let success: Bool
+        }
+        
+        struct ViewModel {
+            let alertText: String
+            let success: Bool
+        }
     }
 }

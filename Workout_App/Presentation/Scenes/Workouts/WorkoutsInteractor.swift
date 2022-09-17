@@ -22,7 +22,7 @@ final class WorkoutsInteractor: WorkoutsDataStore {
     
     //MARK: - Clean Components
     var presenter: WorkoutsPresentationLogic?
-    var worker: WorkoutsWorker?
+    var worker: WorkoutsWorkerLogic?
     
     //MARK: - DataStore Properties
     private(set) var selectedWorkout: WorkoutViewModel?

@@ -14,7 +14,6 @@ protocol updateHeaderDataProtocol: AnyObject {
 class WeekDayHeaderView: UIView {
     
     //MARK: - IBOutlets
-    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var weekDayLabel: UILabel!
     @IBOutlet weak var reminderBackgroundView: UIView!
@@ -61,7 +60,6 @@ class WeekDayHeaderView: UIView {
     weak var delegate: updateHeaderDataProtocol?
     
     //MARK: - Object Lifecycle
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         initWeekDayHeaderView()
@@ -73,7 +71,6 @@ class WeekDayHeaderView: UIView {
     }
     
     //MARK: - IBActions
-    
     @IBAction func setReminderBtnTapped(_ sender: UIButton) {
         self.setupDatePicker()
         animationManager.toggleAppearence(ofViews: [datePicker, setReminderBtn], actorView: reminderBackgroundView) { [weak self] in
@@ -113,7 +110,6 @@ class WeekDayHeaderView: UIView {
     }
     
     //MARK: - Configure
-    
     func configure(weekDay: WeekDayModel) {
         weekDayLabel.text = weekDay.name
         setReminderBtn.isSelected = weekDay.isScheduled
@@ -121,7 +117,6 @@ class WeekDayHeaderView: UIView {
     }
     
     //MARK: - Initial Setup Methods
-    
     private func initWeekDayHeaderView() {
         let nib = UINib(nibName: Ids.headerView, bundle: nil)
         nib.instantiate(withOwner: self, options: nil)
@@ -151,7 +146,6 @@ class WeekDayHeaderView: UIView {
     }
     
     //MARK: - Helper Methods
-    
     private func reminderActions(completion: @escaping () -> ()) {
         setupLoadingView()
         datePicker.isHidden = true
@@ -259,66 +253,3 @@ class WeekDayHeaderView: UIView {
         }
     }
 }
-
-
-
-
-//notificationManager.removeAllPendingRequests()
-//print(notificationManager.getPendingRequests())
-//print(userDefaults.string(forKey: weekDayLabel.text!))
-//        do {
-//        try print(storageManager.getAllSchedules())
-//        } catch {
-//
-//        }
-
-
-/*
-setupLoadingView()
-datePicker.isHidden = true
-
-DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-    self.animationManager.toggleAppearence(ofViews: [self.datePicker, self.setReminderBtn], actorView: self.reminderBackgroundView)
-    self.toggleSetReminderBtn()
-            if self.checkHasNotification(weekDay: self.weekDayLabel.text) {
-                self.animationManager.toggleAppearence(ofButtons: [self.cancelReminderBtn, self.saveReminderBtn])
-            }
-    self.removeWeekDayNotification()
-    self.removeScheduled(weekDay: self.weekDayLabel.text)
-    self.loadingView.stopAnimating()
-  }
-
-        animationManager.toggleAppearence(ofViews: [datePicker, setReminderBtn], actorView: reminderBackgroundView)
-        toggleSetReminderBtn()
-        if checkHasNotification(weekDay: weekDayLabel.text) {
-            animationManager.toggleAppearence(ofButtons: [cancelReminderBtn, saveReminderBtn])
-        }
-        removeWeekDayNotification()
-        removeScheduled(weekDay: weekDayLabel.text)
-
-
-
-        checkIsEditing()
-        removeWeekDayNotification()
-        addWeekDayNotification()
-        saveScheduled(weekDay: weekDayLabel.text)
-        toggleSetReminderBtn()
-
-
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-            self.delegate?.getScheduledTime()
-        }
-        
-        timer.setDismissTimer(duration: 0.11) { [weak self] in
-            if var setReminderIsSelected = self?.setReminderBtn.isSelected {
-            setReminderIsSelected = !setReminderIsSelected
-                let text = setReminderIsSelected ? "\(self?.getChosenTime() ?? "")" : "+"
-                self?.setReminderBtn.setTitle(text, for: .normal)
-            }
-            self?.delegate?.getScheduledTime()
-            if let cancel = self?.cancelReminderBtn, let save = self?.saveReminderBtn {
-                self?.animationManager.toggleAppearence(ofButtons: [cancel,save])
-            }
-            
-        }
-*/

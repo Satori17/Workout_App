@@ -11,6 +11,11 @@ protocol HomePresentationLogic {
     func presentSavedWorkouts(response: HomeModel.GetSavedWorkouts.Response)
     func didFailPresentSavedWorkouts(withError message: StorageManagerError)
     func presentSavedWorkoutDetails(response: HomeModel.ShowSavedWorkoutDetails.Response)
+    func presentRemoveWorkoutAlert(withMessage text: String)
+    func didFailPresentRemoveWorkoutAlert(withError message: StorageManagerError)
+    func presentMissedWorkouts(response: HomeModel.getMissedWorkouts.Response)
+    func didFailPresentMissedWorkouts(withError message: StorageManagerError)
+    func didFailPresentToggleMissedWorkout(withError message: StorageManagerError)
 }
 
 final class HomePresenter {
@@ -19,21 +24,12 @@ final class HomePresenter {
     weak var viewController: HomeDisplayLogic?
 }
 
-//TODO: - FIX research  Method dispatch
-
 extension HomePresenter: HomePresentationLogic {
     
     func presentSavedWorkouts(response: HomeModel.GetSavedWorkouts.Response) {
         let displayedCoreWorkouts = getDisplayed(coreWorkouts: response.savedWorkouts)
-        //filtering week days to populate on tableView
-        let weekDays = Array(Set(displayedCoreWorkouts.map{ $0.weekDay }))
-        let sortedWeekDays = sortWeekDays(weekDays) ?? []
-        //sorting workouts by week day
-        let sortedWorkouts = sortWorkoutsByWeekDay(displayedCoreWorkouts, sortedWeekDays: sortedWeekDays)
-        //creating 2D array with 'same week day' logic
-        let filteredCoreWorkouts = filterWorkoutsByWeekDay(workouts: sortedWorkouts)
-        //ready to display!
-        let viewModel = HomeModel.GetSavedWorkouts.ViewModel(displayedCoreWorkouts: filteredCoreWorkouts, weekDays: sortedWeekDays)
+        let data = getFinalWorkoutsAndWeekDays(displayedWorkouts: displayedCoreWorkouts)
+        let viewModel = HomeModel.GetSavedWorkouts.ViewModel(displayedCoreWorkouts: data.workouts, weekDays: data.weekDays)
         viewController?.displaySavedWorkouts(viewModel: viewModel)
     }
     
@@ -45,11 +41,45 @@ extension HomePresenter: HomePresentationLogic {
         let viewModel = HomeModel.ShowSavedWorkoutDetails.ViewModel()
         viewController?.displaySavedWorkoutDetails(viewModel: viewModel)
     }
+    
+    func presentRemoveWorkoutAlert(withMessage text: String) {
+        viewController?.displayRemoveWorkoutAlert(withMessage: text)
+    }
+    
+    func didFailPresentRemoveWorkoutAlert(withError message: StorageManagerError) {
+        viewController?.didFailDisplayRemoveWorkoutAlert(withError: message)
+    }
+    
+    func presentMissedWorkouts(response: HomeModel.getMissedWorkouts.Response) {
+        let displayedMissedWorkouts = getDisplayed(coreWorkouts: response.missedWorkouts)
+        let data = getFinalWorkoutsAndWeekDays(displayedWorkouts: displayedMissedWorkouts)
+        let viewModel = HomeModel.getMissedWorkouts.ViewModel(displayedMissedWorkouts: data.workouts, missedWorkoutWeekDays: data.weekDays)
+        viewController?.displayMissedWorkouts(viewModel: viewModel)
+    }
+    
+    func didFailPresentMissedWorkouts(withError message: StorageManagerError) {
+        viewController?.didFailDisplayMissedWorkouts(withError: message)
+    }
+    
+    func didFailPresentToggleMissedWorkout(withError message: StorageManagerError) {
+        viewController?.didFailDisplayToggleMissedWorkout(withError: message)
+    }
 }
 
 //MARK: - Helper Sorting & Filtering Methods
-
 extension HomePresenter {
+    
+    private func getFinalWorkoutsAndWeekDays(displayedWorkouts: [CoreWorkoutViewModel]) -> (workouts: [[CoreWorkoutViewModel]], weekDays: [WeekDayModel]) {
+        //filtering week days to populate on tableView
+        let weekDays = Array(Set(displayedWorkouts.map{ $0.weekDay }))
+        let sortedWeekDays = sortWeekDays(weekDays) ?? []
+        //sorting workouts by week day
+        let sortedWorkouts = sortWorkoutsByWeekDay(displayedWorkouts, sortedWeekDays: sortedWeekDays)
+        //creating 2D array with "same week day" logic
+        let filteredCoreWorkouts = filterWorkoutsByWeekDay(workouts: sortedWorkouts)
+        
+        return (filteredCoreWorkouts, sortedWeekDays)
+    }
     
     private func sortWorkoutsByWeekDay(_ workouts: [CoreWorkoutViewModel], sortedWeekDays: [WeekDayModel]) -> [CoreWorkoutViewModel] {
         let sortedWorkouts = workouts.sorted(by: {
@@ -94,7 +124,6 @@ extension HomePresenter {
 }
 
 //MARK: - Helper Formatting Methods
-
 extension HomePresenter {
     
     private func getDisplayed(coreWorkouts: [CoreWorkout]) -> [CoreWorkoutViewModel] {

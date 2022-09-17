@@ -12,7 +12,6 @@ typealias WorkoutViewModel = WorkoutModel.GetWorkouts.ViewModel.DisplayedWorkout
 enum WorkoutModel {
     
     //MARK: - Get Workouts Use Case
-    
     enum GetWorkouts {
         
         struct Request { }
@@ -43,7 +42,6 @@ enum WorkoutModel {
     }
     
     //MARK: - Show Workout Details Use Case
-    
     enum ShowWorkoutDetails {
         
         struct Request {
@@ -56,8 +54,7 @@ enum WorkoutModel {
         struct ViewModel { }
     }
     
-    //MARK: - Show Save Alert Use Case
-    
+    //MARK: - Show Save Alert Use Case    
     enum ShowSaveAlert {
         
         struct Request {

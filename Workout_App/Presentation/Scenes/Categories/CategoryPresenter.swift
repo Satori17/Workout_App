@@ -23,8 +23,10 @@ extension CategoryPresenter: CategoryPresentationLogic {
     
     func presentCategories(response: CategoryModel.GetCategories.Response) {
         let displayedCategories: [CategoryViewModel] = response.categories.map({
-            CategoryViewModel(id: $0.id ?? 0,
-                              name: $0.name ?? "")
+            CategoryViewModel(
+                id: $0.id ?? 0,
+                name: $0.name ?? ""
+            )
         })
         
         let viewModel = CategoryModel.GetCategories.ViewModel(displayedCategories: displayedCategories)

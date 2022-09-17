@@ -20,25 +20,21 @@ class WorkoutCell: UICollectionViewCell {
     @IBOutlet weak var seeMoreBtn: UIButton!
     
     //MARK: - Properties
-    
     private let gradientMaskLayer = CAGradientLayer()
     weak var delegate: WorkoutDetailsDelegate?
     
     //MARK: - Cell Lifecycle
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         setup(cell: self)
     }
     
     //MARK: - IBActions
-    
     @IBAction func seeMoreBtnPressed(_ sender: UIButton) {
         self.delegate?.getWorkoutDetails(cell: self)
     }
     
     //MARK: - Methods
-    
     private func setup(cell: UICollectionViewCell) {
         cell.layer.cornerRadius = 15
         cell.withAppDesign(layer: gradientMaskLayer, color: UIColor.Gradient.whiteOption, curvedCorners: true)

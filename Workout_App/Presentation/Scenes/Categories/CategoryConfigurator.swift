@@ -10,18 +10,25 @@ import UIKit
 final class CategoryConfigurator {
     
     static func configure(vc: CategoryViewController) {
-        //interactor
+        //MARK: - Interactor
         let interactor = CategoryInteractor()
         vc.interactor = interactor
-        //presenter
+        
+        //MARK: - Presenter
         let presenter = CategoryPresenter()
         interactor.presenter = presenter
         presenter.viewController = vc
-        //router
+        
+        //MARK: - Router
         let router = CategoryRouter()
         vc.router = router
         router.viewController = vc
-        //dataStore
-        router.dataStore = interactor       
+        
+        //MARK: - DataStore
+        router.dataStore = interactor
+        
+        //MARK: - Worker
+        let worker = CategoryWorker()
+        interactor.worker = worker
     }
 }

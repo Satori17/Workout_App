@@ -5,12 +5,11 @@
 //  Created by Saba Khitaridze on 07.09.22.
 //
 
-
 import UIKit
 
 protocol AlertBusinessLogic {
-    func getWorkoutIntensityData(request: Alert.GetWorkoutIntensity.Request)
-    func saveWorkout(request: Alert.SaveWorkout.Request)
+    func saveWorkout(request: AlertModel.SaveWorkout.Request)
+    func showAlert(request: AlertModel.ShowAlert.Request)
 }
 
 protocol AlertDataStore {
@@ -21,30 +20,41 @@ final class AlertInteractor: AlertDataStore {
     
     //MARK: - Clean Components
     var presenter: AlertPresentationLogic?
-    var worker: AlertWorker?
+    var worker: alertWorkerLogic?
+    
+    //MARK: - DataStore Properties
     var workoutToSave: Displayable?
     
-    //MARK: - Storage Manager
-    var storageManager: WorkoutStorageManager?
+    //MARK: - Properties
+    var alertText: String?
+    var success: Bool = false
+    
+    init(alertText: String?, success: Bool) {
+        self.alertText = alertText
+        self.success = success
+    }
 }
 
 extension AlertInteractor: AlertBusinessLogic {
     
-    func getWorkoutIntensityData(request: Alert.GetWorkoutIntensity.Request) {
-        let intensityData = worker?.fetchWorkoutIntensityData()
-        if let intensityData = intensityData {
-            let response = Alert.GetWorkoutIntensity.Response(intensityData: intensityData)
-            presenter?.presentWorkoutIntensityData(response: response)
-        }
+    func saveWorkout(request: AlertModel.SaveWorkout.Request) {
+        guard let workout = workoutToSave else { return }
+        worker?.saveWorkoutToStorage(model: workout, sets: request.sets, reps: request.reps, weekDay: request.weekDay, completion: { error in
+            let response = AlertModel.ShowAlert.Response(alertText: error.rawValue, success: false)
+            presenter?.presentAlert(response: response)
+        })
     }
     
-    func saveWorkout(request: Alert.SaveWorkout.Request) {
-        guard let workout = workoutToSave else { return }
-        do {
-            let _ = try storageManager?.addWorkout(fromModel: workout, sets: request.sets, reps: request.reps, weekDay: request.weekDay)
-        } catch {
-            //TODO: - FIX THIS with alers
-            print(StorageManagerError.saveWorkoutFailed)
+    func showAlert(request: AlertModel.ShowAlert.Request) {
+        if let alertText = alertText {
+            let response = AlertModel.ShowAlert.Response(alertText: alertText, success: success)
+            presenter?.presentAlert(response: response)
+        } else {
+            let intensityData = worker?.fetchWorkoutIntensityData()
+            if let intensityData = intensityData {
+                let response = AlertModel.GetWorkoutIntensity.Response(intensityData: intensityData)
+                presenter?.presentWorkoutIntensityData(response: response)
+            }
         }
     }
 }

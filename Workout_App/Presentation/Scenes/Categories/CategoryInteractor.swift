@@ -21,7 +21,7 @@ final class CategoryInteractor: CategoryDataStore {
     
     //MARK: - Clean Components
     var presenter: CategoryPresentationLogic?
-    private var worker: CategoryWorker?
+    var worker: CategoryWorkerLogic?
     
     //MARK: - DataStore Properties
     private(set) var categoryId: Int?
@@ -31,7 +31,6 @@ final class CategoryInteractor: CategoryDataStore {
 extension CategoryInteractor: CategoryBusinessLogic {
     
     func getCategories(request: CategoryModel.GetCategories.Request) {
-        worker = CategoryWorker()
         Task {
             do {
                 let categories = try await worker?.fetchCategories()

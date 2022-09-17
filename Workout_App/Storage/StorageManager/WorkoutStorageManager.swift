@@ -14,7 +14,8 @@ protocol WorkoutStorageManagerLogic {
     func removeWorkout(withId id: Int) throws
     func addSchedule(ofWeekDay day: String, time: String) throws
     func removeSchedule(ofWeekDay day: String) throws
-    func addMissedWorkout(_ missed: Bool, weekDay: String) throws
+    func toggleMissedWorkout(_ missed: Bool, weekDay: String, id: Int) throws
+    func getAllMissedWorkouts() throws -> [CoreWorkout]
 }
 
 class WorkoutStorageManager {
@@ -25,7 +26,6 @@ class WorkoutStorageManager {
 }
 
 //MARK: - Storage Manager Logic
-
 extension WorkoutStorageManager: WorkoutStorageManagerLogic {
     
     func getAllWorkouts() throws -> [CoreWorkout] {
@@ -68,7 +68,7 @@ extension WorkoutStorageManager: WorkoutStorageManagerLogic {
         guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
         let request = CoreWorkout.fetchRequest()
         
-        request.predicate = NSPredicate(format: "id = %i", id)
+        request.predicate = NSPredicate(format: PredicateKeys.idEquals, id)
         let result = try managedContext.fetch(request)
         if let objectToDelete = result.first {
             managedContext.delete(objectToDelete)
@@ -84,7 +84,7 @@ extension WorkoutStorageManager: WorkoutStorageManagerLogic {
     func addSchedule(ofWeekDay day: String, time: String) throws {
         guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
         let request = CoreWorkout.fetchRequest()
-        request.predicate = NSPredicate(format: "weekDay.name == %@", day)
+        request.predicate = NSPredicate(format: PredicateKeys.weekDayEquals, day)
         let result = try managedContext.fetch(request)
         result.forEach({
             $0.weekDay?.scheduledTime = time
@@ -100,7 +100,7 @@ extension WorkoutStorageManager: WorkoutStorageManagerLogic {
     func removeSchedule(ofWeekDay day: String) throws {
         guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
         let request = CoreWorkout.fetchRequest()
-        request.predicate = NSPredicate(format: "weekDay.name == %@", day)
+        request.predicate = NSPredicate(format: PredicateKeys.weekDayEquals, day)
         let result = try managedContext.fetch(request)
         result.forEach({
             $0.weekDay?.scheduledTime = nil
@@ -113,23 +113,36 @@ extension WorkoutStorageManager: WorkoutStorageManagerLogic {
         }
     }
     
-    func addMissedWorkout(_ missed: Bool, weekDay: String) throws {
+    func toggleMissedWorkout(_ missed: Bool, weekDay: String, id: Int) throws {
         guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
         let request = CoreWorkout.fetchRequest()
-        request.predicate = NSPredicate(format: "weekDay.name == %@", weekDay)
+        request.predicate = NSPredicate(format: "\(PredicateKeys.weekDayEquals)\(PredicateKeys.and)\(PredicateKeys.idEquals)", weekDay, id)
+        
         let result = try managedContext.fetch(request)
         result.forEach{ $0.isMissed = missed }
         
         do {
             try managedContext.save()
         } catch {
-            throw StorageManagerError.addToMissedWorkoutFailed
+            throw StorageManagerError.toggleMissedWorkoutFailed
+        }
+    }
+    
+    func getAllMissedWorkouts() throws -> [CoreWorkout] {
+        guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
+        let request = CoreWorkout.fetchRequest()
+        request.predicate = NSPredicate(format: "isMissed = %i", true)
+        
+        do {
+            let result = try managedContext.fetch(request)
+            return result
+        } catch {
+            throw StorageManagerError.fetchFailed
         }
     }
 }
 
 //MARK: - configurator Methods
-
 extension WorkoutStorageManager {
     
     private func categoryConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {

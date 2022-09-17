@@ -17,7 +17,6 @@ protocol WorkoutsDisplayLogic: AnyObject {
 final class WorkoutsViewController: UIViewController {
     
     //MARK: - IBOutlets
-    
     @IBOutlet weak var workoutsCollectionView: UICollectionView!
     
     //MARK: - Clean Components
@@ -31,7 +30,6 @@ final class WorkoutsViewController: UIViewController {
     let activityIndicator = ActivityIndicatorManager.shared
     
     // MARK: View Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -39,7 +37,6 @@ final class WorkoutsViewController: UIViewController {
     }
     
     //MARK: - Methods
-    
     private func setupView() {
         navigationController?.navigationBar.prefersLargeTitles = false
         activityIndicator.setupActivityIndicator(self)
@@ -80,7 +77,6 @@ final class WorkoutsViewController: UIViewController {
 }
 
 //MARK: - Cell Delegate protocol
-
 extension WorkoutsViewController: WorkoutDetailsDelegate {
     func getWorkoutDetails(cell: WorkoutCell) {
         if let indexPath = workoutsCollectionView.indexPath(for: cell) {
@@ -92,7 +88,6 @@ extension WorkoutsViewController: WorkoutDetailsDelegate {
 }
 
 //MARK: - Display Logic protocol
-
 extension WorkoutsViewController: WorkoutsDisplayLogic {
     
     func displayWorkouts(viewModel: WorkoutModel.GetWorkouts.ViewModel) {
@@ -100,8 +95,7 @@ extension WorkoutsViewController: WorkoutsDisplayLogic {
     }
     
     func didFailDisplayWorkouts(withError message: FetchingError) {
-        //TODO: - FIX THIS with alerts
-        print(message.rawValue)
+        router?.routeToShowAlert(withTitle: message.rawValue, success: false)
     }
     
     func displayWorkoutDetails(viewModel: WorkoutModel.ShowWorkoutDetails.ViewModel) {
@@ -114,7 +108,6 @@ extension WorkoutsViewController: WorkoutsDisplayLogic {
 }
 
 //MARK: - CollectionView Delegate, DataSource & FlowLayout
-
 extension WorkoutsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

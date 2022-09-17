@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol WorkoutsWorkerProtocol {    
+protocol WorkoutsWorkerLogic {    
     func fetchWorkouts() async throws -> [Workout]
 }
 
-final class WorkoutsWorker: WorkoutsWorkerProtocol {
+final class WorkoutsWorker: WorkoutsWorkerLogic {
     
     func fetchWorkouts() async throws -> [Workout] {
         let data = try await Fetcher.shared.fetchData(with: WorkoutUrlBuilder.shared, as: WorkoutData<Workout>.self)

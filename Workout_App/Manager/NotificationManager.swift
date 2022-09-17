@@ -8,9 +8,9 @@
 import UIKit
 import UserNotifications
 
-enum NotificationError: Error {
-    case authFailed
-    case requestFailed
+enum NotificationError: String, Error {
+    case authFailed = "Notification Authorisation Failed, please try again."
+    case requestFailed = "Adding notification Failed, please try again."
 }
 
 final class NotificationManager {
@@ -21,8 +21,6 @@ final class NotificationManager {
     func checkUserPermission(completionHandler: @escaping (Bool) -> Void) {
         notificationCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
             guard error == nil else {
-                //TODO: - FIX  this with alert
-                print(NotificationError.authFailed)
                 return
             }
             completionHandler(granted)
@@ -69,6 +67,21 @@ final class NotificationManager {
            let identifier = userDefaults.string(forKey: key) {
             notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
             userDefaults.removeObject(forKey: key)
+        }
+    }
+    
+    func deniedNotificationAlert(onVC vc: UIViewController)  {
+        DispatchQueue.main.async {
+            
+            let alert = UIAlertController(title: "Notifications Denied", message: "If you want to schedule workouts, please enable Notifications in Settings.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default))
+            
+            alert.addAction(UIAlertAction(title: "Settings", style: .cancel, handler: { action in
+                if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsUrl)
+                }
+            }))
+            vc.present(alert, animated: true)
         }
     }
 }

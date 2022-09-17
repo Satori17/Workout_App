@@ -42,7 +42,6 @@
 		583FD04728A05CC90025B44D /* ActivityIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD04628A05CC90025B44D /* ActivityIndicatorManager.swift */; };
 		583FD04C28A0641C0025B44D /* WorkoutDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 583FD04B28A0641C0025B44D /* WorkoutDetailViewController.storyboard */; };
 		583FD05328A0644B0025B44D /* WorkoutDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD04D28A0644B0025B44D /* WorkoutDetailPresenter.swift */; };
-		583FD05428A0644B0025B44D /* WorkoutDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD04E28A0644B0025B44D /* WorkoutDetailWorker.swift */; };
 		583FD05528A0644B0025B44D /* WorkoutDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD04F28A0644B0025B44D /* WorkoutDetailRouter.swift */; };
 		583FD05628A0644B0025B44D /* WorkoutDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD05028A0644B0025B44D /* WorkoutDetailModels.swift */; };
 		583FD05728A0644B0025B44D /* WorkoutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583FD05128A0644B0025B44D /* WorkoutDetailViewController.swift */; };
@@ -59,6 +58,7 @@
 		5845915E28C4CFB90055AE0A /* WeekDayHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845915D28C4CFB90055AE0A /* WeekDayHeaderView.xib */; };
 		5845916228C4D0870055AE0A /* HomeWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */; };
 		5845916328C4D0870055AE0A /* HomeWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */; };
+		5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354028D52CBE000F5A82 /* AlertKeys.swift */; };
 		58762DEB289E741D00C5E223 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58762DE9289E741D00C5E223 /* WorkoutCell.swift */; };
 		58762DEC289E741D00C5E223 /* WorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58762DEA289E741D00C5E223 /* WorkoutCell.xib */; };
 		58762DEE289E7A6200C5E223 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58762DED289E7A6200C5E223 /* UICollectionView+Extension.swift */; };
@@ -78,6 +78,7 @@
 		587DB49228CE0C36007D704E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49128CE0C36007D704E /* NotificationManager.swift */; };
 		587DB49528CE4659007D704E /* WeekDayKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49428CE4659007D704E /* WeekDayKeys.swift */; };
 		587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49628CE9AD9007D704E /* Timer+Extension.swift */; };
+		58AFF19428D3C18B007740D6 /* NSPredicateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AFF19328D3C18B007740D6 /* NSPredicateKeys.swift */; };
 		58B41C8928CF48160027044F /* WeekDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B41C8828CF48160027044F /* WeekDayModel.swift */; };
 		58B41C8C28CF51560027044F /* CoreWeekDay+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B41C8A28CF51560027044F /* CoreWeekDay+CoreDataClass.swift */; };
 		58B41C8D28CF51560027044F /* CoreWeekDay+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B41C8B28CF51560027044F /* CoreWeekDay+CoreDataProperties.swift */; };
@@ -169,7 +170,6 @@
 		583FD04628A05CC90025B44D /* ActivityIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorManager.swift; sourceTree = "<group>"; };
 		583FD04B28A0641C0025B44D /* WorkoutDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WorkoutDetailViewController.storyboard; sourceTree = "<group>"; };
 		583FD04D28A0644B0025B44D /* WorkoutDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailPresenter.swift; sourceTree = "<group>"; };
-		583FD04E28A0644B0025B44D /* WorkoutDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailWorker.swift; sourceTree = "<group>"; };
 		583FD04F28A0644B0025B44D /* WorkoutDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailRouter.swift; sourceTree = "<group>"; };
 		583FD05028A0644B0025B44D /* WorkoutDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailModels.swift; sourceTree = "<group>"; };
 		583FD05128A0644B0025B44D /* WorkoutDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +186,7 @@
 		5845915D28C4CFB90055AE0A /* WeekDayHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekDayHeaderView.xib; sourceTree = "<group>"; };
 		5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkoutCell.swift; sourceTree = "<group>"; };
 		5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWorkoutCell.xib; sourceTree = "<group>"; };
+		5863354028D52CBE000F5A82 /* AlertKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertKeys.swift; sourceTree = "<group>"; };
 		58762DE9289E741D00C5E223 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		58762DEA289E741D00C5E223 /* WorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutCell.xib; sourceTree = "<group>"; };
 		58762DED289E7A6200C5E223 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
@@ -209,6 +210,7 @@
 		587DB49128CE0C36007D704E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		587DB49428CE4659007D704E /* WeekDayKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayKeys.swift; sourceTree = "<group>"; };
 		587DB49628CE9AD9007D704E /* Timer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Extension.swift"; sourceTree = "<group>"; };
+		58AFF19328D3C18B007740D6 /* NSPredicateKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateKeys.swift; sourceTree = "<group>"; };
 		58B41C8828CF48160027044F /* WeekDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayModel.swift; sourceTree = "<group>"; };
 		58B41C8A28CF51560027044F /* CoreWeekDay+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreWeekDay+CoreDataClass.swift"; sourceTree = "<group>"; };
 		58B41C8B28CF51560027044F /* CoreWeekDay+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreWeekDay+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				587DB48B28CD127E007D704E /* AnimationKeys.swift */,
 				587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */,
 				587DB49428CE4659007D704E /* WeekDayKeys.swift */,
+				5863354028D52CBE000F5A82 /* AlertKeys.swift */,
 				583005AF28C7CED000912DA8 /* ContextMenuHelper.swift */,
 				587DB48D28CD1584007D704E /* ColorHelper.swift */,
 				58B41C9528D283820027044F /* TitleHelper.swift */,
@@ -452,7 +455,6 @@
 				583FD04A28A063CC0025B44D /* View */,
 				583FD05928A068E70025B44D /* WorkoutDetailConfigurator.swift */,
 				583FD04D28A0644B0025B44D /* WorkoutDetailPresenter.swift */,
-				583FD04E28A0644B0025B44D /* WorkoutDetailWorker.swift */,
 				583FD04F28A0644B0025B44D /* WorkoutDetailRouter.swift */,
 				583FD05028A0644B0025B44D /* WorkoutDetailModels.swift */,
 				583FD05228A0644B0025B44D /* WorkoutDetailInteractor.swift */,
@@ -629,6 +631,7 @@
 			children = (
 				5834215228C5133000ECF814 /* WorkoutStorageManager.swift */,
 				5834215428C5135300ECF814 /* StorageManagerError.swift */,
+				58AFF19328D3C18B007740D6 /* NSPredicateKeys.swift */,
 			);
 			path = StorageManager;
 			sourceTree = "<group>";
@@ -907,11 +910,13 @@
 				5845915428C4BFF90055AE0A /* HomeViewController.swift in Sources */,
 				58D8AC8728999735008BF876 /* CategoryConfigurator.swift in Sources */,
 				583FD05728A0644B0025B44D /* WorkoutDetailViewController.swift in Sources */,
+				58AFF19428D3C18B007740D6 /* NSPredicateKeys.swift in Sources */,
 				583FD04728A05CC90025B44D /* ActivityIndicatorManager.swift in Sources */,
 				583C2AF6288FEB630049C2C3 /* WorkoutModel.swift in Sources */,
 				5845915228C4BFF90055AE0A /* HomeRouter.swift in Sources */,
 				582AFADD28C3D219004BDF2D /* UIScrollView+Extension.swift in Sources */,
 				587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */,
+				5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */,
 				583005CE28C8E0A300912DA8 /* AlertViewController.swift in Sources */,
 				583005CD28C8E0A300912DA8 /* AlertModels.swift in Sources */,
 				583005B028C7CED000912DA8 /* ContextMenuHelper.swift in Sources */,
@@ -932,7 +937,6 @@
 				58E9869128952C2700C1F69F /* CategoryPresenter.swift in Sources */,
 				583C2AFC289087DF0049C2C3 /* Constants.swift in Sources */,
 				58D8ACAC289B2D18008BF876 /* WorkoutsConfigurator.swift in Sources */,
-				583FD05428A0644B0025B44D /* WorkoutDetailWorker.swift in Sources */,
 				583005CB28C8E0A300912DA8 /* AlertWorker.swift in Sources */,
 				5834215328C5133000ECF814 /* WorkoutStorageManager.swift in Sources */,
 				5877DC50288859DF003A3086 /* SceneDelegate.swift in Sources */,

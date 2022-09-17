@@ -16,7 +16,6 @@ protocol CategoryDisplayLogic: AnyObject {
 final class CategoryViewController: UIViewController {
     
     //MARK: - IBOutlets
-    
     @IBOutlet weak var categoriesTableView: UITableView!
     
     //MARK: - Clean Components
@@ -30,14 +29,12 @@ final class CategoryViewController: UIViewController {
     private lazy var activityIndicator = ActivityIndicatorManager.shared
     
     //MARK: - Object Lifecycle
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         CategoryConfigurator.configure(vc: self)
     }
     
     //MARK: - View Lifecycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -45,7 +42,6 @@ final class CategoryViewController: UIViewController {
     }
     
     //MARK: - Methods
-    
     private func setupView() {
         activityIndicator.setupActivityIndicator(self)
         categoriesTableView.registerNib(class: CategoryCell.self)
@@ -64,7 +60,6 @@ final class CategoryViewController: UIViewController {
 }
 
 //MARK: - Display Logic protocol
-
 extension CategoryViewController: CategoryDisplayLogic {    
     
     func displayCategory(from viewModel: CategoryModel.GetCategories.ViewModel) {
@@ -72,8 +67,7 @@ extension CategoryViewController: CategoryDisplayLogic {
     }
     
     func didFailDisplayCategory(withError message: FetchingError) {
-        //TODO: - FIX THIS with alerts
-        print(message.rawValue)
+        router?.routeToShowAlert(withTitle: message.rawValue, success: false)
     }
     
     func displayCategoryWorkouts(viewModel: CategoryModel.ShowCategoryWorkouts.ViewModel) {
@@ -82,7 +76,6 @@ extension CategoryViewController: CategoryDisplayLogic {
 }
 
 //MARK: - TableView Delegates
-
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
