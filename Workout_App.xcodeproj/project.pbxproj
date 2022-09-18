@@ -59,6 +59,14 @@
 		5845916228C4D0870055AE0A /* HomeWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */; };
 		5845916328C4D0870055AE0A /* HomeWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */; };
 		5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354028D52CBE000F5A82 /* AlertKeys.swift */; };
+		5863354928D66610000F5A82 /* OnBoardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354328D66610000F5A82 /* OnBoardingPresenter.swift */; };
+		5863354A28D66610000F5A82 /* OnBoardingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354428D66610000F5A82 /* OnBoardingWorker.swift */; };
+		5863354B28D66610000F5A82 /* OnBoardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354528D66610000F5A82 /* OnBoardingRouter.swift */; };
+		5863354C28D66610000F5A82 /* OnBoardingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354628D66610000F5A82 /* OnBoardingModels.swift */; };
+		5863354D28D66610000F5A82 /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354728D66610000F5A82 /* OnBoardingViewController.swift */; };
+		5863354E28D66610000F5A82 /* OnBoardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354828D66610000F5A82 /* OnBoardingInteractor.swift */; };
+		5863355128D6D4ED000F5A82 /* OnBoardingConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863355028D6D4ED000F5A82 /* OnBoardingConfigurator.swift */; };
+		5863355328D6D7BF000F5A82 /* OnBoardingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5863355228D6D7BF000F5A82 /* OnBoardingViewController.storyboard */; };
 		58762DEB289E741D00C5E223 /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58762DE9289E741D00C5E223 /* WorkoutCell.swift */; };
 		58762DEC289E741D00C5E223 /* WorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58762DEA289E741D00C5E223 /* WorkoutCell.xib */; };
 		58762DEE289E7A6200C5E223 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58762DED289E7A6200C5E223 /* UICollectionView+Extension.swift */; };
@@ -78,6 +86,17 @@
 		587DB49228CE0C36007D704E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49128CE0C36007D704E /* NotificationManager.swift */; };
 		587DB49528CE4659007D704E /* WeekDayKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49428CE4659007D704E /* WeekDayKeys.swift */; };
 		587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49628CE9AD9007D704E /* Timer+Extension.swift */; };
+		587E6AB928D6EFE900ADB9CC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 587E6AB828D6EFE900ADB9CC /* Lottie */; };
+		587E6AC128D7302300ADB9CC /* OnBoardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AC028D7302300ADB9CC /* OnBoardingModel.swift */; };
+		587E6AC328D7307D00ADB9CC /* LottieImageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AC228D7307D00ADB9CC /* LottieImageKeys.swift */; };
+		587E6AC728D743E100ADB9CC /* OnBoardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AC528D743E100ADB9CC /* OnBoardingCell.swift */; };
+		587E6AC828D743E100ADB9CC /* OnBoardingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 587E6AC628D743E100ADB9CC /* OnBoardingCell.xib */; };
+		587E6ACC28D74F3500ADB9CC /* meditation.json in Resources */ = {isa = PBXBuildFile; fileRef = 587E6AC928D74F3500ADB9CC /* meditation.json */; };
+		587E6ACD28D74F3500ADB9CC /* workout.json in Resources */ = {isa = PBXBuildFile; fileRef = 587E6ACA28D74F3500ADB9CC /* workout.json */; };
+		587E6AD028D76C5A00ADB9CC /* UIPageControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6ACF28D76C5A00ADB9CC /* UIPageControl+Extension.swift */; };
+		587E6AD328D7831300ADB9CC /* water_bottle.json in Resources */ = {isa = PBXBuildFile; fileRef = 587E6AD128D7831300ADB9CC /* water_bottle.json */; };
+		587E6AD428D7831300ADB9CC /* food_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 587E6AD228D7831300ADB9CC /* food_animation.json */; };
+		587E6AD628D7BBD900ADB9CC /* dumbell_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = 587E6AD528D7BBD900ADB9CC /* dumbell_animation.json */; };
 		58AFF19428D3C18B007740D6 /* NSPredicateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AFF19328D3C18B007740D6 /* NSPredicateKeys.swift */; };
 		58B41C8928CF48160027044F /* WeekDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B41C8828CF48160027044F /* WeekDayModel.swift */; };
 		58B41C8C28CF51560027044F /* CoreWeekDay+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B41C8A28CF51560027044F /* CoreWeekDay+CoreDataClass.swift */; };
@@ -187,6 +206,14 @@
 		5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkoutCell.swift; sourceTree = "<group>"; };
 		5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWorkoutCell.xib; sourceTree = "<group>"; };
 		5863354028D52CBE000F5A82 /* AlertKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertKeys.swift; sourceTree = "<group>"; };
+		5863354328D66610000F5A82 /* OnBoardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPresenter.swift; sourceTree = "<group>"; };
+		5863354428D66610000F5A82 /* OnBoardingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingWorker.swift; sourceTree = "<group>"; };
+		5863354528D66610000F5A82 /* OnBoardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingRouter.swift; sourceTree = "<group>"; };
+		5863354628D66610000F5A82 /* OnBoardingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingModels.swift; sourceTree = "<group>"; };
+		5863354728D66610000F5A82 /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
+		5863354828D66610000F5A82 /* OnBoardingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingInteractor.swift; sourceTree = "<group>"; };
+		5863355028D6D4ED000F5A82 /* OnBoardingConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingConfigurator.swift; sourceTree = "<group>"; };
+		5863355228D6D7BF000F5A82 /* OnBoardingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnBoardingViewController.storyboard; sourceTree = "<group>"; };
 		58762DE9289E741D00C5E223 /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		58762DEA289E741D00C5E223 /* WorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutCell.xib; sourceTree = "<group>"; };
 		58762DED289E7A6200C5E223 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
@@ -210,6 +237,16 @@
 		587DB49128CE0C36007D704E /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		587DB49428CE4659007D704E /* WeekDayKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayKeys.swift; sourceTree = "<group>"; };
 		587DB49628CE9AD9007D704E /* Timer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Extension.swift"; sourceTree = "<group>"; };
+		587E6AC028D7302300ADB9CC /* OnBoardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingModel.swift; sourceTree = "<group>"; };
+		587E6AC228D7307D00ADB9CC /* LottieImageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieImageKeys.swift; sourceTree = "<group>"; };
+		587E6AC528D743E100ADB9CC /* OnBoardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCell.swift; sourceTree = "<group>"; };
+		587E6AC628D743E100ADB9CC /* OnBoardingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnBoardingCell.xib; sourceTree = "<group>"; };
+		587E6AC928D74F3500ADB9CC /* meditation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = meditation.json; sourceTree = "<group>"; };
+		587E6ACA28D74F3500ADB9CC /* workout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = workout.json; sourceTree = "<group>"; };
+		587E6ACF28D76C5A00ADB9CC /* UIPageControl+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPageControl+Extension.swift"; sourceTree = "<group>"; };
+		587E6AD128D7831300ADB9CC /* water_bottle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = water_bottle.json; sourceTree = "<group>"; };
+		587E6AD228D7831300ADB9CC /* food_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = food_animation.json; sourceTree = "<group>"; };
+		587E6AD528D7BBD900ADB9CC /* dumbell_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dumbell_animation.json; sourceTree = "<group>"; };
 		58AFF19328D3C18B007740D6 /* NSPredicateKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateKeys.swift; sourceTree = "<group>"; };
 		58B41C8828CF48160027044F /* WeekDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayModel.swift; sourceTree = "<group>"; };
 		58B41C8A28CF51560027044F /* CoreWeekDay+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreWeekDay+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -254,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58E986802894622800C1F69F /* SDWebImageSVGCoder in Frameworks */,
+				587E6AB928D6EFE900ADB9CC /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +404,7 @@
 				58B41C9428D231760027044F /* API */,
 				583005A528C685E700912DA8 /* DisplayableModel.swift */,
 				58B41C8828CF48160027044F /* WeekDayModel.swift */,
+				587E6AC028D7302300ADB9CC /* OnBoardingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -378,6 +417,7 @@
 				587DB48F28CD15E7007D704E /* MaskedCornerKeys.swift */,
 				587DB49428CE4659007D704E /* WeekDayKeys.swift */,
 				5863354028D52CBE000F5A82 /* AlertKeys.swift */,
+				587E6AC228D7307D00ADB9CC /* LottieImageKeys.swift */,
 				583005AF28C7CED000912DA8 /* ContextMenuHelper.swift */,
 				587DB48D28CD1584007D704E /* ColorHelper.swift */,
 				58B41C9528D283820027044F /* TitleHelper.swift */,
@@ -389,8 +429,8 @@
 		583C2AFD289089280049C2C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				587E6ABA28D6F04600ADB9CC /* Lottie JSON Files */,
 				5877DC59288859E0003A3086 /* Assets.xcassets */,
-				5877DC5B288859E0003A3086 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -440,6 +480,7 @@
 		583C2B0B289092640049C2C3 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5863354228D665ED000F5A82 /* OnBoarding */,
 				583C2AFE28908D4E0049C2C3 /* Home */,
 				583C2B0228908F7B0049C2C3 /* Categories */,
 				583C2AFF28908D560049C2C3 /* Workouts */,
@@ -499,6 +540,30 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		5863354228D665ED000F5A82 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				5863354F28D6D4D0000F5A82 /* View */,
+				5863355028D6D4ED000F5A82 /* OnBoardingConfigurator.swift */,
+				5863354328D66610000F5A82 /* OnBoardingPresenter.swift */,
+				5863354428D66610000F5A82 /* OnBoardingWorker.swift */,
+				5863354528D66610000F5A82 /* OnBoardingRouter.swift */,
+				5863354628D66610000F5A82 /* OnBoardingModels.swift */,
+				5863354828D66610000F5A82 /* OnBoardingInteractor.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		5863354F28D6D4D0000F5A82 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				587E6AC428D743C900ADB9CC /* Cell */,
+				5863354728D66610000F5A82 /* OnBoardingViewController.swift */,
+				5863355228D6D7BF000F5A82 /* OnBoardingViewController.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5877DC41288859DF003A3086 = {
 			isa = PBXGroup;
 			children = (
@@ -552,6 +617,35 @@
 				5877DC73288859E1003A3086 /* Workout_AppUITestsLaunchTests.swift */,
 			);
 			path = Workout_AppUITests;
+			sourceTree = "<group>";
+		};
+		587E6ABA28D6F04600ADB9CC /* Lottie JSON Files */ = {
+			isa = PBXGroup;
+			children = (
+				587E6AD528D7BBD900ADB9CC /* dumbell_animation.json */,
+				587E6AD228D7831300ADB9CC /* food_animation.json */,
+				587E6AD128D7831300ADB9CC /* water_bottle.json */,
+				587E6AC928D74F3500ADB9CC /* meditation.json */,
+				587E6ACA28D74F3500ADB9CC /* workout.json */,
+			);
+			path = "Lottie JSON Files";
+			sourceTree = "<group>";
+		};
+		587E6ABF28D72ECB00ADB9CC /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				5877DC5B288859E0003A3086 /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		587E6AC428D743C900ADB9CC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				587E6AC528D743E100ADB9CC /* OnBoardingCell.swift */,
+				587E6AC628D743E100ADB9CC /* OnBoardingCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		58B41C7B28CF428D0027044F /* WeekDay */ = {
@@ -648,6 +742,7 @@
 		58E986832894943D00C1F69F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				587E6ABF28D72ECB00ADB9CC /* Launch */,
 				58E98684289494A200C1F69F /* TabBarController */,
 				583C2B0B289092640049C2C3 /* Scenes */,
 			);
@@ -704,6 +799,7 @@
 				58D8AC9B289B183D008BF876 /* UIImage+Extension.swift */,
 				582AFADC28C3D219004BDF2D /* UIScrollView+Extension.swift */,
 				587DB49628CE9AD9007D704E /* Timer+Extension.swift */,
+				587E6ACF28D76C5A00ADB9CC /* UIPageControl+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -745,6 +841,7 @@
 			name = Workout_App;
 			packageProductDependencies = (
 				58E9867F2894622800C1F69F /* SDWebImageSVGCoder */,
+				587E6AB828D6EFE900ADB9CC /* Lottie */,
 			);
 			productName = Workout_App;
 			productReference = 5877DC4A288859DF003A3086 /* Workout_App.app */;
@@ -820,6 +917,7 @@
 			mainGroup = 5877DC41288859DF003A3086;
 			packageReferences = (
 				58E9867E2894622800C1F69F /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */,
+				587E6AB728D6EFE900ADB9CC /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 5877DC4B288859DF003A3086 /* Products */;
 			projectDirPath = "";
@@ -838,16 +936,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				587DB48828CAB907007D704E /* Main.storyboard in Resources */,
+				587E6ACC28D74F3500ADB9CC /* meditation.json in Resources */,
 				5845916328C4D0870055AE0A /* HomeWorkoutCell.xib in Resources */,
+				587E6ACD28D74F3500ADB9CC /* workout.json in Resources */,
 				5877DC5D288859E0003A3086 /* LaunchScreen.storyboard in Resources */,
+				587E6AD328D7831300ADB9CC /* water_bottle.json in Resources */,
 				5845915E28C4CFB90055AE0A /* WeekDayHeaderView.xib in Resources */,
 				58D8AC8D2899D988008BF876 /* CategoryCell.xib in Resources */,
 				583C2B0628908FC00049C2C3 /* CategoryViewController.storyboard in Resources */,
+				587E6AC828D743E100ADB9CC /* OnBoardingCell.xib in Resources */,
+				5863355328D6D7BF000F5A82 /* OnBoardingViewController.storyboard in Resources */,
 				583FD04C28A0641C0025B44D /* WorkoutDetailViewController.storyboard in Resources */,
+				587E6AD628D7BBD900ADB9CC /* dumbell_animation.json in Resources */,
 				583005D228C8E0B800912DA8 /* AlertViewController.storyboard in Resources */,
 				58762DEC289E741D00C5E223 /* WorkoutCell.xib in Resources */,
 				5877DC5A288859E0003A3086 /* Assets.xcassets in Resources */,
 				583C2B0128908D930049C2C3 /* HomeViewController.storyboard in Resources */,
+				587E6AD428D7831300ADB9CC /* food_animation.json in Resources */,
 				583C2B0428908FB10049C2C3 /* WorkoutsViewController.storyboard in Resources */,
 				58F9A0A528ADAF210001EE6E /* WorkoutDetailView.xib in Resources */,
 			);
@@ -877,11 +982,14 @@
 				587DB48C28CD127E007D704E /* AnimationKeys.swift in Sources */,
 				582AFADF28C3F31A004BDF2D /* FetchingError.swift in Sources */,
 				58E9869228952C2700C1F69F /* CategoryWorker.swift in Sources */,
+				5863354A28D66610000F5A82 /* OnBoardingWorker.swift in Sources */,
 				58762DF3289EF97E00C5E223 /* WorkoutUrlBuilder.swift in Sources */,
+				5863354E28D66610000F5A82 /* OnBoardingInteractor.swift in Sources */,
 				583FD05A28A068E70025B44D /* WorkoutDetailConfigurator.swift in Sources */,
 				58B41C8D28CF51560027044F /* CoreWeekDay+CoreDataProperties.swift in Sources */,
 				58D8ACA6289B1D06008BF876 /* WorkoutsModels.swift in Sources */,
 				58E9869D28987D6C00C1F69F /* BaseUrl.swift in Sources */,
+				587E6AD028D76C5A00ADB9CC /* UIPageControl+Extension.swift in Sources */,
 				583421E628C6282C00ECF814 /* CoreMuscle+CoreDataProperties.swift in Sources */,
 				583421E328C6282C00ECF814 /* CoreImage+CoreDataClass.swift in Sources */,
 				58E9869528952C2700C1F69F /* CategoryViewController.swift in Sources */,
@@ -892,6 +1000,7 @@
 				5845915C28C4CFAD0055AE0A /* WeekDayHeaderView.swift in Sources */,
 				58E9869328952C2700C1F69F /* CategoryRouter.swift in Sources */,
 				583421E528C6282C00ECF814 /* CoreMuscle+CoreDataClass.swift in Sources */,
+				587E6AC328D7307D00ADB9CC /* LottieImageKeys.swift in Sources */,
 				58D8AC95289A9DF1008BF876 /* TabBarController.swift in Sources */,
 				5845915328C4BFF90055AE0A /* HomeModels.swift in Sources */,
 				587DB48E28CD1584007D704E /* ColorHelper.swift in Sources */,
@@ -900,10 +1009,12 @@
 				58B41C8C28CF51560027044F /* CoreWeekDay+CoreDataClass.swift in Sources */,
 				583421E428C6282C00ECF814 /* CoreImage+CoreDataProperties.swift in Sources */,
 				58B41C8928CF48160027044F /* WeekDayModel.swift in Sources */,
+				5863354D28D66610000F5A82 /* OnBoardingViewController.swift in Sources */,
 				583005CC28C8E0A300912DA8 /* AlertRouter.swift in Sources */,
 				58E986A428987EC000C1F69F /* CategoryUrlBuilder.swift in Sources */,
 				58D8ACA3289B1D06008BF876 /* WorkoutsPresenter.swift in Sources */,
 				58E9869928987A8A00C1F69F /* DataModel.swift in Sources */,
+				5863354B28D66610000F5A82 /* OnBoardingRouter.swift in Sources */,
 				58E986A228987E8700C1F69F /* Fetcher.swift in Sources */,
 				58D8ACA4289B1D06008BF876 /* WorkoutsWorker.swift in Sources */,
 				5845915128C4BFF90055AE0A /* HomeWorker.swift in Sources */,
@@ -911,6 +1022,7 @@
 				58D8AC8728999735008BF876 /* CategoryConfigurator.swift in Sources */,
 				583FD05728A0644B0025B44D /* WorkoutDetailViewController.swift in Sources */,
 				58AFF19428D3C18B007740D6 /* NSPredicateKeys.swift in Sources */,
+				587E6AC128D7302300ADB9CC /* OnBoardingModel.swift in Sources */,
 				583FD04728A05CC90025B44D /* ActivityIndicatorManager.swift in Sources */,
 				583C2AF6288FEB630049C2C3 /* WorkoutModel.swift in Sources */,
 				5845915228C4BFF90055AE0A /* HomeRouter.swift in Sources */,
@@ -918,12 +1030,14 @@
 				587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */,
 				5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */,
 				583005CE28C8E0A300912DA8 /* AlertViewController.swift in Sources */,
+				5863354C28D66610000F5A82 /* OnBoardingModels.swift in Sources */,
 				583005CD28C8E0A300912DA8 /* AlertModels.swift in Sources */,
 				583005B028C7CED000912DA8 /* ContextMenuHelper.swift in Sources */,
 				5845915A28C4C2C20055AE0A /* HomeConfigurator.swift in Sources */,
 				583FD05828A0644B0025B44D /* WorkoutDetailInteractor.swift in Sources */,
 				583005CA28C8E0A300912DA8 /* AlertPresenter.swift in Sources */,
 				58762DEE289E7A6200C5E223 /* UICollectionView+Extension.swift in Sources */,
+				587E6AC728D743E100ADB9CC /* OnBoardingCell.swift in Sources */,
 				583421E228C6282C00ECF814 /* CoreLanguage+CoreDataProperties.swift in Sources */,
 				58D8AC9C289B183D008BF876 /* UIImage+Extension.swift in Sources */,
 				58D8AC8F2899DB28008BF876 /* UITableView+Extension.swift in Sources */,
@@ -945,6 +1059,7 @@
 				583FD05628A0644B0025B44D /* WorkoutDetailModels.swift in Sources */,
 				583421E128C6282C00ECF814 /* CoreLanguage+CoreDataClass.swift in Sources */,
 				58E9869628952C2700C1F69F /* CategoryInteractor.swift in Sources */,
+				5863354928D66610000F5A82 /* OnBoardingPresenter.swift in Sources */,
 				587DB49528CE4659007D704E /* WeekDayKeys.swift in Sources */,
 				583FD05328A0644B0025B44D /* WorkoutDetailPresenter.swift in Sources */,
 				58B41C9828D2858C0027044F /* FormatHelper.swift in Sources */,
@@ -957,6 +1072,7 @@
 				58B41C9328D22DF90027044F /* CoreWorkout+CoreDataProperties.swift in Sources */,
 				58B41C9228D22DF90027044F /* CoreWorkout+CoreDataClass.swift in Sources */,
 				583005CF28C8E0A300912DA8 /* AlertInteractor.swift in Sources */,
+				5863355128D6D4ED000F5A82 /* OnBoardingConfigurator.swift in Sources */,
 				5877DC58288859DF003A3086 /* Workout_App.xcdatamodeld in Sources */,
 				5845916228C4D0870055AE0A /* HomeWorkoutCell.swift in Sources */,
 				583FD05528A0644B0025B44D /* WorkoutDetailRouter.swift in Sources */,
@@ -1306,6 +1422,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		587E6AB728D6EFE900ADB9CC /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		58E9867E2894622800C1F69F /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSVGCoder";
@@ -1317,6 +1441,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		587E6AB828D6EFE900ADB9CC /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 587E6AB728D6EFE900ADB9CC /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		58E9867F2894622800C1F69F /* SDWebImageSVGCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 58E9867E2894622800C1F69F /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;

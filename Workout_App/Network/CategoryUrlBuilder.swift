@@ -33,5 +33,4 @@ class CategoryUrlBuilder: Request, DataUrl {
             self.urlRequest = url(urlComponent: &component)
         }
     }
-    
 }

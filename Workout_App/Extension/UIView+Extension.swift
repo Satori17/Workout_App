@@ -29,14 +29,6 @@ extension UIView {
         self.layer.insertSublayer(gradient, at: 0)
     }
     
-    func withAppDesign(layer: CAGradientLayer, color: UIColor = UIColor.Gradient.lightGrayOption, curvedCorners: Bool) {        
-        self.layer.cornerRadius = curvedCorners ? 25 : 0
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.Gradient.lightGrayOption.cgColor
-        //setting gradient
-        self.gradientForView(with: layer, firstColor: UIColor.Gradient.skyBlueOption, secondColor: color)
-    }
-    
     func addShadow(ofRadius radius: Double) {
         self.layer.shadowColor = UIColor.lightGray.cgColor
         self.layer.shadowOffset = CGSize(width: -0.5, height: 0.5)
@@ -44,8 +36,16 @@ extension UIView {
         self.layer.shadowOpacity = 1
     }
     
-    func maskCurved(corner: CACornerMask = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner, .layerMinXMinYCorner, .layerMaxXMinYCorner]) {
+    func maskCurved(corner: CACornerMask = [.bottomLeft, .bottomRight, .topLeft, .topRight]) {
         self.layer.cornerRadius = 7
         self.layer.maskedCorners = [corner]
+    }
+    
+    //MARK: - Main method of app design
+    func withAppDesign(layer: CAGradientLayer, color: UIColor = UIColor.Gradient.lightGrayOption, curvedCorners: Bool) {
+        self.layer.cornerRadius = curvedCorners ? 25 : 0
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.Gradient.lightGrayOption.cgColor
+        self.gradientForView(with: layer, firstColor: UIColor.Gradient.skyBlueOption, secondColor: color)
     }
 }

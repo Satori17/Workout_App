@@ -32,7 +32,6 @@ extension WorkoutsRouter: WorkoutsRoutingLogic {
     func routeToWorkoutDetails() {
         guard let workout = dataStore?.selectedWorkout, let animated = dataStore?.isTransitionAnimated else { return }
         let detailsVC = instantiateDetailsVC(withWorkout: workout)
-        detailsVC.isSaved = false
         viewController?.navigationController?.pushViewController(detailsVC, animated: animated)
     }
     
@@ -66,12 +65,10 @@ extension WorkoutsRouter: WorkoutsRoutingLogic {
     //MARK: - Instantiate
     func instantiateDetailsVC(withWorkout workout: WorkoutViewModel) -> WorkoutDetailViewController {
         if let workoutDetailVC = UIStoryboard(name: Ids.workoutDetail, bundle: nil).instantiateViewController(withIdentifier: Ids.workoutDetail) as? WorkoutDetailViewController {
-            WorkoutDetailConfigurator.configure(vc: workoutDetailVC)
-            workoutDetailVC.isSaved = true
+            WorkoutDetailConfigurator.configure(vc: workoutDetailVC, isSaved: false)
             if var workoutDetailDS = workoutDetailVC.router?.dataStore {
                 passDetailsData(ofWorkout: workout, destination: &workoutDetailDS)
-            }
-            
+            }            
             return workoutDetailVC
         }
         return WorkoutDetailViewController()

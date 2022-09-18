@@ -9,9 +9,9 @@ import UIKit
 
 final class WorkoutDetailConfigurator {
 
-    static func configure(vc: WorkoutDetailViewController) {
+    static func configure(vc: WorkoutDetailViewController, isSaved: Bool) {
         //MARK: - Interactor
-        let interactor = WorkoutDetailInteractor()
+        let interactor = WorkoutDetailInteractor(isSaved: isSaved)
         vc.interactor = interactor
         
         //MARK: - Presenter

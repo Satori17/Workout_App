@@ -9,4 +9,6 @@ import UIKit
 
 enum AlertKeys {
     static let removeSuccess = "Removed Successfully"
+    static let dataPassFailed = "Workout details could not be displayed, please try again."
+    static let licenseFailed = "License Couldn't be loaded"
 }

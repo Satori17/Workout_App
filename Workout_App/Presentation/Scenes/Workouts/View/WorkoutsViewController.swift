@@ -36,11 +36,11 @@ final class WorkoutsViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
-    //MARK: - Methods
+    //MARK: - Setup Methods
     private func setupView() {
         navigationController?.navigationBar.prefersLargeTitles = false
         activityIndicator.setupActivityIndicator(self)
-        makeRequest()
+        makeDataRequest()
         setupCollectionView()
     }
     
@@ -58,7 +58,8 @@ final class WorkoutsViewController: UIViewController {
         activityIndicator.stopAnimating()
     }
     
-    private func makeRequest() {
+    //MARK: - Request Methods
+    private func makeDataRequest() {
         interactor?.getWorkouts(request: WorkoutModel.GetWorkouts.Request())
     }
     

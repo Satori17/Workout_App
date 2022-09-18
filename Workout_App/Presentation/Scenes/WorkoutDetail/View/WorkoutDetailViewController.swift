@@ -25,17 +25,13 @@ final class WorkoutDetailViewController: UIViewController {
     var interactor: WorkoutDetailBusinessLogic?
     var router: (WorkoutDetailRoutingLogic & WorkoutDetailDataPassing)?
     
-    //MARK: - Properties
-    //'add workout' button disappears depend on condition
-    var isSaved = false
-    
-    // MARK: View Lifecycle
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         requestMovieDetails()
     }
     
-    //MARK: - Methods
+    //MARK: - Request Methods
     private func requestMovieDetails() {
         interactor?.showWorkoutDetails(request: WorkoutDetailModel.GetWorkoutDetails.Request())
     }
@@ -61,7 +57,7 @@ extension WorkoutDetailViewController: SaveWorkoutDelegate {
 extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     
     func displayWorkoutDetails(viewModel: WorkoutDetailModel.GetWorkoutDetails.ViewModel) {
-        contentView.addWorkoutBtn.isHidden = isSaved
+        contentView.addWorkoutBtn.isHidden = viewModel.isSaved
         contentView.configure(with: viewModel.workout)
         contentView.scrollView = self.scrollView
         contentView.licenseDelegate = self
@@ -69,8 +65,7 @@ extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     }
     
     func didFailDisplayWorkoutDetails(withError message: String) {
-        //TODO: - FIX THIS with alerts
-        print(message)
+        router?.routeToShowAlert(withTitle: message, success: false)
     }
     
     func displayWorkoutLicense(viewModel: WorkoutDetailModel.GetLicense.ViewModel) {
@@ -78,8 +73,7 @@ extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     }
     
     func didFailDisplayWorkoutLicense(withError message: String) {
-        //TODO: - FIX THIS with alerts
-        print(message)
+        router?.routeToShowAlert(withTitle: message, success: false)
     }
     
     func displaySaveAlert(viewModel: WorkoutDetailModel.ShowSaveAlert.ViewModel) {

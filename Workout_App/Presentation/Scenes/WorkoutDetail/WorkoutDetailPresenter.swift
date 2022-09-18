@@ -23,7 +23,7 @@ final class WorkoutDetailPresenter {
 extension WorkoutDetailPresenter: WorkoutDetailPresentationLogic {
         
     func presentWorkoutDetails(response: WorkoutDetailModel.GetWorkoutDetails.Response) {
-        let viewModel = WorkoutDetailModel.GetWorkoutDetails.ViewModel(workout: response.workout)
+        let viewModel = WorkoutDetailModel.GetWorkoutDetails.ViewModel(workout: response.workout, isSaved: response.isSaved)
         viewController?.displayWorkoutDetails(viewModel: viewModel)
     }
     
@@ -32,8 +32,7 @@ extension WorkoutDetailPresenter: WorkoutDetailPresentationLogic {
     }
     
     func presentWorkoutLicense(response: WorkoutDetailModel.GetLicense.Response) {
-        let viewModel = WorkoutDetailModel.GetLicense.ViewModel()
-        viewController?.displayWorkoutLicense(viewModel: viewModel)
+        viewController?.displayWorkoutLicense(viewModel: WorkoutDetailModel.GetLicense.ViewModel())
     }
     
     func presentSaveAlert(response: WorkoutDetailModel.ShowSaveAlert.Response) {

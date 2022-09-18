@@ -7,7 +7,10 @@
 
 import Foundation
 
+//MARK: - ViewController Ids
 enum Ids {
+    static let onBoarding = "OnBoardingViewController"
+    static let tabBar = "TabBarController"
     static let home = "HomeViewController"
     static let category = "CategoryViewController"
     static let workouts = "WorkoutsViewController"
@@ -16,6 +19,12 @@ enum Ids {
     static let headerView = "WeekDayHeaderView"
 }
 
+//MARK: - Notification Center Names
 enum NotificationName {
     static let openFromNotification = Notification.Name("com.sabakhitaridze.Workout-App.receiveNotification")
+}
+
+//MARK: - User Default Keys
+enum UserDefaultKey: String {
+    case appLaunched
 }

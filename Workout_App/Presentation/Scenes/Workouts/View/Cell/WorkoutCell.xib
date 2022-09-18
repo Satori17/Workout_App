@@ -26,8 +26,8 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is great workout that everybody should try to do this adjvndjvhbwsdjvbhwjvadvnsdjkvbs basdvjsbd bsdjvhbjwhedbvsjhd" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQc-6L-fbr">
-                        <rect key="frame" x="5" y="171" width="262" height="49.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is great workout that everybody should try to do this" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JQc-6L-fbr">
+                        <rect key="frame" x="5" y="171" width="262" height="33"/>
                         <fontDescription key="fontDescription" name="AvenirNext-MediumItalic" family="Avenir Next" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -44,7 +44,7 @@
                             <fontDescription key="titleFontDescription" name="AvenirNext-MediumItalic" family="Avenir Next" pointSize="13"/>
                         </buttonConfiguration>
                         <connections>
-                            <action selector="seeMoreBtnPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="VNJ-42-ib7"/>
+                            <action selector="seeMoreBtnTapped:" destination="gTV-IL-0wX" eventType="touchUpInside" id="JbZ-FF-xNr"/>
                         </connections>
                     </button>
                 </subviews>

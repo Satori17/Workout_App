@@ -45,7 +45,7 @@ final class HomeViewController: UIViewController {
         HomeConfigurator.configure(vc: self)
     }
     
-    // MARK: View Lifecycle
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         checkUserPermission()
@@ -70,7 +70,7 @@ final class HomeViewController: UIViewController {
         savedWorkoutsTableView.reloadData()
     }
     
-    //MARK: - Methods
+    //MARK: - Setup Methods
     private func setupView() {
         savedWorkoutsTableView.registerNib(class: HomeWorkoutCell.self)
     }
@@ -83,14 +83,6 @@ final class HomeViewController: UIViewController {
         }
     }
     
-    private func savedWorkoutsRequest() {
-        interactor?.getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request())
-    }
-    
-    private func missedWorkoutsRequest() {
-        interactor?.getMissedWorkouts(request: HomeModel.getMissedWorkouts.Request())
-    }
-    
     private func setupSavedWorkouts(data: [[CoreWorkoutViewModel]], weekDays: [WeekDayModel]) {
         self.savedWorkouts = data
         self.weekDays = weekDays
@@ -101,6 +93,15 @@ final class HomeViewController: UIViewController {
         self.missedWorkouts = data
         self.missedWeekDays = weekDays
         savedWorkoutsTableView.reloadData()
+    }
+    
+    //MARK: - Request Methods
+    private func savedWorkoutsRequest() {
+        interactor?.getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request())
+    }
+    
+    private func missedWorkoutsRequest() {
+        interactor?.getMissedWorkouts(request: HomeModel.getMissedWorkouts.Request())
     }
 }
 

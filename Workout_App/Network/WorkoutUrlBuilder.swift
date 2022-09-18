@@ -13,8 +13,7 @@ class WorkoutUrlBuilder: Request, DataUrl {
     
     private(set) var urlString: String
     private(set) var urlRequest: URLRequest?
-    private var limitValue = 419
-    //limit- 419
+    private let limitValue = 419
     
     func withBaseUrl() {
         urlString = BaseUrl.url.rawValue
@@ -42,5 +41,4 @@ class WorkoutUrlBuilder: Request, DataUrl {
             self.urlRequest = url(urlComponent: &components)
         }
     }
-    
 }

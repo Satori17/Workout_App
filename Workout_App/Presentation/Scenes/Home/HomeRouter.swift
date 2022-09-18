@@ -32,7 +32,6 @@ extension HomeRouter: HomeRoutingLogic {
         guard let savedWorkout = dataStore?.selectedSavedWorkout else { return }
         let detailsVC = instantiateDetailsVC(withWorkout: savedWorkout)
         detailsVC.sheetPresentationController?.detents = [.medium(), .large()]
-        detailsVC.isSaved = true
         viewController?.present(detailsVC, animated: true)
     }
     
@@ -51,11 +50,10 @@ extension HomeRouter: HomeRoutingLogic {
     //MARK: - Instantiate
     func instantiateDetailsVC(withWorkout workout: CoreWorkoutViewModel) -> WorkoutDetailViewController {
         if let workoutDetailVC = UIStoryboard(name: Ids.workoutDetail, bundle: nil).instantiateViewController(withIdentifier: Ids.workoutDetail) as? WorkoutDetailViewController {
-            WorkoutDetailConfigurator.configure(vc: workoutDetailVC)
+            WorkoutDetailConfigurator.configure(vc: workoutDetailVC, isSaved: true)
             if var workoutDetailDS = workoutDetailVC.router?.dataStore {
                 passDetailsData(ofWorkout: workout, destination: &workoutDetailDS)
             }
-            
             return workoutDetailVC
         }
         return WorkoutDetailViewController()

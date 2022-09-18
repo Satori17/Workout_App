@@ -21,28 +21,32 @@ final class WorkoutDetailInteractor {
     
     //MARK: - Clean Components
     var presenter: WorkoutDetailPresentationLogic?
-    //var worker: WorkoutDetailWorker?
     
     //MARK: - DataStore Properties
     var workout: Displayable?
+    
+    //MARK: - Properties
+    var isSaved: Bool = false
+    
+    init(isSaved: Bool) {
+        self.isSaved = isSaved
+    }
 }
 
 extension WorkoutDetailInteractor: WorkoutDetailBusinessLogic, WorkoutDetailDataStore {
     
     func showWorkoutDetails(request: WorkoutDetailModel.GetWorkoutDetails.Request) {
         guard let workout = workout else {
-            //TODO: - FIX  THIS with alerts
-            presenter?.didFailPresentWorkoutDetails(withError: "workout details data did not passed")
+            presenter?.didFailPresentWorkoutDetails(withError: AlertKeys.dataPassFailed)
             return
         }
         
-        let response = WorkoutDetailModel.GetWorkoutDetails.Response(workout: workout)
+        let response = WorkoutDetailModel.GetWorkoutDetails.Response(workout: workout, isSaved: isSaved)
         presenter?.presentWorkoutDetails(response: response)
     }
     
     func showWorkoutLicense(request: WorkoutDetailModel.GetLicense.Request) {
-            let response = WorkoutDetailModel.GetLicense.Response()
-            presenter?.presentWorkoutLicense(response: response)
+        presenter?.presentWorkoutLicense(response: WorkoutDetailModel.GetLicense.Response())
     }
     
     func showSaveAlert(request: WorkoutDetailModel.ShowSaveAlert.Request) {

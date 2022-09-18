@@ -149,7 +149,7 @@ extension HomePresenter {
         return displayedCoreWorkouts
     }
     
-    //Category
+    //MARK: - Categories
     private func formattedCategories(ofWorkout workout: CoreWorkout) -> CategoryDisplayable {
         if let category = workout.category {
             if let categoryName = category.name {
@@ -162,7 +162,7 @@ extension HomePresenter {
         return CategoryDisplayable()
     }
     
-    //Muscle
+    //MARK: - Muscles
     private func formattedMuscles(ofWorkout workout: CoreWorkout, isMain: Bool) -> [MuscleDisplayable] {
         if isMain {
             //Muscles
@@ -196,7 +196,7 @@ extension HomePresenter {
         return []
     }
     
-    //Equipment
+    //MARK: - Equipment
     private func formattedEquipments(ofWorkout workout: CoreWorkout) -> [EquipmentDisplayable] {
         if let equipment = workout.equipments?.array as? [CoreEquipment]{
             let equipmentsArray = equipment.map({
@@ -211,7 +211,7 @@ extension HomePresenter {
         return []
     }
     
-    //Language
+    //MARK: - Language
     private func formattedLanguage(ofWorkout workout: CoreWorkout) -> LanguageDisplayable {
         if let language = workout.language {
             if let shortName = language.shortName,
@@ -226,7 +226,7 @@ extension HomePresenter {
         return LanguageDisplayable()
     }
     
-    //Image
+    //MARK: - Images
     private func formattedImages(ofWorkout workout: CoreWorkout) -> [ImageDisplayable] {
         if let images = workout.images?.array as? [CoreImage] {
             let imagesArray = images.map({
@@ -242,7 +242,7 @@ extension HomePresenter {
         return []
     }
     
-    //Comment
+    //MARK: - Comment
     private func formattedComments(ofWorkout workout: CoreWorkout) -> [CommentDisplayable] {
         if let comments = workout.comments?.array as? [CoreComment] {
             let commentsArray = comments.map({
@@ -258,7 +258,7 @@ extension HomePresenter {
         return []
     }
     
-    //Week Day
+    //MARK: - Week Day
     private func formattedWeekDays(ofWorkout workout: CoreWorkout) -> WeekDayModel {
         if let name = workout.weekDay?.name {
             return WeekDayModel(

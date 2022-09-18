@@ -11,6 +11,7 @@ import SafariServices
 protocol WorkoutDetailRoutingLogic {
     func routeToWorkoutLicense()
     func routeToSaveAlert()
+    func routeToShowAlert(withTitle text: String, success: Bool)
 }
 
 protocol WorkoutDetailDataPassing {
@@ -29,7 +30,7 @@ extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassi
     //MARK: - Routing
     func routeToWorkoutLicense() {
         guard let licenseUrl = dataStore?.workout?.license.url  else {
-            viewController?.didFailDisplayWorkoutLicense(withError: "License Couldn't be loaded")
+            viewController?.didFailDisplayWorkoutLicense(withError: AlertKeys.licenseFailed)
             return }
         let safariVC = SFSafariViewController(url: licenseUrl)
         viewController?.present(safariVC, animated: true)
@@ -46,6 +47,13 @@ extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassi
                     passToSave(workout: workout, destination: &alertDS)
                 }
             }
+            viewController?.present(alertVC, animated: true)
+        }
+    }
+    
+    func routeToShowAlert(withTitle text: String, success: Bool) {
+        if let alertVC = UIStoryboard(name: Ids.alert, bundle: nil).instantiateViewController(withIdentifier: Ids.alert) as? AlertViewController {
+            AlertConfigurator.configure(vc: alertVC, alertTitle: text, success: success)
             viewController?.present(alertVC, animated: true)
         }
     }

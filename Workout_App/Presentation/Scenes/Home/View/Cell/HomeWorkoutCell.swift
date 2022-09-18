@@ -33,7 +33,6 @@ class HomeWorkoutCell: UITableViewCell {
         super.awakeFromNib()
         setupCellComponents()
         NotificationCenter.default.addObserver(self, selector: #selector(notificationReceived), name: NotificationName.openFromNotification, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(notificationReceived(_:)), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     override func layoutSubviews() {

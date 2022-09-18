@@ -29,7 +29,6 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         
         bezierPath.move(to: fromView.center)
         bezierPath.addLine(to: toView.center)
-        
         //move
         let moveAnimation = CAKeyframeAnimation(keyPath: AnimationKeys.position.rawValue)
         moveAnimation.path = bezierPath.cgPath

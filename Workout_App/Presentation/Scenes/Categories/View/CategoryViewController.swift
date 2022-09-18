@@ -75,7 +75,7 @@ extension CategoryViewController: CategoryDisplayLogic {
     }
 }
 
-//MARK: - TableView Delegates
+//MARK: - TableView Delegate & DataSource
 extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

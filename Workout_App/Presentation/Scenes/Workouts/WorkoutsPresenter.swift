@@ -25,7 +25,6 @@ extension WorkoutsPresenter: WorkoutsPresentationLogic {
     
     func presentWorkouts(response: WorkoutModel.GetWorkouts.Response) {
         let displayedWorkouts = getDisplayed(workoutsData: response)
-        
         let viewModel = WorkoutModel.GetWorkouts.ViewModel(displayedWorkouts: displayedWorkouts)
         viewController?.displayWorkouts(viewModel: viewModel)
     }
@@ -47,7 +46,7 @@ extension WorkoutsPresenter: WorkoutsPresentationLogic {
 extension WorkoutsPresenter {
     
     private func getDisplayed(workoutsData: WorkoutModel.GetWorkouts.Response) -> [WorkoutViewModel] {
-        let displayedWorkouts = workoutsData.workouts.map({
+        let displayedWorkouts = workoutsData.workouts.map {
             WorkoutViewModel(
                 id: $0.id ?? 0,
                 name: $0.name ?? "",
@@ -63,12 +62,12 @@ extension WorkoutsPresenter {
                 comments: formattedComments(ofWorkout: $0),
                 variations: formattedVariations(from: workoutsData, ofWorkout: $0)
             )
-        })
+        }
         
         return displayedWorkouts
     }
     
-    //formatted string to clear out html symbols
+    //MARK: - Formatted string to clear out html symbols
     private func formattedDescriptionnn(ofWorkout workout: Workout) -> String {
         if let description = workout.resultDescription {
             return description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
@@ -76,7 +75,7 @@ extension WorkoutsPresenter {
         return ""
     }
     
-    //categories
+    //MARK: - Categories
     private func formattedCategories(ofWorkout workout: Workout) -> CategoryDisplayable {
         if let category = workout.category {
             if let categoryId = category.id,
@@ -90,58 +89,55 @@ extension WorkoutsPresenter {
         return CategoryDisplayable()
     }
     
-    //muscles
+    //MARK: - Muscles
     private func formattedMuscles(ofWorkout workout: Workout, isMain: Bool) -> [MuscleDisplayable] {
         let muscleBaseUrl = "https://wger.de"
         
         if isMain {
             //Muscles
             if let muscles = workout.muscles {
-                let musclesArray: [MuscleDisplayable] = muscles.map({
+                let musclesArray: [MuscleDisplayable] = muscles.map {
                     MuscleDisplayable(
                         name: $0.name ?? "",
                         isFront: $0.isFront ?? false,
                         imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
                         imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? "")
                     )
-                })
-                
+                }
                 return musclesArray
             }
         } else {
             //Secondary muscles
             if let musclesSecondary = workout.musclesSecondary {
-                let secondaryMusclesArray: [MuscleDisplayable] = musclesSecondary.map({
+                let secondaryMusclesArray: [MuscleDisplayable] = musclesSecondary.map {
                     MuscleDisplayable(
                         name: $0.name ?? "",
                         isFront: $0.isFront ?? false,
                         imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
                         imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? "")
                     )
-                })
-                
+                }
                 return secondaryMusclesArray
             }
         }
         return []
     }
     
-    //equipments
+    //MARK: - Equipments
     private func formattedEquipments(ofWorkout workout: Workout) -> [EquipmentDisplayable] {
         if let equipment = workout.equipment {
-            let equipmentsArray = equipment.map({
+            let equipmentsArray = equipment.map {
                 EquipmentDisplayable(
                     id: $0.id ?? 0,
                     name: $0.name ?? ""
                 )
-            })
-            
+            }
             return equipmentsArray
         }
         return []
     }
     
-    //language
+    //MARK: - Language
     private func formattedLanguage(ofWorkout workout: Workout) -> LanguageDisplayable {
         if let language = workout.language {
             if let languageId = language.id,
@@ -157,7 +153,7 @@ extension WorkoutsPresenter {
         return LanguageDisplayable()
     }
     
-    //license
+    //MARK: - License
     private func formattedLicense(ofWorkout workout: Workout) -> LicenseDisplayable {
         if let license = workout.license {
             if let licenseId = license.id,
@@ -176,7 +172,7 @@ extension WorkoutsPresenter {
         return LicenseDisplayable()
     }
     
-    //images
+    //MARK: - Images
     private func formattedImages(ofWorkout workout: Workout) -> [ImageDisplayable] {
         var imagesArray = [ImageDisplayable]()
         let imagePlaceholder = "image_placeholder"
@@ -185,7 +181,7 @@ extension WorkoutsPresenter {
             let mainImage = images.first?.image ?? imagePlaceholder
             let secondaryImage = (mainImage != imagePlaceholder ? images.last?.image : "") ?? ""
             
-            images.forEach({
+            images.forEach {
                 if let id = $0.id,
                    let isMain = $0.isMain {
                     isMain ? imagesArray.append(ImageDisplayable(
@@ -199,7 +195,7 @@ extension WorkoutsPresenter {
                         isMain:isMain
                     ))
                 }
-            })
+            }
             if images.isEmpty {
                 imagesArray.append(ImageDisplayable(
                     id: 0,
@@ -211,29 +207,27 @@ extension WorkoutsPresenter {
         return imagesArray
     }
     
-    //comments
+    //MARK: - Comments
     private func formattedComments(ofWorkout workout: Workout) -> [CommentDisplayable] {
         if let comments = workout.comments {
-            let commentsArray = comments.map({
+            let commentsArray = comments.map {
                 CommentDisplayable(
                     id: $0.id ?? 0,
                     exercise: $0.exercise ?? 0,
                     comment: "🔘 \($0.comment ?? "")"
                 )
-            })
-            
+            }
             return commentsArray
         }
-        
         return []
     }
     
-    //variations
+    //MARK: - Variations
     private func formattedVariations(from response: WorkoutModel.GetWorkouts.Response, ofWorkout workout: Workout) -> [WorkoutViewModel] {
         var variationsArray = [WorkoutViewModel]()
         
         if let variations = workout.variations {
-            variations.forEach({ variation in
+            variations.forEach { variation in
                 let workoutIndex = response.workouts.firstIndex(where: { $0.id == variation })
                 if let workoutIndex = workoutIndex {
                     let currentWorkout = response.workouts[workoutIndex]
@@ -258,7 +252,7 @@ extension WorkoutsPresenter {
                         )
                     }
                 }
-            })
+            }
         }
         return variationsArray
     }

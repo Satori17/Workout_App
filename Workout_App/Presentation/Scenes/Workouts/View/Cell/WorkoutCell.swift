@@ -30,17 +30,18 @@ class WorkoutCell: UICollectionViewCell {
     }
     
     //MARK: - IBActions
-    @IBAction func seeMoreBtnPressed(_ sender: UIButton) {
+    @IBAction func seeMoreBtnTapped(_ sender: UIButton) {
         self.delegate?.getWorkoutDetails(cell: self)
     }
     
-    //MARK: - Methods
+    //MARK: - Setup Method
     private func setup(cell: UICollectionViewCell) {
         cell.layer.cornerRadius = 15
         cell.withAppDesign(layer: gradientMaskLayer, color: UIColor.Gradient.whiteOption, curvedCorners: true)
         seeMoreBtn.maskCurved(corner: .topLeft)
     }
     
+    //MARK: - Configure Method
     func configure(with workouts: WorkoutViewModel) {
         if let mainImage = workouts.images.first?.image {
         workoutImageView.getImage(from: mainImage)

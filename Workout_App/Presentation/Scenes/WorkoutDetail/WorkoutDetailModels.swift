@@ -16,10 +16,12 @@ enum WorkoutDetailModel {
         
         struct Response {
             let workout: Displayable
+            let isSaved: Bool
         }
         
         struct ViewModel {
             let workout: Displayable
+            let isSaved: Bool
         }
     }
     
