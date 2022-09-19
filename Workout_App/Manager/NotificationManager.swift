@@ -8,7 +8,7 @@
 import UIKit
 import UserNotifications
 
-enum NotificationError: String, Error {
+private enum NotificationError: String, Error {
     case authFailed = "Notification Authorisation Failed, please try again."
     case requestFailed = "Adding notification Failed, please try again."
 }

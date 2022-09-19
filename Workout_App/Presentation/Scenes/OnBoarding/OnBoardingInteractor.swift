@@ -9,9 +9,7 @@ import UIKit
 
 protocol OnBoardingBusinessLogic {
     func getOnBoardingScreens(request: OnBoarding.getScreen.Request)
-}
-
-protocol OnBoardingDataStore {
+    func showMainTabBar(request: OnBoarding.ShowMainTabBar.Request)
 }
 
 final class OnBoardingInteractor {
@@ -21,11 +19,15 @@ final class OnBoardingInteractor {
     var worker: OnBoardingWorkerLogic?
 }
 
-extension OnBoardingInteractor: OnBoardingBusinessLogic, OnBoardingDataStore {
+extension OnBoardingInteractor: OnBoardingBusinessLogic {
     
     func getOnBoardingScreens(request: OnBoarding.getScreen.Request) {
         guard let onBoardingScreens = worker?.fetchOnBoardingScreens() else { return }
         let response = OnBoarding.getScreen.Response(screens: onBoardingScreens)
         presenter?.presentOnBoardingScreens(response: response)
+    }
+    
+    func showMainTabBar(request: OnBoarding.ShowMainTabBar.Request) {
+        presenter?.presentMainTabBar(response: OnBoarding.ShowMainTabBar.Response())
     }
 }

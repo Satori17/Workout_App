@@ -36,9 +36,9 @@ class WorkoutCell: UICollectionViewCell {
     
     //MARK: - Setup Method
     private func setup(cell: UICollectionViewCell) {
-        cell.layer.cornerRadius = 15
+        cell.maskCurved(highly: true)
         cell.withAppDesign(layer: gradientMaskLayer, color: UIColor.Gradient.whiteOption, curvedCorners: true)
-        seeMoreBtn.maskCurved(corner: .topLeft)
+        seeMoreBtn.maskCurved(highly: false, corner: .topLeft)
     }
     
     //MARK: - Configure Method

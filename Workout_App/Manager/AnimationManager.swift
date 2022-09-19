@@ -100,4 +100,14 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         
         return result
     }
+    
+    func animateTransition(ofView view: UIView) {
+        UIView.transition(
+            with: view,
+            duration: 0.5,
+            options: .transitionFlipFromRight,
+            animations: nil,
+            completion: nil
+        )
+    }
 }

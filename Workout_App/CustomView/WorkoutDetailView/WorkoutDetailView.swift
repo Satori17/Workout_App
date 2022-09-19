@@ -89,7 +89,7 @@ final class WorkoutDetailView: UIView {
         contentView.frame = bounds
         contentView.clipsToBounds = true
         contentView.withAppDesign(layer: gradientMaskLayer, curvedCorners: false)
-        addWorkoutBtn.maskCurved(corner: [.bottomLeft, .bottomRight])
+        addWorkoutBtn.maskCurved(highly: false, corner: [.bottomLeft, .bottomRight])
         setupCollectionView()
         addSubview(contentView)
     }

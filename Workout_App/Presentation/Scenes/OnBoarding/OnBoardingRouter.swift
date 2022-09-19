@@ -8,58 +8,20 @@
 import UIKit
 
 protocol OnBoardingRoutingLogic {
-    func routeToHomeScreen()
-}
-
-protocol OnBoardingDataPassing {
-    var dataStore: OnBoardingDataStore? { get }
+    func routeToMainTabBar()
 }
 
 final class OnBoardingRouter {
     
     //MARK: - Clean Components
     weak var viewController: OnBoardingViewController?
-    
-    //MARK: - DataStore
-    var dataStore: OnBoardingDataStore?
 }
 
-extension OnBoardingRouter: OnBoardingRoutingLogic, OnBoardingDataPassing {
+extension OnBoardingRouter: OnBoardingRoutingLogic {
     
     //MARK: - Routing
-    func routeToHomeScreen() {
-        
+    func routeToMainTabBar() {
+        let mainTabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: Ids.tabBar)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBar)
     }
-    
-    // MARK: Routing
-    
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
-    //{
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    //}
-    
-    // MARK: Navigation
-    
-    //func navigateToSomewhere(source: OnBoardingViewController, destination: SomewhereViewController)
-    //{
-    //  source.show(destination, sender: nil)
-    //}
-    
-    // MARK: Passing data
-    
-    //func passDataToSomewhere(source: OnBoardingDataStore, destination: inout SomewhereDataStore)
-    //{
-    //  destination.name = source.name
-    //}
-    
 }

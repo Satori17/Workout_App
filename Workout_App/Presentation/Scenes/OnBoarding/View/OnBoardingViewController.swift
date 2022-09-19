@@ -9,6 +9,7 @@ import UIKit
 
 protocol OnBoardingDisplayLogic: AnyObject {
     func displayOnBoardingScreens(viewModel: OnBoarding.getScreen.ViewModel)
+    func displayMainTabBar(viewModel: OnBoarding.ShowMainTabBar.ViewModel)
 }
 
 final class OnBoardingViewController: UIViewController {
@@ -16,10 +17,11 @@ final class OnBoardingViewController: UIViewController {
     //MARK: - IBOutlets
     @IBOutlet weak var onBoardingCollectionView: UICollectionView!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var continueBtn: UIButton!
     
     //MARK: - Clean Components
     var interactor: OnBoardingBusinessLogic?
-    var router: (OnBoardingRoutingLogic & OnBoardingDataPassing)?
+    var router: OnBoardingRoutingLogic?
     
     //MARK: - Screen Data
     private var onBoardingScreens = [OnBoardingModel]()
@@ -32,16 +34,33 @@ final class OnBoardingViewController: UIViewController {
     
     //MARK: - IBAction
     @IBAction func skipBtnTapped(_ sender: UIButton) {
+        interactor?.showMainTabBar(request: OnBoarding.ShowMainTabBar.Request())
     }
     
     @IBAction func pageControlTapped(_ sender: UIPageControl) {
         showScreen(at: pageControl.currentPage)
     }
     
+    @IBAction func continueBtnTapped(_ sender: UIButton) {
+        pageControl.page += 1
+        sender.currentTitle == ButtonTitle.getStarted ? interactor?.showMainTabBar(request: OnBoarding.ShowMainTabBar.Request()) : showScreen(at: pageControl.currentPage)
+        setupContinueBtn()
+    }
+    
     //MARK: - Setup Methods
     private func setupView() {
         setupCollectionView()
         makeDataRequest()
+        setupContinueBtn()
+    }
+    
+    private func setupContinueBtn() {
+        continueBtn.maskCurved(highly: true)
+        continueBtn.layer.borderWidth = 2
+        continueBtn.layer.borderColor = UIColor.ColorKey.skyBlue?.cgColor
+        continueBtn.tintColor = pageControl.page == onBoardingScreens.count-1 ? .white : UIColor.ColorKey.skyBlue
+        continueBtn.backgroundColor = pageControl.page == onBoardingScreens.count-1 ? UIColor.ColorKey.skyBlue : .white
+        continueBtn.setTitle(pageControl.page == onBoardingScreens.count-1 ? ButtonTitle.getStarted : ButtonTitle.continueNext, for: .normal)
     }
     
     private func setupCollectionView() {
@@ -74,6 +93,10 @@ extension OnBoardingViewController: OnBoardingDisplayLogic {
     func displayOnBoardingScreens(viewModel: OnBoarding.getScreen.ViewModel) {
         setupOnboardingScreen(data: viewModel.screens)
     }
+    
+    func displayMainTabBar(viewModel: OnBoarding.ShowMainTabBar.ViewModel) {
+        router?.routeToMainTabBar()
+    }
 }
 
 //MARK: - CollectionView Delegate, DataSource & FlowLayout
@@ -99,5 +122,6 @@ extension OnBoardingViewController: UICollectionViewDelegate, UICollectionViewDa
         let pageWidth = scrollView.frame.size.width
         let page = Int(floor(scrollView.contentOffset.x - pageWidth/2) / pageWidth + 1)
         self.pageControl.page = page
+        setupContinueBtn()
     }
 }

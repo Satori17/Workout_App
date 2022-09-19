@@ -96,8 +96,8 @@ final class AlertViewController: UIViewController {
     
     private func setupSaveView() {
         saveView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
-        saveBtn.maskCurved()
-        cancelBtn.maskCurved()
+        saveBtn.maskCurved(highly: false)
+        cancelBtn.maskCurved(highly: false)
     }
     
     private func setupAlertView(withTitle text: String, success: Bool) {
@@ -272,9 +272,9 @@ extension AlertViewController {
         }
         alertButton.translatesAutoresizingMaskIntoConstraints = false
         alertButton.tintColor = .white
-        alertButton.maskCurved()
+        alertButton.maskCurved(highly: false)
         alertButton.backgroundColor = UIColor.ColorKey.skyBlue
-        alertButton.setTitle("Cancel", for: .normal)
+        alertButton.setTitle(ButtonTitle.cancel, for: .normal)
         alertButton.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         alertView.addSubview(alertButton)
         

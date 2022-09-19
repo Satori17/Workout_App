@@ -13,3 +13,10 @@ enum SaveTitle {
     static let alertText = "Rep Range is too low"
     static let alertColor = UIColor.systemRed
 }
+
+
+enum ButtonTitle {
+    static let cancel = "Cancel"
+    static let continueNext = "Continue"
+    static let getStarted = "Get Started"
+}

@@ -36,8 +36,8 @@ extension UIView {
         self.layer.shadowOpacity = 1
     }
     
-    func maskCurved(corner: CACornerMask = [.bottomLeft, .bottomRight, .topLeft, .topRight]) {
-        self.layer.cornerRadius = 7
+    func maskCurved(highly: Bool, corner: CACornerMask = [.bottomLeft, .bottomRight, .topLeft, .topRight]) {
+        self.layer.cornerRadius = highly ? 15 : 7
         self.layer.maskedCorners = [corner]
     }
     

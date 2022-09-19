@@ -24,9 +24,6 @@ final class OnBoardingConfigurator {
         vc.router = router
         router.viewController = vc
         
-        //MARK: - DataStore
-        router.dataStore = interactor
-        
         //MARK: - Worker
         let worker = OnBoardingWorker()
         interactor.worker = worker

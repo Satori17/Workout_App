@@ -22,4 +22,14 @@ enum OnBoarding {
             let screens: [OnBoardingModel]
         }
     }
+    
+    //MARK: - Show Main Tab Bar Use Case
+    enum ShowMainTabBar {
+        
+        struct Request { }
+        
+        struct Response { }
+        
+        struct ViewModel { }
+    }
 }

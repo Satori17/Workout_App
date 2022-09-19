@@ -12,6 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     //MARK: - Properties
     var window: UIWindow?
     private let userDefaults = UserDefaults.standard
+    private let animationManager = AnimationManager()
     
     //MARK: - Methods
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -19,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         if let _ = userDefaults.string(forKey: UserDefaultKey.appLaunched.rawValue) {
-            let mainTabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: Ids.tabBar)
+            let mainTabBar = UIStoryboard(name: Ids.main, bundle: nil).instantiateViewController(withIdentifier: Ids.tabBar)
             window?.rootViewController = mainTabBar
             window?.makeKeyAndVisible()
         } else {
@@ -62,5 +63,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Save changes in the application's managed object context when the application transitions to the background.
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+    }
+}
+
+extension SceneDelegate {
+    
+    func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
+        guard let window = self.window else {
+            return
+        }
+        window.rootViewController = vc
+        animationManager.animateTransition(ofView: window)
     }
 }

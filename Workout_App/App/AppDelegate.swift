@@ -8,7 +8,6 @@
 import UIKit
 import CoreData
 import SDWebImageSVGCoder
-import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

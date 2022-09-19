@@ -11,6 +11,7 @@ import Foundation
 enum Ids {
     static let onBoarding = "OnBoardingViewController"
     static let tabBar = "TabBarController"
+    static let main = "Main"
     static let home = "HomeViewController"
     static let category = "CategoryViewController"
     static let workouts = "WorkoutsViewController"
