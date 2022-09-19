@@ -330,34 +330,3 @@ extension AlertViewController {
         dismiss(animated: true)
     }
 }
-
-
-////MARK: - Preview
-//
-//import SwiftUI
-//
-//struct PreviewViewController: PreviewProvider {
-//    static var previews: some View {
-//        ViewControllerPreview {
-//            AlertViewController()
-//
-//        }.previewDevice("iPhone 13 Pro").previewInterfaceOrientation(.portrait)
-//    }
-//}
-//
-//struct ViewControllerPreview<ViewController: UIViewController>: UIViewControllerRepresentable {
-//    let viewControllerBuilder: () -> UIViewController
-//
-//    init(_ viewControllerBuilder: @escaping () -> UIViewController) {
-//        self.viewControllerBuilder = viewControllerBuilder
-//    }
-//
-//
-//    func makeUIViewController(context: Context) -> some UIViewController {
-//        return viewControllerBuilder()
-//    }
-//
-//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//
-//    }
-//}

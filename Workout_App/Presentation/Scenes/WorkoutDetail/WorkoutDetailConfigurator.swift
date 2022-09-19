@@ -8,7 +8,7 @@
 import UIKit
 
 final class WorkoutDetailConfigurator {
-
+    
     static func configure(vc: WorkoutDetailViewController, isSaved: Bool) {
         //MARK: - Interactor
         let interactor = WorkoutDetailInteractor(isSaved: isSaved)

@@ -53,7 +53,10 @@ extension HomePresenter: HomePresentationLogic {
     func presentMissedWorkouts(response: HomeModel.getMissedWorkouts.Response) {
         let displayedMissedWorkouts = getDisplayed(coreWorkouts: response.missedWorkouts)
         let data = getFinalWorkoutsAndWeekDays(displayedWorkouts: displayedMissedWorkouts)
-        let viewModel = HomeModel.getMissedWorkouts.ViewModel(displayedMissedWorkouts: data.workouts, missedWorkoutWeekDays: data.weekDays)
+        let viewModel = HomeModel.getMissedWorkouts.ViewModel(
+            displayedMissedWorkouts: data.workouts,
+            missedWorkoutWeekDays: data.weekDays
+        )
         viewController?.displayMissedWorkouts(viewModel: viewModel)
     }
     

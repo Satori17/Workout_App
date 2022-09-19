@@ -11,6 +11,7 @@ final class ActivityIndicatorManager {
     
     static let shared = ActivityIndicatorManager()
     
+    //MARK: - Properties
     private let activityIndicator = UIActivityIndicatorView()
     private var effectView = UIVisualEffectView()
     private let backgroundView = UIView()
@@ -18,6 +19,7 @@ final class ActivityIndicatorManager {
     
     private init() {}
     
+    //MARK: - Methods
     func startAnimating() {
         activityIndicator.startAnimating()
     }

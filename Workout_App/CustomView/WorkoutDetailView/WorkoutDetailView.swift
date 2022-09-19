@@ -40,7 +40,7 @@ final class WorkoutDetailView: UIView {
     @IBOutlet weak var licenseAuthorTemplateLabel: UILabel!
     @IBOutlet weak var licenseAuthorLabel: UILabel!
     @IBOutlet weak var licenseDetailsBtn: UIButton!
-    //Constraints
+    //MARK: - Constraints
     @IBOutlet weak var licenseHeaderTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var variationsHeaderTopLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var variationsHeaderTopRightConstraint: NSLayoutConstraint!
@@ -48,10 +48,12 @@ final class WorkoutDetailView: UIView {
     //MARK: - Properties
     var scrollView: UIScrollView?
     private let gradientMaskLayer = CAGradientLayer()
-    //data
+    
+    //MARK: - Data
     private var workoutVariations: [Displayable] = []
     var chosenVariation: Displayable?
-    //delegates
+    
+    //MARK: - Delegates
     weak var licenseDelegate: licenseDetailsDelegate?
     weak var workoutSaverDelegate: SaveWorkoutDelegate?
     
@@ -120,7 +122,7 @@ final class WorkoutDetailView: UIView {
         reconfigureLicenseConstraints()
     }
     
-    //MARK: - Reconfigure some constraints
+    //MARK: - Constraints Reconfigurations
     private func reconfigureVariationConstraints() {
         guard !workoutVariations.isEmpty else {
             variationsHeaderLabel.isHidden = true
@@ -129,13 +131,15 @@ final class WorkoutDetailView: UIView {
             variationsHeaderTopLeftConstraint.isActive = false
             variationsHeaderTopRightConstraint.isActive = false
             if let licenseHeader = licenseHeaderLabel {
-            NSLayoutConstraint(item: licenseHeader,
-                               attribute: .top,
-                               relatedBy: .equal,
-                               toItem: frontMuscleNameLabel,
-                               attribute: .bottom,
-                               multiplier: 1,
-                               constant: 20).isActive = true
+                NSLayoutConstraint(
+                    item: licenseHeader,
+                    attribute: .top,
+                    relatedBy: .equal,
+                    toItem: frontMuscleNameLabel,
+                    attribute: .bottom,
+                    multiplier: 1,
+                    constant: 20
+                ).isActive = true
             }
             return
         }
@@ -149,13 +153,15 @@ final class WorkoutDetailView: UIView {
             licenseAuthorLabel.removeFromSuperview()
             licenseDetailsBtn.removeFromSuperview()
             if let frontMuscleName = frontMuscleNameLabel {
-            NSLayoutConstraint(item: frontMuscleName,
-                               attribute: .bottom,
-                               relatedBy: .equal,
-                               toItem: safeAreaLayoutGuide,
-                               attribute: .bottom,
-                               multiplier: 1,
-                               constant: 20).isActive = true
+                NSLayoutConstraint(
+                    item: frontMuscleName,
+                    attribute: .bottom,
+                    relatedBy: .equal,
+                    toItem: safeAreaLayoutGuide,
+                    attribute: .bottom,
+                    multiplier: 1,
+                    constant: 20
+                ).isActive = true
             }
             return
         }
@@ -180,7 +186,7 @@ final class WorkoutDetailView: UIView {
     private func setupMuscleImage(ofWorkout workout: Displayable) {
         var occupiedFrontImageCounter = 0
         var occupiedBackImageCounter = 0
-
+        
         if !workout.muscles.isEmpty {
             for (index, muscle) in workout.muscles.enumerated() {
                 if muscle.isFront {
@@ -198,7 +204,7 @@ final class WorkoutDetailView: UIView {
                 }
             }
         }
-
+        
         if !workout.musclesSecondary.isEmpty {
             for muscle in workout.musclesSecondary {
                 if muscle.isFront {
@@ -266,7 +272,6 @@ extension WorkoutDetailView: UICollectionViewDelegate, UICollectionViewDataSourc
         return cell
     }
     
-    //Flow Layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 250)
     }

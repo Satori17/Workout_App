@@ -18,7 +18,7 @@ protocol WorkoutStorageManagerLogic {
     func getAllMissedWorkouts() throws -> [CoreWorkout]
 }
 
-class WorkoutStorageManager {
+final class WorkoutStorageManager {
     
     //MARK: - Properties
     private let appDelegate = UIApplication.shared.delegate as? AppDelegate

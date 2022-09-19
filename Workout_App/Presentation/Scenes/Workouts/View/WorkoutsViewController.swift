@@ -29,7 +29,7 @@ final class WorkoutsViewController: UIViewController {
     //MARK: - Activity Indicator Manager
     let activityIndicator = ActivityIndicatorManager.shared
     
-    // MARK: View Lifecycle
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -131,7 +131,7 @@ extension WorkoutsViewController: UICollectionViewDelegate, UICollectionViewData
             return self?.router?.instantiateDetailsVC(withWorkout: currentWorkout)
         }, actionProvider: { action in
             return self.makeContextMenu(for: currentWorkout)
-        })        
+        })
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

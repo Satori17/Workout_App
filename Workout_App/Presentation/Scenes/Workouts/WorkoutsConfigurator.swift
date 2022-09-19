@@ -8,7 +8,7 @@
 import UIKit
 
 final class WorkoutsConfigurator {
-
+    
     static func configure(vc: WorkoutsViewController, categoryId: Int) {
         //MARK: - Interactor
         let interactor = WorkoutsInteractor(categoryId: categoryId)

@@ -8,7 +8,7 @@
 import UIKit
 
 final class AlertConfigurator {
-
+    
     static func configure(vc: AlertViewController, alertTitle text: String?, success: Bool) {
         //MARK: - Interactor
         let interactor = AlertInteractor(alertText: text, success: success)

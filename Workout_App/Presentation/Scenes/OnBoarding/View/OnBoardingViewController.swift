@@ -38,9 +38,7 @@ final class OnBoardingViewController: UIViewController {
         showScreen(at: pageControl.currentPage)
     }
     
-    
     //MARK: - Setup Methods
-    
     private func setupView() {
         setupCollectionView()
         makeDataRequest()

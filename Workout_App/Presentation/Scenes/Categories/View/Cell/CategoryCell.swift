@@ -8,9 +8,9 @@
 import UIKit
 
 class CategoryCell: UITableViewCell {
-
+    
     //MARK: - IBOutlets
-    @IBOutlet weak var fakeView: UIView!      
+    @IBOutlet weak var fakeView: UIView!
     @IBOutlet weak var categoryNameLabel: UILabel!
     @IBOutlet weak var categoryImageView: UIImageView!
     @IBOutlet weak var imageBackgroundView: UIView!
@@ -33,6 +33,6 @@ class CategoryCell: UITableViewCell {
     //MARK: - Methods
     func configure(with categories: CategoryViewModel) {
         categoryNameLabel.text = " \(categories.name)"
-        categoryImageView.image = categories.image        
+        categoryImageView.image = categories.image
     }
 }

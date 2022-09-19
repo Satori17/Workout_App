@@ -63,7 +63,6 @@ extension WorkoutsPresenter {
                 variations: formattedVariations(from: workoutsData, ofWorkout: $0)
             )
         }
-        
         return displayedWorkouts
     }
     
@@ -94,7 +93,7 @@ extension WorkoutsPresenter {
         let muscleBaseUrl = "https://wger.de"
         
         if isMain {
-            //Muscles
+            //Main muscles
             if let muscles = workout.muscles {
                 let musclesArray: [MuscleDisplayable] = muscles.map {
                     MuscleDisplayable(

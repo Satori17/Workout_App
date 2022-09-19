@@ -15,9 +15,11 @@ enum NotificationError: String, Error {
 
 final class NotificationManager {
     
+    //MARK: - Properties
     private let notificationCenter = UNUserNotificationCenter.current()
     private let userDefaults = UserDefaults.standard
     
+    //MARK: - Methods
     func checkUserPermission(completionHandler: @escaping (Bool) -> Void) {
         notificationCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
             guard error == nil else {
@@ -62,7 +64,7 @@ final class NotificationManager {
         }
     }
     
-    func removePendingNotification(key: String?) {        
+    func removePendingNotification(key: String?) {
         if let key = key,
            let identifier = userDefaults.string(forKey: key) {
             notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
@@ -72,7 +74,6 @@ final class NotificationManager {
     
     func deniedNotificationAlert(onVC vc: UIViewController)  {
         DispatchQueue.main.async {
-            
             let alert = UIAlertController(title: "Notifications Denied", message: "If you want to schedule workouts, please enable Notifications in Settings.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .default))
             

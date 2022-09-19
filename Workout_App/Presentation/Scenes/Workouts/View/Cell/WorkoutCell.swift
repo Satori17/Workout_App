@@ -12,7 +12,7 @@ protocol WorkoutDetailsDelegate: AnyObject {
 }
 
 class WorkoutCell: UICollectionViewCell {
-
+    
     //MARK: - IBOutlets
     @IBOutlet weak var workoutImageView: UIImageView!
     @IBOutlet weak var workoutNameLabel: UILabel!
@@ -44,7 +44,7 @@ class WorkoutCell: UICollectionViewCell {
     //MARK: - Configure Method
     func configure(with workouts: WorkoutViewModel) {
         if let mainImage = workouts.images.first?.image {
-        workoutImageView.getImage(from: mainImage)
+            workoutImageView.getImage(from: mainImage)
         }
         workoutNameLabel.text = workouts.name
         workoutDescriptionLabel.text = workouts.description

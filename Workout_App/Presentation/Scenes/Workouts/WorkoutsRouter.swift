@@ -53,7 +53,7 @@ extension WorkoutsRouter: WorkoutsRoutingLogic {
         }
     }
     
-    // MARK: Passing data
+    //MARK: - Passing Data
     func passDetailsData(ofWorkout workout: WorkoutViewModel, destination: inout WorkoutDetailDataStore) {
         destination.workout = workout
     }

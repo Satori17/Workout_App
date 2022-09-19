@@ -12,6 +12,8 @@ class Fetcher {
     static let shared = Fetcher()
     let session = URLSession(configuration: .default)
     
+    private init() {}
+    
     func fetchData<T: Decodable, A: DataUrl>(with urlBuilder: A, as model: T.Type) async throws -> T {
         guard let request = urlBuilder.urlRequest else { throw FetchingError.urlComponentError }
         let (data,response) = try await session.data(for: request)

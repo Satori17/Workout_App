@@ -10,5 +10,4 @@ import UIKit
 struct OnBoardingModel {
     var title: String
     var animatedImage: String
-    
 }

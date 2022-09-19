@@ -21,7 +21,7 @@ final class WorkoutDetailPresenter {
 }
 
 extension WorkoutDetailPresenter: WorkoutDetailPresentationLogic {
-        
+    
     func presentWorkoutDetails(response: WorkoutDetailModel.GetWorkoutDetails.Response) {
         let viewModel = WorkoutDetailModel.GetWorkoutDetails.ViewModel(workout: response.workout, isSaved: response.isSaved)
         viewController?.displayWorkoutDetails(viewModel: viewModel)

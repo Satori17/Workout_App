@@ -27,7 +27,7 @@ class HomeWorkoutCell: UITableViewCell {
     private let gradientMaskLayer2 = CAGradientLayer()
     private let timer = Timer()
     weak var delegate: notificationReceivedProtocol?
-
+    
     //MARK: - Cell Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,19 +43,17 @@ class HomeWorkoutCell: UITableViewCell {
     
     //MARK: - IBAction
     @IBAction func workoutChecked(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected        
+        sender.isSelected = !sender.isSelected
         timer.setDismissTimer(duration: 0.5) { [weak self] in
-                sender.isSelected = false
+            sender.isSelected = false
             self?.workoutNameLabel.textColor = UIColor.ColorKey.adaptive
             if let cell = self {
-            self?.delegate?.dismissCheckMark(cell: cell)
+                self?.delegate?.dismissCheckMark(cell: cell)
             }
         }
     }
     
     //MARK: - Methods
-    
-    //TODO: - FIX  To get red cells without passing object as weekday
     @objc func notificationReceived(_ sender: Notification) {
         guard let object = sender.object as? String else { return }
         delegate?.appearMissedWorkouts(cell: self, weekDay: object)

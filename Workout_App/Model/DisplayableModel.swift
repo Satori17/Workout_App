@@ -25,18 +25,21 @@ protocol Displayable {
 }
 
 extension Displayable {
+    
     var license: LicenseDisplayable {
         get {
             LicenseDisplayable()
         }
         set {}
     }
+    
     var licenseAuthor: String {
         get {
             ""
         }
         set {}
     }
+    
     var variations: [Displayable] {
         get {
             []
@@ -52,7 +55,7 @@ extension Displayable {
     }
 }
 
-//category
+//MARK: - Category
 struct CategoryDisplayable {
     let id: Int
     let name: String
@@ -68,20 +71,20 @@ struct CategoryDisplayable {
     }
 }
 
-//muscle
+//MARK: - Muscle
 struct MuscleDisplayable {
     let name: String
     let isFront: Bool
     let imageUrlMain, imageUrlSecondary: String
 }
 
-//equipment
+//MARK: - Equipment
 struct EquipmentDisplayable {
     let id: Int
     let name: String
 }
 
-//language
+//MARK: - Language
 struct LanguageDisplayable {
     let id: Int
     let shortName, fullName: String
@@ -99,7 +102,7 @@ struct LanguageDisplayable {
     }
 }
 
-//license
+//MARK: - License
 struct LicenseDisplayable {
     let licenseInfo: LanguageDisplayable
     let url: URL
@@ -116,14 +119,14 @@ struct LicenseDisplayable {
     }
 }
 
-//image
+//MARK: - Image
 struct ImageDisplayable {
     let id: Int
     let image: String
     let isMain: Bool
 }
 
-//comment
+//MARK: - Comment
 struct CommentDisplayable {
     let id, exercise: Int
     let comment: String

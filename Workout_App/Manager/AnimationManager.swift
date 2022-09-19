@@ -9,9 +9,11 @@ import UIKit
 
 final class AnimationManager: NSObject, CAAnimationDelegate {
     
+    //MARK: - Properties
     private let animation = CAKeyframeAnimation()
     private let bezierPath = UIBezierPath()
     
+    //MARK: - Animation Methods
     func shakeAnimation(ofView view: UIView) {
         animation.keyPath = AnimationKeys.positionX.rawValue
         animation.values = [0, 10, -10, 10, 0]
@@ -72,6 +74,7 @@ final class AnimationManager: NSObject, CAAnimationDelegate {
         }
     }
     
+    //MARK: - Helper Animation Methods
     func toggleAppearence(ofViews views: [UIView], actorView: UIView, completion: (() -> ())? = nil) {
         UIView.transition(with: actorView, duration: 0.3, options: .allowAnimatedContent) {
             views.forEach{ $0.alpha = $0.alpha == 1 ? 0 : 1 }

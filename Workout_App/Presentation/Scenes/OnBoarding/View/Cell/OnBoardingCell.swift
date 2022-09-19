@@ -20,7 +20,6 @@ class OnBoardingCell: UICollectionViewCell {
     }
     
     //MARK: - Setup Method
-    
     private func setupAnimatedView(withName name: String) {
         animatedView.animationSpeed = 1
         animatedView.animation = Animation.named(name)

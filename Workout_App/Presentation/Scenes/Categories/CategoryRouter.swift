@@ -32,7 +32,7 @@ extension CategoryRouter: CategoryRoutingLogic {
             workoutsVC.title = name
             WorkoutsConfigurator.configure(vc: workoutsVC, categoryId: id)
             viewController?.navigationController?.pushViewController(workoutsVC, animated: true)
-        }               
+        }
     }
     
     func routeToShowAlert(withTitle text: String, success: Bool) {

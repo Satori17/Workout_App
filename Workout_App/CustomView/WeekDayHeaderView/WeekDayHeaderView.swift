@@ -85,13 +85,13 @@ class WeekDayHeaderView: UIView {
             if let datePicker = self?.datePicker,
                let reminderBtn = self?.setReminderBtn,
                let backgroundView = self?.reminderBackgroundView {
-            self?.animationManager.toggleAppearence(ofViews: [datePicker, reminderBtn], actorView: backgroundView)
+                self?.animationManager.toggleAppearence(ofViews: [datePicker, reminderBtn], actorView: backgroundView)
                 self?.removeWeekDayNotification()
                 self?.removeScheduled(weekDay: self?.weekDayLabel.text)
             }
         }
     }
-
+    
     @IBAction func saveReminderBtnTapped(_ sender: UIButton) {
         reminderActions { [weak self] in
             self?.checkIsEditing()
@@ -226,8 +226,8 @@ class WeekDayHeaderView: UIView {
     //adding animation depend on scheduled weekDay is editing or creating new notification
     private func checkIsEditing() {
         if !isEditing {
-        animationManager.toggleAppearence(ofButtons: [cancelReminderBtn, saveReminderBtn])
-        animationManager.toggleAppearence(ofViews: [datePicker, setReminderBtn], actorView: reminderBackgroundView)
+            animationManager.toggleAppearence(ofButtons: [cancelReminderBtn, saveReminderBtn])
+            animationManager.toggleAppearence(ofViews: [datePicker, setReminderBtn], actorView: reminderBackgroundView)
         } else {
             animationManager.toggleAppearence(ofButtons: [cancelReminderBtn, saveReminderBtn])
         }

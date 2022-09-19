@@ -51,6 +51,7 @@ struct Language: Decodable {
     }
 }
 
+//MARK: - License
 struct License: Decodable {
     let id: Int?
     let shortName, fullName: String?
