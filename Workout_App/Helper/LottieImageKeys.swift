@@ -21,19 +21,19 @@ enum LottieKeys {
         image: LottieImageKeys.dumbellIcon
     )
     static let foodIcon = (
-        title: "Be on a healthy diet,",
+        title: "Be on a healthy diet",
         image: LottieImageKeys.foodIcon
     )
     static let waterBottleIcon = (
-        title: "And hydrate yourself!",
+        title: "And hydrate yourself",
         image: LottieImageKeys.waterBottleIcon
     )
     static let meditationIcon = (
-        title: "Regular workout maintains your mental health and You'll never say 'Tomorrow' again",
+        title: "Regular workout can have profoundly positive impact on your mental health",
         image: LottieImageKeys.meditationIcon
     )
     static let workoutIcon = (
-        title: "Welcome to the Workout App! Your goal here is to keep consistent,",
+        title: "Welcome to the Workout App! Your goal here is to keep consistent",
         image: LottieImageKeys.workoutIcon
     )
 }

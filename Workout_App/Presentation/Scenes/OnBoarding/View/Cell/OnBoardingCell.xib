@@ -26,8 +26,8 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPu-rO-8uJ">
-                        <rect key="frame" x="94.5" y="300" width="61.5" height="30.5"/>
-                        <fontDescription key="fontDescription" name="AvenirNext-HeavyItalic" family="Avenir Next" pointSize="22"/>
+                        <rect key="frame" x="91.5" y="300" width="67" height="33"/>
+                        <fontDescription key="fontDescription" name="AvenirNext-HeavyItalic" family="Avenir Next" pointSize="24"/>
                         <color key="textColor" name="GradientColor1"/>
                         <nil key="highlightedColor"/>
                     </label>
