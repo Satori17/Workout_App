@@ -18,13 +18,13 @@ final class AlertWorker {
     private let sets = Array(1...20).map { String($0) }
     private let reps = Array(1...50).map { String($0) }
     private let weekDays = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
+        WeekDay.monday,
+        WeekDay.tuesday,
+        WeekDay.wednesday,
+        WeekDay.thursday,
+        WeekDay.friday,
+        WeekDay.saturday,
+        WeekDay.sunday
     ]
     
     //MARK: - Storage Manager

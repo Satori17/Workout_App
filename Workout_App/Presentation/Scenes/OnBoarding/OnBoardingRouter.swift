@@ -21,7 +21,7 @@ extension OnBoardingRouter: OnBoardingRoutingLogic {
     
     //MARK: - Routing
     func routeToMainTabBar() {
-        let mainTabBar = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: Ids.tabBar)
+        let mainTabBar = UIStoryboard(name: Ids.main, bundle: nil).instantiateViewController(withIdentifier: Ids.tabBar)
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBar)
     }
 }
