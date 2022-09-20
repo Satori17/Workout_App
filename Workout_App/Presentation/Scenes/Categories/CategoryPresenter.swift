@@ -10,7 +10,7 @@ import UIKit
 protocol CategoryPresentationLogic {
     func presentCategories(response: CategoryModel.GetCategories.Response)
     func didFailPresentCategories(withError message: FetchingError)
-    func showCategoryWorkouts(response: CategoryModel.ShowCategoryWorkouts.Response)
+    func presentCategoryWorkouts(response: CategoryModel.ShowCategoryWorkouts.Response)
 }
 
 final class CategoryPresenter {
@@ -30,15 +30,14 @@ extension CategoryPresenter: CategoryPresentationLogic {
         })
         
         let viewModel = CategoryModel.GetCategories.ViewModel(displayedCategories: displayedCategories)
-        viewController?.displayCategory(from: viewModel)
+        viewController?.displayCategories(viewModel: viewModel)
     }
     
     func didFailPresentCategories(withError message: FetchingError) {
         viewController?.didFailDisplayCategory(withError: message)
     }
     
-    func showCategoryWorkouts(response: CategoryModel.ShowCategoryWorkouts.Response) {
-        let viewModel = CategoryModel.ShowCategoryWorkouts.ViewModel()
-        viewController?.displayCategoryWorkouts(viewModel: viewModel)
+    func presentCategoryWorkouts(response: CategoryModel.ShowCategoryWorkouts.Response) {        
+        viewController?.displayCategoryWorkouts(viewModel: CategoryModel.ShowCategoryWorkouts.ViewModel())
     }
 }

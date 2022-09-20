@@ -99,8 +99,18 @@ extension OnBoardingViewController: OnBoardingDisplayLogic {
     }
 }
 
-//MARK: - CollectionView Delegate, DataSource & FlowLayout
-extension OnBoardingViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//MARK: - CollectionView Delegate
+extension OnBoardingViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageWidth = scrollView.frame.size.width
+        let page = Int(floor(scrollView.contentOffset.x - pageWidth/2) / pageWidth + 1)
+        self.pageControl.page = page
+        setupContinueBtn()
+    }
+}
+
+//MARK: - CollectionView DataSource
+extension OnBoardingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         onBoardingScreens.count
@@ -113,15 +123,11 @@ extension OnBoardingViewController: UICollectionViewDelegate, UICollectionViewDa
         
         return cell
     }
-    
+}
+
+//MARK: - CollectionView FlowLayout
+extension OnBoardingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: onBoardingCollectionView.frame.width-10, height: onBoardingCollectionView.frame.height)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageWidth = scrollView.frame.size.width
-        let page = Int(floor(scrollView.contentOffset.x - pageWidth/2) / pageWidth + 1)
-        self.pageControl.page = page
-        setupContinueBtn()
     }
 }

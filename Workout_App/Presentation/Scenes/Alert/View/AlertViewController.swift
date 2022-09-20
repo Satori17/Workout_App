@@ -60,7 +60,7 @@ final class AlertViewController: UIViewController {
         setupView()
     }
     
-    //MARK: - IBAction
+    //MARK: - IBActions
     @IBAction func saveBtnTapped(_ sender: UIButton) {
         guard let sets = selectedData?.sets,
               let reps = selectedData?.reps,
@@ -90,10 +90,6 @@ final class AlertViewController: UIViewController {
         makeAlertRequest()
     }
     
-    private func makeAlertRequest() {
-        interactor?.showAlert(request: AlertModel.ShowAlert.Request())
-    }
-    
     private func setupSaveView() {
         saveView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
         saveBtn.maskCurved(highly: false)
@@ -111,6 +107,11 @@ final class AlertViewController: UIViewController {
         self.sets = data.sets
         self.reps = data.reps
         self.weekDays = data.weekDays
+    }
+    
+    //MARK: - Request Methods
+    private func makeAlertRequest() {
+        interactor?.showAlert(request: AlertModel.ShowAlert.Request())
     }
     
     //MARK: - Helper Methods
@@ -151,8 +152,40 @@ extension AlertViewController: AlertDisplayLogic {
     }
 }
 
-//MARK: - PickerView Delegate & DataSource
-extension AlertViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+//MARK: - PickerView Delegate
+extension AlertViewController: UIPickerViewDelegate {
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView {
+        case setsAndRepsPickerView:
+            switch component {
+            case 0:
+                return sets[row]
+            case 1:
+                return reps[row]
+            default:
+                return nil
+            }
+        case weekDayPickerView:
+            return weekDays[row]
+        default:
+            return nil
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let currentSet = setsAndRepsPickerView.selectedRow(inComponent: 0)
+        let currentRep = setsAndRepsPickerView.selectedRow(inComponent: 1)
+        let currentWeekDay = weekDayPickerView.selectedRow(inComponent: 0)
+        selectedData = (sets: Int(sets[currentSet]) ?? 0, reps: Int(reps[currentRep]) ?? 0, weekDay: weekDays[currentWeekDay])
+        if let repRange = selectedData?.reps {
+            repRangeAlert(repCount: repRange)
+        }
+    }
+}
+
+//MARK: - PickerView DataSource
+extension AlertViewController: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         switch pickerView {
@@ -180,34 +213,6 @@ extension AlertViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             return weekDays.count
         default:
             return 0
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch pickerView {
-        case setsAndRepsPickerView:
-            switch component {
-            case 0:
-                return sets[row]
-            case 1:
-                return reps[row]
-            default:
-                return nil
-            }
-        case weekDayPickerView:
-            return weekDays[row]
-        default:
-            return nil
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let currentSet = setsAndRepsPickerView.selectedRow(inComponent: 0)
-        let currentRep = setsAndRepsPickerView.selectedRow(inComponent: 1)
-        let currentWeekDay = weekDayPickerView.selectedRow(inComponent: 0)
-        selectedData = (sets: Int(sets[currentSet]) ?? 0, reps: Int(reps[currentRep]) ?? 0, weekDay: weekDays[currentWeekDay])
-        if let repRange = selectedData?.reps {
-            repRangeAlert(repCount: repRange)
         }
     }
 }

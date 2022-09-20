@@ -254,8 +254,8 @@ extension WorkoutDetailView: WorkoutDetailsDelegate {
     }
 }
 
-//MARK: - ColletionView Delegate, DataSource & FlowLayout
-extension WorkoutDetailView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//MARK: - ColletionView DataSource
+extension WorkoutDetailView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         workoutVariations.count
@@ -271,6 +271,10 @@ extension WorkoutDetailView: UICollectionViewDelegate, UICollectionViewDataSourc
         
         return cell
     }
+}
+
+//MARK: - CollectionView FlowLayout
+extension WorkoutDetailView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 250)

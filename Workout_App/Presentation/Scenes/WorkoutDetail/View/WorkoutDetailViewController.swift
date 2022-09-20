@@ -35,6 +35,15 @@ final class WorkoutDetailViewController: UIViewController {
     private func requestMovieDetails() {
         interactor?.showWorkoutDetails(request: WorkoutDetailModel.GetWorkoutDetails.Request())
     }
+    
+    //MARK: - Setup Methods
+    private func setupContentView(withData data: Displayable, isSaved: Bool) {
+        contentView.addWorkoutBtn.isHidden = isSaved
+        contentView.configure(with: data)
+        contentView.scrollView = self.scrollView
+        contentView.licenseDelegate = self
+        contentView.workoutSaverDelegate = self
+    }
 }
 
 //MARK: - License Delegate protocol
@@ -57,11 +66,7 @@ extension WorkoutDetailViewController: SaveWorkoutDelegate {
 extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     
     func displayWorkoutDetails(viewModel: WorkoutDetailModel.GetWorkoutDetails.ViewModel) {
-        contentView.addWorkoutBtn.isHidden = viewModel.isSaved
-        contentView.configure(with: viewModel.workout)
-        contentView.scrollView = self.scrollView
-        contentView.licenseDelegate = self
-        contentView.workoutSaverDelegate = self
+        setupContentView(withData: viewModel.workout, isSaved: viewModel.isSaved)
     }
     
     func didFailDisplayWorkoutDetails(withError message: String) {

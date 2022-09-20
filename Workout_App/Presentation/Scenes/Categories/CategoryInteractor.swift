@@ -52,6 +52,6 @@ extension CategoryInteractor: CategoryBusinessLogic {
         self.categoryId = request.id
         self.categoryName = request.name
         let response = CategoryModel.ShowCategoryWorkouts.Response()
-        presenter?.showCategoryWorkouts(response: response)
+        presenter?.presentCategoryWorkouts(response: response)
     }
 }

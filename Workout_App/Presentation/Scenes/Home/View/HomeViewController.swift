@@ -175,28 +175,11 @@ extension HomeViewController: HomeDisplayLogic {
     }
 }
 
-//MARK: - TableView Delegate & DataSource
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        homeSegmentControl.selectedSegmentIndex == 0 ? weekDays.count : missedWeekDays.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return homeSegmentControl.selectedSegmentIndex == 0 ? savedWorkouts[section].count : missedWorkouts[section].count
-    }
+//MARK: - TableView Delegate
+extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         90
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HomeWorkoutCell
-        let currentWorkout = homeSegmentControl.selectedSegmentIndex == 0 ? savedWorkouts[indexPath.section][indexPath.row] : missedWorkouts[indexPath.section][indexPath.row]
-        cell.configure(with: currentWorkout)
-        cell.delegate = self
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -221,6 +204,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         homeSegmentControl.selectedSegmentIndex == 0 ? .delete : .none
+    }
+}
+
+//MARK: - TableView DataSource
+extension HomeViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        homeSegmentControl.selectedSegmentIndex == 0 ? weekDays.count : missedWeekDays.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return homeSegmentControl.selectedSegmentIndex == 0 ? savedWorkouts[section].count : missedWorkouts[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HomeWorkoutCell
+        let currentWorkout = homeSegmentControl.selectedSegmentIndex == 0 ? savedWorkouts[indexPath.section][indexPath.row] : missedWorkouts[indexPath.section][indexPath.row]
+        cell.configure(with: currentWorkout)
+        cell.delegate = self
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

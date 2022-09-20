@@ -108,8 +108,22 @@ extension WorkoutsViewController: WorkoutsDisplayLogic {
     }
 }
 
-//MARK: - CollectionView Delegate, DataSource & FlowLayout
-extension WorkoutsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//MARK: - CollectionView Delegate
+extension WorkoutsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let currentWorkout = workouts[indexPath.row]
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: { [weak self] in
+            return self?.router?.instantiateDetailsVC(withWorkout: currentWorkout)
+        }, actionProvider: { action in
+            return self.makeContextMenu(for: currentWorkout)
+        })
+    }
+}
+
+//MARK: - CollectionView DataSource
+extension WorkoutsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         workouts.count
@@ -123,16 +137,10 @@ extension WorkoutsViewController: UICollectionViewDelegate, UICollectionViewData
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let currentWorkout = workouts[indexPath.row]
-        
-        return UIContextMenuConfiguration(identifier: nil, previewProvider: { [weak self] in
-            return self?.router?.instantiateDetailsVC(withWorkout: currentWorkout)
-        }, actionProvider: { action in
-            return self.makeContextMenu(for: currentWorkout)
-        })
-    }
+}
+
+//MARK: - CollectionView FlowLayout
+extension WorkoutsViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return UIDevice.current.orientation.isLandscape ? CGSize(width: view.frame.width/4, height: view.frame.height/2.7) : CGSize(width: view.frame.width/2.6, height: view.frame.height/4)

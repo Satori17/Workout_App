@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoryDisplayLogic: AnyObject {
-    func displayCategory(from viewModel: CategoryModel.GetCategories.ViewModel)
+    func displayCategories(viewModel: CategoryModel.GetCategories.ViewModel)
     func didFailDisplayCategory(withError message: FetchingError)
     func displayCategoryWorkouts(viewModel: CategoryModel.ShowCategoryWorkouts.ViewModel)
 }
@@ -62,7 +62,7 @@ final class CategoryViewController: UIViewController {
 //MARK: - Display Logic protocol
 extension CategoryViewController: CategoryDisplayLogic {    
     
-    func displayCategory(from viewModel: CategoryModel.GetCategories.ViewModel) {
+    func displayCategories(viewModel: CategoryModel.GetCategories.ViewModel) {
         setupCategory(data: viewModel.displayedCategories)
     }
     
@@ -75,15 +75,25 @@ extension CategoryViewController: CategoryDisplayLogic {
     }
 }
 
-//MARK: - TableView Delegate & DataSource
-extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allCategories.count
-    }
+//MARK: - TableView Delegate
+extension CategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         130
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCategory = allCategories[indexPath.row]
+        let request = CategoryModel.ShowCategoryWorkouts.Request(id: currentCategory.id, name: currentCategory.name)
+        interactor?.showCategoryWorkouts(request: request)
+    }
+}
+
+//MARK: - TableView DataSource
+extension CategoryViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        allCategories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,11 +102,5 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: currentCategory)
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCategory = allCategories[indexPath.row]
-        let request = CategoryModel.ShowCategoryWorkouts.Request(id: currentCategory.id, name: currentCategory.name)
-        interactor?.showCategoryWorkouts(request: request)
     }
 }
