@@ -19,6 +19,7 @@ final class OnBoardingInteractor {
     var worker: OnBoardingWorkerLogic?
 }
 
+//MARK: - Business Logic protocol
 extension OnBoardingInteractor: OnBoardingBusinessLogic {
     
     func getOnBoardingScreens(request: OnBoarding.getScreen.Request) {

@@ -19,13 +19,14 @@ final class CategoryPresenter {
     weak var viewController: CategoryDisplayLogic?
 }
 
+//MARK: - Presentation Logic protocol
 extension CategoryPresenter: CategoryPresentationLogic {
     
     func presentCategories(response: CategoryModel.GetCategories.Response) {
         let displayedCategories: [CategoryViewModel] = response.categories.map({
             CategoryViewModel(
                 id: $0.id ?? 0,
-                name: $0.name ?? ""
+                name: $0.name ?? CustomTitle.empty
             )
         })
         

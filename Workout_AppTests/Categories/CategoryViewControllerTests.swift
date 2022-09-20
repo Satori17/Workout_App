@@ -63,7 +63,7 @@ final class CategoryViewControllerTests: XCTestCase {
         XCTAssert(tableViewSpy.reloadDataCalled, "getCategories() should reload the tableView")
     }
 
-    func testdidFailDisplayCategoryShouldCallrouteToShowAlert() {
+    func testdidFailDisplayCategoryShouldCallRouteToShowAlert() {
         //Given
         loadView()
         
@@ -85,7 +85,7 @@ final class CategoryViewControllerTests: XCTestCase {
         sut.interactor = categoryBusinessLogicSpy
         
         //When
-        categoryBusinessLogicSpy.showCategoryWorkouts(request: CategoryModel.ShowCategoryWorkouts.Request(id: 0, name: ""))
+        categoryBusinessLogicSpy.showCategoryWorkouts(request: CategoryModel.ShowCategoryWorkouts.Request(id: 0, name: CustomTitle.empty))
         
         //Then
         XCTAssert(categoryBusinessLogicSpy.showCategoryWorkoutsCalled, "showWorkoutCategories() should show categorized workouts")
@@ -112,10 +112,8 @@ final class CategoryViewControllerTests: XCTestCase {
 //MARK: - Test Doubles
 private final class TableViewSpy: UITableView {
     
-    // MARK: Method call condition
     var reloadDataCalled = false
 
-    // MARK: Spied Methods
     override func reloadData() {
         super .reloadData()
         reloadDataCalled = true
@@ -143,7 +141,7 @@ private final class CategoryRoutingLogicSpy: CategoryRoutingLogic, CategoryDataP
         routeToWorkoutsCalled = true
     }
     
-    var routeToShowAlertCalled = false//
+    var routeToShowAlertCalled = false
     func routeToShowAlert(withTitle text: String, success: Bool) {
         routeToShowAlertCalled = true
     }

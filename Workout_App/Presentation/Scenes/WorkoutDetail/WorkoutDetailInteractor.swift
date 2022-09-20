@@ -17,7 +17,7 @@ protocol WorkoutDetailDataStore {
     var workout: Displayable? { get set }
 }
 
-final class WorkoutDetailInteractor {
+final class WorkoutDetailInteractor: WorkoutDetailDataStore {
     
     //MARK: - Clean Components
     var presenter: WorkoutDetailPresentationLogic?
@@ -33,7 +33,8 @@ final class WorkoutDetailInteractor {
     }
 }
 
-extension WorkoutDetailInteractor: WorkoutDetailBusinessLogic, WorkoutDetailDataStore {
+//MARK: - Business Logic protocol
+extension WorkoutDetailInteractor: WorkoutDetailBusinessLogic {
     
     func showWorkoutDetails(request: WorkoutDetailModel.GetWorkoutDetails.Request) {
         guard let workout = workout else {

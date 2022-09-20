@@ -20,6 +20,7 @@ final class WorkoutDetailPresenter {
     weak var viewController: WorkoutDetailDisplayLogic?
 }
 
+//MARK: - Presentation Logic protocol
 extension WorkoutDetailPresenter: WorkoutDetailPresentationLogic {
     
     func presentWorkoutDetails(response: WorkoutDetailModel.GetWorkoutDetails.Response) {

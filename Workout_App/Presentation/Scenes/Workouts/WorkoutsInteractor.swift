@@ -36,6 +36,7 @@ final class WorkoutsInteractor: WorkoutsDataStore {
     }
 }
 
+//MARK: - Business Logic protocol
 extension WorkoutsInteractor: WorkoutsBusinessLogic {
     
     func getWorkouts(request: WorkoutModel.GetWorkouts.Request) {

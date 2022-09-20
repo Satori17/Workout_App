@@ -18,6 +18,7 @@ final class OnBoardingPresenter {
     weak var viewController: OnBoardingDisplayLogic?
 }
 
+//MARK: - Presentation Logic protocol
 extension OnBoardingPresenter: OnBoardingPresentationLogic {
     
     func presentOnBoardingScreens(response: OnBoarding.getScreen.Response) {

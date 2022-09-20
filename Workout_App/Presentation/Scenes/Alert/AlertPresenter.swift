@@ -18,6 +18,7 @@ final class AlertPresenter {
     weak var viewController: AlertDisplayLogic?
 }
 
+//MARK: - Presentation Logic protocol
 extension AlertPresenter: AlertPresentationLogic {
     
     func presentWorkoutIntensityData(response: AlertModel.GetWorkoutIntensity.Response) {

@@ -8,11 +8,11 @@
 import UIKit
 
 protocol HomeBusinessLogic {
-    func getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request)
+    func checkUserPermission(request: HomeModel.checkUserPermission.Request)
+    func getCoreWorkouts(request: HomeModel.GetSavedWorkouts.Request)
     func getSavedWorkoutDetails(request: HomeModel.ShowSavedWorkoutDetails.Request)
     func removeWorkout(withId id: Int)
     func toggleMissedWorkout(_ isMissed: Bool, weekDay: String, id: Int)
-    func getMissedWorkouts(request: HomeModel.getMissedWorkouts.Request)
 }
 
 protocol HomeDataStore {
@@ -29,18 +29,17 @@ final class HomeInteractor: HomeDataStore {
     private(set) var selectedSavedWorkout: CoreWorkoutViewModel?
 }
 
+//MARK: - Business Logic protocol
 extension HomeInteractor: HomeBusinessLogic {
     
-    func getSavedWorkouts(request: HomeModel.GetSavedWorkouts.Request) {
-        worker?.fetchSavedWorkouts(completion: { result in
-            switch result {
-            case .success(let savedWorkouts):
-                let response = HomeModel.GetSavedWorkouts.Response(savedWorkouts: savedWorkouts)
-                presenter?.presentSavedWorkouts(response: response)
-            case .failure(let error):
-                presenter?.didFailPresentSavedWorkouts(withError: error)
-            }
-        })
+    func checkUserPermission(request: HomeModel.checkUserPermission.Request) {
+        if !request.granted {
+            presenter?.presentCheckUserPermission(response: HomeModel.checkUserPermission.Response())
+        }
+    }
+    
+    func getCoreWorkouts(request: HomeModel.GetSavedWorkouts.Request) {
+        request.index == 0 ? getSavedWorkouts() : getMissedWorkouts()
     }
     
     func getSavedWorkoutDetails(request: HomeModel.ShowSavedWorkoutDetails.Request) {
@@ -65,15 +64,31 @@ extension HomeInteractor: HomeBusinessLogic {
             presenter?.didFailPresentToggleMissedWorkout(withError: error)
         })
     }
+}
+
+//MARK: - Helper methods for saved and missed workouts
+extension HomeInteractor {
     
-    func getMissedWorkouts(request: HomeModel.getMissedWorkouts.Request) {
+    private func getSavedWorkouts() {
+        worker?.fetchSavedWorkouts(completion: { result in
+            switch result {
+            case .success(let savedWorkouts):
+                let response = HomeModel.GetSavedWorkouts.Response(savedWorkouts: savedWorkouts)
+                presenter?.presentCoreWorkouts(response: response)
+            case .failure(let error):
+                presenter?.didFailPresentSavedWorkouts(withError: error)
+            }
+        })
+    }
+    
+    private func getMissedWorkouts() {
         worker?.fetchMissedWorkouts(completion: { result in
             switch result {
             case .success(let missedWorkouts):
-                let response = HomeModel.getMissedWorkouts.Response(missedWorkouts: missedWorkouts)
-                presenter?.presentMissedWorkouts(response: response)
+                let response = HomeModel.GetSavedWorkouts.Response(savedWorkouts: missedWorkouts)
+                presenter?.presentCoreWorkouts(response: response)
             case .failure(let error):
-                presenter?.didFailPresentMissedWorkouts(withError: error)
+                presenter?.didFailPresentSavedWorkouts(withError: error)
             }
         })
     }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5816612428DA1EF5002955D4 /* Workout_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5816612228DA1EF5002955D4 /* Workout_AppUITests.swift */; };
+		5816612528DA1EF5002955D4 /* Workout_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5816612328DA1EF5002955D4 /* Workout_AppUITestsLaunchTests.swift */; };
+		5816612928DA4BCD002955D4 /* CustomErrorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5816612828DA4BCD002955D4 /* CustomErrorHelper.swift */; };
+		5816612B28DA4CB9002955D4 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5816612A28DA4CB9002955D4 /* NetworkHelper.swift */; };
 		582AFADD28C3D219004BDF2D /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582AFADC28C3D219004BDF2D /* UIScrollView+Extension.swift */; };
 		582AFADF28C3F31A004BDF2D /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582AFADE28C3F31A004BDF2D /* FetchingError.swift */; };
 		583005A628C685E700912DA8 /* DisplayableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583005A528C685E700912DA8 /* DisplayableModel.swift */; };
@@ -98,6 +102,7 @@
 		587E6ADE28D9B4D700ADB9CC /* CategoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6ADD28D9B4D700ADB9CC /* CategoryInteractorTests.swift */; };
 		587E6AE028D9C54900ADB9CC /* CategoryRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6ADF28D9C54900ADB9CC /* CategoryRouterTests.swift */; };
 		587E6AE428D9CE7400ADB9CC /* CategoryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AE328D9CE7400ADB9CC /* CategoryPresenterTests.swift */; };
+		587E6AE828D9ED9000ADB9CC /* WorkoutsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AE728D9ED9000ADB9CC /* WorkoutsViewControllerTests.swift */; };
 		58AFF19428D3C18B007740D6 /* NSPredicateKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AFF19328D3C18B007740D6 /* NSPredicateKeys.swift */; };
 		58B41C8928CF48160027044F /* WeekDayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B41C8828CF48160027044F /* WeekDayModel.swift */; };
 		58B41C8C28CF51560027044F /* CoreWeekDay+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B41C8A28CF51560027044F /* CoreWeekDay+CoreDataClass.swift */; };
@@ -155,6 +160,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5816612228DA1EF5002955D4 /* Workout_AppUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout_AppUITests.swift; sourceTree = "<group>"; };
+		5816612328DA1EF5002955D4 /* Workout_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Workout_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5816612828DA4BCD002955D4 /* CustomErrorHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorHelper.swift; sourceTree = "<group>"; };
+		5816612A28DA4CB9002955D4 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		582AFADC28C3D219004BDF2D /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		582AFADE28C3F31A004BDF2D /* FetchingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
 		583005A528C685E700912DA8 /* DisplayableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayableModel.swift; sourceTree = "<group>"; };
@@ -249,6 +258,7 @@
 		587E6ADD28D9B4D700ADB9CC /* CategoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInteractorTests.swift; sourceTree = "<group>"; };
 		587E6ADF28D9C54900ADB9CC /* CategoryRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRouterTests.swift; sourceTree = "<group>"; };
 		587E6AE328D9CE7400ADB9CC /* CategoryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenterTests.swift; sourceTree = "<group>"; };
+		587E6AE728D9ED9000ADB9CC /* WorkoutsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsViewControllerTests.swift; sourceTree = "<group>"; };
 		58AFF19328D3C18B007740D6 /* NSPredicateKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPredicateKeys.swift; sourceTree = "<group>"; };
 		58B41C8828CF48160027044F /* WeekDayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekDayModel.swift; sourceTree = "<group>"; };
 		58B41C8A28CF51560027044F /* CoreWeekDay+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreWeekDay+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -314,6 +324,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5816612128DA1ED7002955D4 /* Workout_AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5816612228DA1EF5002955D4 /* Workout_AppUITests.swift */,
+				5816612328DA1EF5002955D4 /* Workout_AppUITestsLaunchTests.swift */,
+			);
+			path = Workout_AppUITests;
+			sourceTree = "<group>";
+		};
 		583005C328C8E08000912DA8 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +443,7 @@
 				587DB48D28CD1584007D704E /* ColorHelper.swift */,
 				58B41C9528D283820027044F /* TitleHelper.swift */,
 				58B41C9728D2858C0027044F /* FormatHelper.swift */,
+				5816612828DA4BCD002955D4 /* CustomErrorHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -571,6 +591,7 @@
 			children = (
 				5877DC4C288859DF003A3086 /* Workout_App */,
 				5877DC66288859E1003A3086 /* Workout_AppTests */,
+				5816612128DA1ED7002955D4 /* Workout_AppUITests */,
 				5877DC4B288859DF003A3086 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -607,6 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				587E6ADB28D931FC00ADB9CC /* Categories */,
+				587E6AE528D9EB9100ADB9CC /* Workouts */,
 			);
 			path = Workout_AppTests;
 			sourceTree = "<group>";
@@ -649,6 +671,14 @@
 				587E6ADD28D9B4D700ADB9CC /* CategoryInteractorTests.swift */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		587E6AE528D9EB9100ADB9CC /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				587E6AE728D9ED9000ADB9CC /* WorkoutsViewControllerTests.swift */,
+			);
+			path = Workouts;
 			sourceTree = "<group>";
 		};
 		58B41C7B28CF428D0027044F /* WeekDay */ = {
@@ -782,6 +812,7 @@
 		58E9869B28987CE000C1F69F /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5816612A28DA4CB9002955D4 /* NetworkHelper.swift */,
 				58E9869C28987D6C00C1F69F /* BaseUrl.swift */,
 				58F9A06228A9B47D0001EE6E /* Request.swift */,
 				58E986A328987EC000C1F69F /* CategoryUrlBuilder.swift */,
@@ -1005,6 +1036,7 @@
 				583421E528C6282C00ECF814 /* CoreMuscle+CoreDataClass.swift in Sources */,
 				587E6AC328D7307D00ADB9CC /* LottieImageKeys.swift in Sources */,
 				58D8AC95289A9DF1008BF876 /* TabBarController.swift in Sources */,
+				5816612B28DA4CB9002955D4 /* NetworkHelper.swift in Sources */,
 				5845915328C4BFF90055AE0A /* HomeModels.swift in Sources */,
 				587DB48E28CD1584007D704E /* ColorHelper.swift in Sources */,
 				58D8ACA7289B1D06008BF876 /* WorkoutsViewController.swift in Sources */,
@@ -1031,6 +1063,7 @@
 				5845915228C4BFF90055AE0A /* HomeRouter.swift in Sources */,
 				582AFADD28C3D219004BDF2D /* UIScrollView+Extension.swift in Sources */,
 				587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */,
+				5816612928DA4BCD002955D4 /* CustomErrorHelper.swift in Sources */,
 				5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */,
 				583005CE28C8E0A300912DA8 /* AlertViewController.swift in Sources */,
 				5863354C28D66610000F5A82 /* OnBoardingModels.swift in Sources */,
@@ -1091,6 +1124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587E6AE828D9ED9000ADB9CC /* WorkoutsViewControllerTests.swift in Sources */,
 				587E6AE428D9CE7400ADB9CC /* CategoryPresenterTests.swift in Sources */,
 				587E6ADE28D9B4D700ADB9CC /* CategoryInteractorTests.swift in Sources */,
 				587E6AD828D9074500ADB9CC /* CategoryViewControllerTests.swift in Sources */,
@@ -1102,6 +1136,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5816612528DA1EF5002955D4 /* Workout_AppUITestsLaunchTests.swift in Sources */,
+				5816612428DA1EF5002955D4 /* Workout_AppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

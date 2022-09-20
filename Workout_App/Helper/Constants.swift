@@ -16,6 +16,7 @@ enum Ids {
     static let category = "CategoryViewController"
     static let workouts = "WorkoutsViewController"
     static let workoutDetail = "WorkoutDetailViewController"
+    static let WorkoutDetailView = "WorkoutDetailView"
     static let alert = "AlertViewController"
     static let headerView = "WeekDayHeaderView"
 }

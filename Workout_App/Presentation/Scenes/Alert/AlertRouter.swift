@@ -7,21 +7,14 @@
 
 import UIKit
 
-protocol AlertRoutingLogic { }
-
 protocol AlertDataPassing {
     var dataStore: AlertDataStore? { get }
 }
 
-final class AlertRouter {
+final class AlertRouter: AlertDataPassing {
     //MARK: - Clean Components
     weak var viewController: AlertViewController?
     
     //MARK: - DataStore
     var dataStore: AlertDataStore?
-    
-}
-
-extension AlertRouter: AlertRoutingLogic, AlertDataPassing {
-    
 }

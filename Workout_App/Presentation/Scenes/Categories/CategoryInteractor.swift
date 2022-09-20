@@ -28,6 +28,7 @@ final class CategoryInteractor: CategoryDataStore {
     private(set) var categoryName: String?
 }
 
+//MARK: - Business Logic protocol
 extension CategoryInteractor: CategoryBusinessLogic {
     
     func getCategories(request: CategoryModel.GetCategories.Request) {

@@ -8,13 +8,12 @@
 import UIKit
 
 protocol HomePresentationLogic {
-    func presentSavedWorkouts(response: HomeModel.GetSavedWorkouts.Response)
+    func presentCheckUserPermission(response: HomeModel.checkUserPermission.Response)
+    func presentCoreWorkouts(response: HomeModel.GetSavedWorkouts.Response)
     func didFailPresentSavedWorkouts(withError message: StorageManagerError)
     func presentSavedWorkoutDetails(response: HomeModel.ShowSavedWorkoutDetails.Response)
     func presentRemoveWorkoutAlert(withMessage text: String)
     func didFailPresentRemoveWorkoutAlert(withError message: StorageManagerError)
-    func presentMissedWorkouts(response: HomeModel.getMissedWorkouts.Response)
-    func didFailPresentMissedWorkouts(withError message: StorageManagerError)
     func didFailPresentToggleMissedWorkout(withError message: StorageManagerError)
 }
 
@@ -24,13 +23,18 @@ final class HomePresenter {
     weak var viewController: HomeDisplayLogic?
 }
 
+//MARK: - Presentation Logic protocol
 extension HomePresenter: HomePresentationLogic {
     
-    func presentSavedWorkouts(response: HomeModel.GetSavedWorkouts.Response) {
+    func presentCheckUserPermission(response: HomeModel.checkUserPermission.Response) {
+        viewController?.displayCheckUserPermission(viewModel: HomeModel.checkUserPermission.ViewModel())
+    }
+    
+    func presentCoreWorkouts(response: HomeModel.GetSavedWorkouts.Response) {
         let displayedCoreWorkouts = getDisplayed(coreWorkouts: response.savedWorkouts)
         let data = getFinalWorkoutsAndWeekDays(displayedWorkouts: displayedCoreWorkouts)
         let viewModel = HomeModel.GetSavedWorkouts.ViewModel(displayedCoreWorkouts: data.workouts, weekDays: data.weekDays)
-        viewController?.displaySavedWorkouts(viewModel: viewModel)
+        viewController?.displayCoreWorkouts(viewModel: viewModel)
     }
     
     func didFailPresentSavedWorkouts(withError message: StorageManagerError) {
@@ -48,20 +52,6 @@ extension HomePresenter: HomePresentationLogic {
     
     func didFailPresentRemoveWorkoutAlert(withError message: StorageManagerError) {
         viewController?.didFailDisplayRemoveWorkoutAlert(withError: message)
-    }
-    
-    func presentMissedWorkouts(response: HomeModel.getMissedWorkouts.Response) {
-        let displayedMissedWorkouts = getDisplayed(coreWorkouts: response.missedWorkouts)
-        let data = getFinalWorkoutsAndWeekDays(displayedWorkouts: displayedMissedWorkouts)
-        let viewModel = HomeModel.getMissedWorkouts.ViewModel(
-            displayedMissedWorkouts: data.workouts,
-            missedWorkoutWeekDays: data.weekDays
-        )
-        viewController?.displayMissedWorkouts(viewModel: viewModel)
-    }
-    
-    func didFailPresentMissedWorkouts(withError message: StorageManagerError) {
-        viewController?.didFailDisplayMissedWorkouts(withError: message)
     }
     
     func didFailPresentToggleMissedWorkout(withError message: StorageManagerError) {
@@ -116,11 +106,7 @@ extension HomePresenter {
     
     private func filterWorkoutsByWeekDay(workouts: [CoreWorkoutViewModel]) -> [[CoreWorkoutViewModel]] {
         let workoutsByWeek: [[CoreWorkoutViewModel]] = workouts.reduce(into: []) {
-            if $0.last?.last?.weekDay.name == $1.weekDay.name {
-                $0[$0.index(before: $0.endIndex)].append($1)
-            } else {
-                $0.append([$1])
-            }
+            $0.last?.last?.weekDay.name == $1.weekDay.name ? $0[$0.index(before: $0.endIndex)].append($1) : $0.append([$1])
         }
         return workoutsByWeek
     }
@@ -133,8 +119,8 @@ extension HomePresenter {
         let displayedCoreWorkouts = coreWorkouts.map({
             CoreWorkoutViewModel(
                 id: Int($0.id),
-                name: $0.name ?? "",
-                description: $0.descriptionText ?? "",
+                name: $0.name ?? CustomTitle.empty,
+                description: $0.descriptionText ?? CustomTitle.empty,
                 category: formattedCategories(ofWorkout: $0),
                 muscles: formattedMuscles(ofWorkout: $0, isMain: true),
                 musclesSecondary: formattedMuscles(ofWorkout: $0, isMain: false),
@@ -172,10 +158,10 @@ extension HomePresenter {
             if let muscles = workout.muscles?.array as? [CoreMuscle] {
                 let musclesArray = muscles.map({
                     MuscleDisplayable(
-                        name: $0.name ?? "",
+                        name: $0.name ?? CustomTitle.empty,
                         isFront: $0.isFront,
-                        imageUrlMain: $0.imageUrlMain ?? "",
-                        imageUrlSecondary: $0.imageUrlSecondary ?? ""
+                        imageUrlMain: $0.imageUrlMain ?? CustomTitle.empty,
+                        imageUrlSecondary: $0.imageUrlSecondary ?? CustomTitle.empty
                     )
                 })
                 
@@ -186,10 +172,10 @@ extension HomePresenter {
             if let musclesSecondary = workout.musclesSecondary?.array as? [CoreMuscle] {
                 let secondaryMusclesArray = musclesSecondary.map({
                     MuscleDisplayable(
-                        name: $0.name ?? "",
+                        name: $0.name ?? CustomTitle.empty,
                         isFront: $0.isFront,
-                        imageUrlMain: $0.imageUrlMain ?? "",
-                        imageUrlSecondary: $0.imageUrlSecondary ?? ""
+                        imageUrlMain: $0.imageUrlMain ?? CustomTitle.empty,
+                        imageUrlSecondary: $0.imageUrlSecondary ?? CustomTitle.empty
                     )
                 })
                 
@@ -205,7 +191,7 @@ extension HomePresenter {
             let equipmentsArray = equipment.map({
                 EquipmentDisplayable(
                     id: Int($0.id),
-                    name: $0.name ?? ""
+                    name: $0.name ?? CustomTitle.empty
                 )
             })
             
@@ -235,7 +221,7 @@ extension HomePresenter {
             let imagesArray = images.map({
                 ImageDisplayable(
                     id: Int($0.id),
-                    image: $0.image ?? "",
+                    image: $0.image ?? CustomTitle.empty,
                     isMain: $0.isMain
                 )
             })
@@ -252,7 +238,7 @@ extension HomePresenter {
                 CommentDisplayable(
                     id: Int($0.id),
                     exercise: Int($0.exercise),
-                    comment: $0.comment ?? ""
+                    comment: $0.comment ?? CustomTitle.empty
                 )
             })
             
@@ -266,9 +252,9 @@ extension HomePresenter {
         if let name = workout.weekDay?.name {
             return WeekDayModel(
                 name: name,
-                scheduledTime: workout.weekDay?.scheduledTime ?? "+"
+                scheduledTime: workout.weekDay?.scheduledTime ?? CustomTitle.plus
             )
         }
-        return WeekDayModel(name: "Unknown")
+        return WeekDayModel(name: CustomTitle.unknown)
     }
 }

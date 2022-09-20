@@ -73,7 +73,7 @@ final class WorkoutsViewController: UIViewController {
             let request = WorkoutModel.ShowWorkoutDetails.Request(workout: workout, isAnimated: false)
             self?.interactor?.showWorkoutDetails(request: request)
         }
-        return UIMenu(title: "", children: [addWorkout, goToWorkoutDetails])
+        return UIMenu(title: CustomTitle.empty, children: [addWorkout, goToWorkoutDetails])
     }
 }
 

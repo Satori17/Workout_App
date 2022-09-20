@@ -9,6 +9,11 @@ import UIKit
 import SDWebImage
 
 extension UIImageView {
+    
+    enum ImageKey {
+        static let placeholder = "image_placeholder"
+    }
+    
     func loadFrom(URLAddress: String) {
         guard let url = URL(string: URLAddress) else { return }
         DispatchQueue.main.async { [weak self] in
@@ -17,7 +22,7 @@ extension UIImageView {
     }
     
     func getImage(from path: String) {
-        let placeholder = "image_placeholder"
+        let placeholder = ImageKey.placeholder
         guard path != placeholder else {
             self.image = UIImage(named: placeholder)
             self.contentMode = .scaleAspectFill

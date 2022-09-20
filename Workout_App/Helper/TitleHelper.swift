@@ -20,3 +20,10 @@ enum ButtonTitle {
     static let continueNext = "Continue"
     static let getStarted = "Get Started"
 }
+
+enum CustomTitle {
+    static let unknown = "Unknown"
+    static let plus = "+"
+    static let empty = ""
+    static let htmlSymbols = "<[^>]+>"
+}

@@ -9,7 +9,6 @@ import UIKit
 
 protocol WorkoutsRoutingLogic {
     func instantiateDetailsVC(withWorkout workout: WorkoutViewModel) -> WorkoutDetailViewController
-    func passDetailsData(ofWorkout workout: WorkoutViewModel, destination: inout WorkoutDetailDataStore)
     func routeToWorkoutDetails()
     func routeToSaveAlert()
     func routeToShowAlert(withTitle text: String, success: Bool)

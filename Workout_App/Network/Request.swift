@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum RequestType: String {
-    case GET = "GET"
-    case POST = "POST"
-}
-
 class Request {
     
     func url(requestType type: RequestType = .GET, urlComponent: inout URLComponents) -> URLRequest? {

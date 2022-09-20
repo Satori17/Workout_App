@@ -11,7 +11,6 @@ protocol WorkoutDetailDisplayLogic: AnyObject {
     func displayWorkoutDetails(viewModel: WorkoutDetailModel.GetWorkoutDetails.ViewModel)
     func didFailDisplayWorkoutDetails(withError message: String)
     func displayWorkoutLicense(viewModel: WorkoutDetailModel.GetLicense.ViewModel)
-    func didFailDisplayWorkoutLicense(withError message: String)
     func displaySaveAlert(viewModel: WorkoutDetailModel.ShowSaveAlert.ViewModel)
 }
 
@@ -75,10 +74,6 @@ extension WorkoutDetailViewController: WorkoutDetailDisplayLogic {
     
     func displayWorkoutLicense(viewModel: WorkoutDetailModel.GetLicense.ViewModel) {
         router?.routeToWorkoutLicense()
-    }
-    
-    func didFailDisplayWorkoutLicense(withError message: String) {
-        router?.routeToShowAlert(withTitle: message, success: false)
     }
     
     func displaySaveAlert(viewModel: WorkoutDetailModel.ShowSaveAlert.ViewModel) {

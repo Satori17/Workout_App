@@ -50,7 +50,7 @@ final class CategoryRouterTests: XCTestCase {
         //Given
         
         //When
-        sut.routeToShowAlert(withTitle: "", success: false)
+        sut.routeToShowAlert(withTitle: CustomTitle.empty, success: false)
         
         //Then
             XCTAssertTrue(self.source.presentCalled)

@@ -18,20 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        
-        if let _ = userDefaults.string(forKey: UserDefaultKey.appLaunched.rawValue) {
-            let mainTabBar = UIStoryboard(name: Ids.main, bundle: nil).instantiateViewController(withIdentifier: Ids.tabBar)
-            window?.rootViewController = mainTabBar
-            window?.makeKeyAndVisible()
-        } else {
-            if let initialVC = UIStoryboard(name: Ids.onBoarding, bundle: nil).instantiateViewController(withIdentifier: Ids.onBoarding) as? OnBoardingViewController {
-                OnBoardingConfigurator.configure(vc: initialVC)
-                window?.rootViewController = initialVC
-                window?.makeKeyAndVisible()
-                //TODO: - FIX  Uncomment this
-                //userDefaults.setValue(true, forKey: UserDefaultKey.appLaunched.rawValue)
-            }
-        }
+        switchRootViewController(window: window)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -66,6 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+//MARK: - Change Root ViewController helper
 extension SceneDelegate {
     
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {
@@ -74,5 +62,21 @@ extension SceneDelegate {
         }
         window.rootViewController = vc
         animationManager.animateTransition(ofView: window)
+    }
+    
+    private func switchRootViewController(window: UIWindow?) {
+        if let _ = userDefaults.string(forKey: UserDefaultKey.appLaunched.rawValue) {
+            let mainTabBar = UIStoryboard(name: Ids.main, bundle: nil).instantiateViewController(withIdentifier: Ids.tabBar)
+            window?.rootViewController = mainTabBar
+            window?.makeKeyAndVisible()
+        } else {
+            if let initialVC = UIStoryboard(name: Ids.onBoarding, bundle: nil).instantiateViewController(withIdentifier: Ids.onBoarding) as? OnBoardingViewController {
+                OnBoardingConfigurator.configure(vc: initialVC)
+                window?.rootViewController = initialVC
+                window?.makeKeyAndVisible()
+                //TODO: - FIX  Uncomment this
+                //userDefaults.setValue(true, forKey: UserDefaultKey.appLaunched.rawValue)
+            }
+        }
     }
 }

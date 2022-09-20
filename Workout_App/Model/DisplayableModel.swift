@@ -35,7 +35,7 @@ extension Displayable {
     
     var licenseAuthor: String {
         get {
-            ""
+            CustomTitle.empty
         }
         set {}
     }
@@ -67,7 +67,7 @@ struct CategoryDisplayable {
     
     init() {
         id = 0
-        name = "error getting category name"
+        name = CategoryError.name
     }
 }
 
@@ -97,8 +97,8 @@ struct LanguageDisplayable {
     
     init() {
         id = 0
-        shortName = "error getting shortName"
-        fullName = "error getting fullName"
+        shortName = LanguageError.shortName
+        fullName = LanguageError.fullName
     }
 }
 
@@ -113,9 +113,9 @@ struct LicenseDisplayable {
     }
     
     init() {
-        let defaultUrlString = "https://via.placeholder.com/600x400?text=Error+Getting+License"
+        let defaultUrlString = BaseUrl.licensePlaceholderUrl.rawValue
         licenseInfo = LanguageDisplayable()
-        url = URL(string: defaultUrlString) ?? URL(fileURLWithPath: "")
+        url = URL(string: defaultUrlString) ?? URL(fileURLWithPath: CustomTitle.empty)
     }
 }
 

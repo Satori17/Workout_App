@@ -65,7 +65,6 @@ final class CategoryPresenterTests: XCTestCase {
             XCTAssertTrue(categoryDisplayLogicSpy.displayCategoryWorkoutsCalled)
         }
     }
-    
 }
 
 //MARK: - Test Doubles

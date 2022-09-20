@@ -14,7 +14,9 @@ enum HomeModel {
     //MARK: - Get Saved Workouts Use Case
     enum GetSavedWorkouts {
         
-        struct Request { }
+        struct Request {
+            let index: Int
+        }
         
         struct Response {
             let savedWorkouts: [CoreWorkout]
@@ -55,18 +57,15 @@ enum HomeModel {
         struct ViewModel { }
     }
     
-    //MARK: - Get Missed Workouts Use Case
-    enum getMissedWorkouts {
+    //MARK: - Check User Permission Use Case
+    enum checkUserPermission {
         
-        struct Request { }
-        
-        struct Response {
-            let missedWorkouts: [CoreWorkout]
+        struct Request {
+            let granted: Bool
         }
         
-        struct ViewModel {
-            let displayedMissedWorkouts: [[CoreWorkoutViewModel]]
-            let missedWorkoutWeekDays: [WeekDayModel]            
-        }
+        struct Response { }
+        
+        struct ViewModel { }
     }
 }

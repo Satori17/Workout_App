@@ -20,7 +20,7 @@ final class WorkoutsPresenter {
     weak var viewController: WorkoutsDisplayLogic?
 }
 
-//MARK: - Presentation Logic
+//MARK: - Presentation Logic protocol
 extension WorkoutsPresenter: WorkoutsPresentationLogic {
     
     func presentWorkouts(response: WorkoutModel.GetWorkouts.Response) {
@@ -49,7 +49,7 @@ extension WorkoutsPresenter {
         let displayedWorkouts = workoutsData.workouts.map {
             WorkoutViewModel(
                 id: $0.id ?? 0,
-                name: $0.name ?? "",
+                name: $0.name ?? CustomTitle.empty,
                 description: formattedDescriptionnn(ofWorkout: $0),
                 category: formattedCategories(ofWorkout: $0),
                 muscles: formattedMuscles(ofWorkout: $0, isMain: true),
@@ -57,7 +57,7 @@ extension WorkoutsPresenter {
                 equipment: formattedEquipments(ofWorkout: $0),
                 language: formattedLanguage(ofWorkout: $0),
                 license: formattedLicense(ofWorkout: $0),
-                licenseAuthor: $0.licenseAuthor ?? "",
+                licenseAuthor: $0.licenseAuthor ?? CustomTitle.empty,
                 images: formattedImages(ofWorkout: $0),
                 comments: formattedComments(ofWorkout: $0),
                 variations: formattedVariations(from: workoutsData, ofWorkout: $0)
@@ -69,9 +69,9 @@ extension WorkoutsPresenter {
     //MARK: - Formatted string to clear out html symbols
     private func formattedDescriptionnn(ofWorkout workout: Workout) -> String {
         if let description = workout.resultDescription {
-            return description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+            return description.replacingOccurrences(of: CustomTitle.htmlSymbols, with: CustomTitle.empty, options: .regularExpression)
         }
-        return ""
+        return CustomTitle.empty
     }
     
     //MARK: - Categories
@@ -90,17 +90,17 @@ extension WorkoutsPresenter {
     
     //MARK: - Muscles
     private func formattedMuscles(ofWorkout workout: Workout, isMain: Bool) -> [MuscleDisplayable] {
-        let muscleBaseUrl = "https://wger.de"
+        let muscleBaseUrl = BaseUrl.muscleBaseUrl.rawValue
         
         if isMain {
             //Main muscles
             if let muscles = workout.muscles {
                 let musclesArray: [MuscleDisplayable] = muscles.map {
                     MuscleDisplayable(
-                        name: $0.name ?? "",
+                        name: $0.name ?? CustomTitle.empty,
                         isFront: $0.isFront ?? false,
-                        imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
-                        imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? "")
+                        imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? CustomTitle.empty),
+                        imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? CustomTitle.empty)
                     )
                 }
                 return musclesArray
@@ -110,10 +110,10 @@ extension WorkoutsPresenter {
             if let musclesSecondary = workout.musclesSecondary {
                 let secondaryMusclesArray: [MuscleDisplayable] = musclesSecondary.map {
                     MuscleDisplayable(
-                        name: $0.name ?? "",
+                        name: $0.name ?? CustomTitle.empty,
                         isFront: $0.isFront ?? false,
-                        imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? ""),
-                        imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? "")
+                        imageUrlMain: muscleBaseUrl + ($0.imageURLMain ?? CustomTitle.empty),
+                        imageUrlSecondary: muscleBaseUrl + ($0.imageURLSecondary ?? CustomTitle.empty)
                     )
                 }
                 return secondaryMusclesArray
@@ -128,7 +128,7 @@ extension WorkoutsPresenter {
             let equipmentsArray = equipment.map {
                 EquipmentDisplayable(
                     id: $0.id ?? 0,
-                    name: $0.name ?? ""
+                    name: $0.name ?? CustomTitle.empty
                 )
             }
             return equipmentsArray
@@ -174,11 +174,11 @@ extension WorkoutsPresenter {
     //MARK: - Images
     private func formattedImages(ofWorkout workout: Workout) -> [ImageDisplayable] {
         var imagesArray = [ImageDisplayable]()
-        let imagePlaceholder = "image_placeholder"
+        let imagePlaceholder = UIImageView.ImageKey.placeholder
         
         if let images = workout.images {
             let mainImage = images.first?.image ?? imagePlaceholder
-            let secondaryImage = (mainImage != imagePlaceholder ? images.last?.image : "") ?? ""
+            let secondaryImage = (mainImage != imagePlaceholder ? images.last?.image : CustomTitle.empty) ?? CustomTitle.empty
             
             images.forEach {
                 if let id = $0.id,
@@ -213,7 +213,7 @@ extension WorkoutsPresenter {
                 CommentDisplayable(
                     id: $0.id ?? 0,
                     exercise: $0.exercise ?? 0,
-                    comment: "🔘 \($0.comment ?? "")"
+                    comment: "🔘 \($0.comment ?? CustomTitle.empty)"
                 )
             }
             return commentsArray

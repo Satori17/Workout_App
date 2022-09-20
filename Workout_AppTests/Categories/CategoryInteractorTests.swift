@@ -78,7 +78,7 @@ final class CategoryInteractorTests: XCTestCase {
         sut.presenter = categoryPresentationLogicSpy
         
         //When
-        sut.showCategoryWorkouts(request: CategoryModel.ShowCategoryWorkouts.Request(id: 0, name: ""))
+        sut.showCategoryWorkouts(request: CategoryModel.ShowCategoryWorkouts.Request(id: 0, name: CustomTitle.empty))
         
         //Then
         XCTAssertTrue(categoryPresentationLogicSpy.showCategoryWorkoutsCalled, "show category workouts should ask presenter to present category workouts")

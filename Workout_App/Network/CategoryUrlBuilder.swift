@@ -20,7 +20,7 @@ class CategoryUrlBuilder: Request, DataUrl {
     }
     
     func withPath() {
-        self.urlString += "exercisecategory/?"
+        self.urlString += URLPath.category
     }
     
     override init() {

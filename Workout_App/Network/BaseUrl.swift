@@ -16,4 +16,6 @@ protocol DataUrl {
 
 enum BaseUrl: String {
     case url = "https://wger.de/api/v2/"
+    case muscleBaseUrl = "https://wger.de"
+    case licensePlaceholderUrl = "https://via.placeholder.com/600x400?text=Error+Getting+License"
 }

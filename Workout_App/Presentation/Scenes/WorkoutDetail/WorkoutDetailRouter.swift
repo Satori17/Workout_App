@@ -30,7 +30,7 @@ extension WorkoutDetailRouter: WorkoutDetailRoutingLogic, WorkoutDetailDataPassi
     //MARK: - Routing
     func routeToWorkoutLicense() {
         guard let licenseUrl = dataStore?.workout?.license.url  else {
-            viewController?.didFailDisplayWorkoutLicense(withError: AlertKeys.licenseFailed)
+            routeToShowAlert(withTitle: AlertKeys.licenseFailed, success: false)
             return }
         let safariVC = SFSafariViewController(url: licenseUrl)
         viewController?.present(safariVC, animated: true)

@@ -84,7 +84,7 @@ final class WorkoutDetailView: UIView {
     
     //MARK: - Initial methods
     private func initSubviews() {
-        let nib = UINib(nibName: "WorkoutDetailView", bundle: nil)
+        let nib = UINib(nibName: Ids.WorkoutDetailView, bundle: nil)
         nib.instantiate(withOwner: self, options: nil)
         contentView.frame = bounds
         contentView.clipsToBounds = true
@@ -193,13 +193,13 @@ final class WorkoutDetailView: UIView {
                     frontMuscleImageViews[index].loadFrom(URLAddress: muscle.imageUrlMain)
                     occupiedFrontImageCounter += 1
                     if var frontMuscleText = frontMuscleNameLabel.text {
-                        frontMuscleText += !frontMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                        frontMuscleText += !frontMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : CustomTitle.empty
                     }
                 } else {
                     backMuscleImageViews[index].loadFrom(URLAddress: muscle.imageUrlMain)
                     occupiedBackImageCounter += 1
                     if var backMuscleText = backMuscleNameLabel.text {
-                        backMuscleText += !backMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                        backMuscleText += !backMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : CustomTitle.empty
                     }
                 }
             }
@@ -211,13 +211,13 @@ final class WorkoutDetailView: UIView {
                     frontMuscleImageViews[occupiedFrontImageCounter].loadFrom(URLAddress: muscle.imageUrlSecondary)
                     occupiedFrontImageCounter += 1
                     if var frontMuscleText = frontMuscleNameLabel.text {
-                        frontMuscleText += !frontMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                        frontMuscleText += !frontMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : CustomTitle.empty
                     }
                 } else {
                     backMuscleImageViews[occupiedBackImageCounter].loadFrom(URLAddress: muscle.imageUrlSecondary)
                     occupiedBackImageCounter += 1
                     if var backMuscleText = backMuscleNameLabel.text {
-                        backMuscleText += !backMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : ""
+                        backMuscleText += !backMuscleText.contains("\(muscle.name)") ? "\(muscle.name)\n" : CustomTitle.empty
                     }
                 }
             }
@@ -232,7 +232,7 @@ final class WorkoutDetailView: UIView {
         if !workout.comments.isEmpty {
             return workout.comments.map{ $0.comment }.joined(separator: "\n")
         } else {
-            return "Comments not found"
+            return CommentError.notFound
         }
     }
     

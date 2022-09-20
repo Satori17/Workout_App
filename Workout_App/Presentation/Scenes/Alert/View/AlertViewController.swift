@@ -27,7 +27,7 @@ final class AlertViewController: UIViewController {
     
     //MARK: - Clean Components
     var interactor: AlertBusinessLogic?
-    var router: (AlertRoutingLogic & AlertDataPassing)?
+    var router: AlertDataPassing?
     
     //MARK: - Gradient Mask
     private let gradientMaskLayer = CAGradientLayer()

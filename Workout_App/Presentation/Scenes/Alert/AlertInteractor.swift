@@ -35,6 +35,7 @@ final class AlertInteractor: AlertDataStore {
     }
 }
 
+//MARK: - Business Logic protocol
 extension AlertInteractor: AlertBusinessLogic {
     
     func saveWorkout(request: AlertModel.SaveWorkout.Request) {

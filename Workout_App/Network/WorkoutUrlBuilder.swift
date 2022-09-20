@@ -20,13 +20,13 @@ class WorkoutUrlBuilder: Request, DataUrl {
     }
     
     func withPath() {
-        self.urlString += "exerciseinfo/?"
+        self.urlString += URLPath.workout
     }
     
     private func getComponents(withPath path: String) -> URLComponents? {
         var urlComponent = URLComponents(string: path)
         urlComponent?.queryItems = [
-            URLQueryItem(name: "limit", value: "\(limitValue)")
+            URLQueryItem(name: Components.limit, value: "\(limitValue)")
         ]
      
         return urlComponent
