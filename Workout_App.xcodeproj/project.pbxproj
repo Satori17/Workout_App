@@ -62,6 +62,8 @@
 		5845915E28C4CFB90055AE0A /* WeekDayHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845915D28C4CFB90055AE0A /* WeekDayHeaderView.xib */; };
 		5845916228C4D0870055AE0A /* HomeWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */; };
 		5845916328C4D0870055AE0A /* HomeWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */; };
+		58564D7A28DB7D6C00935521 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 58564D7928DB7D6C00935521 /* SDWebImageSVGCoder */; };
+		58564D7C28DB7D6C00935521 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 58564D7B28DB7D6C00935521 /* Lottie */; };
 		5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354028D52CBE000F5A82 /* AlertKeys.swift */; };
 		5863354928D66610000F5A82 /* OnBoardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354328D66610000F5A82 /* OnBoardingPresenter.swift */; };
 		5863354A28D66610000F5A82 /* OnBoardingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354428D66610000F5A82 /* OnBoardingWorker.swift */; };
@@ -87,7 +89,6 @@
 		587DB49228CE0C36007D704E /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49128CE0C36007D704E /* NotificationManager.swift */; };
 		587DB49528CE4659007D704E /* WeekDayKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49428CE4659007D704E /* WeekDayKeys.swift */; };
 		587DB49728CE9AD9007D704E /* Timer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587DB49628CE9AD9007D704E /* Timer+Extension.swift */; };
-		587E6AB928D6EFE900ADB9CC /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 587E6AB828D6EFE900ADB9CC /* Lottie */; };
 		587E6AC128D7302300ADB9CC /* OnBoardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AC028D7302300ADB9CC /* OnBoardingModel.swift */; };
 		587E6AC328D7307D00ADB9CC /* LottieImageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AC228D7307D00ADB9CC /* LottieImageKeys.swift */; };
 		587E6AC728D743E100ADB9CC /* OnBoardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587E6AC528D743E100ADB9CC /* OnBoardingCell.swift */; };
@@ -125,7 +126,6 @@
 		58D8ACA7289B1D06008BF876 /* WorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8ACA1289B1D06008BF876 /* WorkoutsViewController.swift */; };
 		58D8ACA8289B1D06008BF876 /* WorkoutsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8ACA2289B1D06008BF876 /* WorkoutsInteractor.swift */; };
 		58D8ACAC289B2D18008BF876 /* WorkoutsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D8ACAB289B2D18008BF876 /* WorkoutsConfigurator.swift */; };
-		58E986802894622800C1F69F /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 58E9867F2894622800C1F69F /* SDWebImageSVGCoder */; };
 		58E9869128952C2700C1F69F /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E9868B28952C2700C1F69F /* CategoryPresenter.swift */; };
 		58E9869228952C2700C1F69F /* CategoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E9868C28952C2700C1F69F /* CategoryWorker.swift */; };
 		58E9869328952C2700C1F69F /* CategoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E9868D28952C2700C1F69F /* CategoryRouter.swift */; };
@@ -302,8 +302,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58E986802894622800C1F69F /* SDWebImageSVGCoder in Frameworks */,
-				587E6AB928D6EFE900ADB9CC /* Lottie in Frameworks */,
+				58564D7A28DB7D6C00935521 /* SDWebImageSVGCoder in Frameworks */,
+				58564D7C28DB7D6C00935521 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +562,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		58564D7228DB7B5100935521 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5863354228D665ED000F5A82 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -593,6 +600,7 @@
 				5877DC66288859E1003A3086 /* Workout_AppTests */,
 				5816612128DA1ED7002955D4 /* Workout_AppUITests */,
 				5877DC4B288859DF003A3086 /* Products */,
+				58564D7228DB7B5100935521 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -874,8 +882,8 @@
 			);
 			name = Workout_App;
 			packageProductDependencies = (
-				58E9867F2894622800C1F69F /* SDWebImageSVGCoder */,
-				587E6AB828D6EFE900ADB9CC /* Lottie */,
+				58564D7928DB7D6C00935521 /* SDWebImageSVGCoder */,
+				58564D7B28DB7D6C00935521 /* Lottie */,
 			);
 			productName = Workout_App;
 			productReference = 5877DC4A288859DF003A3086 /* Workout_App.app */;
@@ -1481,15 +1489,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		587E6AB828D6EFE900ADB9CC /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 587E6AB728D6EFE900ADB9CC /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-		58E9867F2894622800C1F69F /* SDWebImageSVGCoder */ = {
+		58564D7928DB7D6C00935521 /* SDWebImageSVGCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 58E9867E2894622800C1F69F /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
 			productName = SDWebImageSVGCoder;
+		};
+		58564D7B28DB7D6C00935521 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 587E6AB728D6EFE900ADB9CC /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 
