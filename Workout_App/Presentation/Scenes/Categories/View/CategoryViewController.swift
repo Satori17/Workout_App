@@ -41,15 +41,11 @@ final class CategoryViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
-    //MARK: - Methods
+    //MARK: - Setup Methods
     private func setupView() {
-        activityIndicator.setupActivityIndicator(self)
         categoriesTableView.registerNib(class: CategoryCell.self)
-        makeRequest()
-    }
-    
-    private func makeRequest() {
-        interactor?.getCategories(request: CategoryModel.GetCategories.Request())
+        activityIndicator.setupActivityIndicator(self)
+        makeDataRequest()
     }
     
     private func setupCategory(data: [CategoryViewModel]) {
@@ -57,7 +53,13 @@ final class CategoryViewController: UIViewController {
         categoriesTableView.reloadData()
         activityIndicator.stopAnimating()
     }
+    
+    //MARK: - Request Methods
+    private func makeDataRequest() {
+        interactor?.getCategories(request: CategoryModel.GetCategories.Request())
+    }
 }
+
 
 //MARK: - Display Logic protocol
 extension CategoryViewController: CategoryDisplayLogic {    

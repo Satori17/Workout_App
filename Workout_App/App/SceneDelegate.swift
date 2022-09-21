@@ -74,8 +74,7 @@ extension SceneDelegate {
                 OnBoardingConfigurator.configure(vc: initialVC)
                 window?.rootViewController = initialVC
                 window?.makeKeyAndVisible()
-                //TODO: - FIX  Uncomment this
-                //userDefaults.setValue(true, forKey: UserDefaultKey.appLaunched.rawValue)
+                userDefaults.setValue(true, forKey: UserDefaultKey.appLaunched.rawValue)
             }
         }
     }
