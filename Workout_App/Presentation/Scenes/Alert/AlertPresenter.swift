@@ -10,6 +10,7 @@ import UIKit
 protocol AlertPresentationLogic {
     func presentWorkoutIntensityData(response: AlertModel.GetWorkoutIntensity.Response)
     func presentAlert(response: AlertModel.ShowAlert.Response)
+    func presentRepRangeAlert(response: AlertModel.ShowRepRangeAlert.Response)
 }
 
 final class AlertPresenter {
@@ -29,5 +30,10 @@ extension AlertPresenter: AlertPresentationLogic {
     func presentAlert(response: AlertModel.ShowAlert.Response) {
         let viewModel = AlertModel.ShowAlert.ViewModel(alertText: response.alertText, success: response.success)
         viewController?.displayAlert(viewModel: viewModel)
+    }
+    
+    func presentRepRangeAlert(response: AlertModel.ShowRepRangeAlert.Response) {
+        let viewModel = AlertModel.ShowRepRangeAlert.ViewModel(text: response.text, textColor: response.textColor)
+        viewController?.displayRepRangeAlert(viewModel: viewModel)        
     }
 }

@@ -33,5 +33,9 @@ final class AlertConfigurator {
         //MARK: - Worker
         let worker = AlertWorker(storageManager: storageManager)
         interactor.worker = worker
+        
+        //MARK: - Animation Manager
+        let animationManager = AnimationManager()
+        vc.animationManager = animationManager
     }
 }

@@ -25,5 +25,6 @@ enum CustomTitle {
     static let unknown = "Unknown"
     static let plus = "+"
     static let empty = ""
+    static let zero = 0
     static let htmlSymbols = "<[^>]+>"
 }

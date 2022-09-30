@@ -54,4 +54,22 @@ enum AlertModel {
             let success: Bool
         }
     }
+    
+    //MARK: - Show Rep Range Alert
+    enum ShowRepRangeAlert {
+        
+        struct Request {
+            let repCount: Int
+        }
+        
+        struct Response {
+            let text: String
+            let textColor: UIColor?
+        }
+        
+        struct ViewModel {
+            let text: String
+            let textColor: UIColor?
+        }
+    }
 }

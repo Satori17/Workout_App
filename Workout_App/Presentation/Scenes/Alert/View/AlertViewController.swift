@@ -10,6 +10,7 @@ import UIKit
 protocol AlertDisplayLogic: AnyObject {
     func displayIntensityData(viewModel: AlertModel.GetWorkoutIntensity.ViewModel)
     func displayAlert(viewModel: AlertModel.ShowAlert.ViewModel)
+    func displayRepRangeAlert(viewModel: AlertModel.ShowRepRangeAlert.ViewModel)
 }
 
 final class AlertViewController: UIViewController {
@@ -33,13 +34,13 @@ final class AlertViewController: UIViewController {
     private let gradientMaskLayer = CAGradientLayer()
     
     //MARK: - Save Alert Data
-    private var sets = [String]()
-    private var reps = [String]()
-    private var weekDays = [String]()
+    private var setsData = [String]()
+    private var repsData = [String]()
+    private var weekDaysData = [String]()
     private var selectedData: (sets: Int, reps: Int, weekDay: String)?
     
     //MARK: - Animation Manager
-    private let animationManager = AnimationManager()
+    var animationManager: AnimationManager?
     
     //MARK: - Custom Alert Components
     private let alertView = UIView()
@@ -67,7 +68,7 @@ final class AlertViewController: UIViewController {
               let weekDay = selectedData?.weekDay,
               reps >= 5 else {
             repRangeAlert()
-            animationManager.shakeAnimation(ofView: saveView)
+            animationManager?.shakeAnimation(ofView: saveView)
             return
         }
         let request = AlertModel.SaveWorkout.Request(
@@ -88,6 +89,7 @@ final class AlertViewController: UIViewController {
         //adding imageView to tabBar for transparent background
         fakeTabBar.backgroundImage = UIImage()
         makeAlertRequest()
+        setupSaveView()
     }
     
     private func setupSaveView() {
@@ -104,9 +106,9 @@ final class AlertViewController: UIViewController {
     }
     
     private func setupIntensity(data: (sets: [String], reps: [String], weekDays: [String])) {
-        self.sets = data.sets
-        self.reps = data.reps
-        self.weekDays = data.weekDays
+        self.setsData = data.sets
+        self.repsData = data.reps
+        self.weekDaysData = data.weekDays
     }
     
     //MARK: - Request Methods
@@ -116,22 +118,17 @@ final class AlertViewController: UIViewController {
     
     //MARK: - Helper Methods
     private func repRangeAlert(repCount: Int=0) {
-        if repCount >= 5 {
-            saveViewTitle.text = SaveTitle.initialText
-            saveViewTitle.textColor = SaveTitle.initialColor
-        } else {
-            saveViewTitle.text = SaveTitle.alertText
-            saveViewTitle.textColor = SaveTitle.alertColor
-        }
+        let request = AlertModel.ShowRepRangeAlert.Request(repCount: repCount)
+        interactor?.showRepRangeAlert(request: request)
     }
     
     private func animateSaving() {
-        self.animationManager.movingAnimation(fromView: self.saveView, toView: self.triggerView, isRotated: true) { [weak self] in
+        self.animationManager?.movingAnimation(fromView: self.saveView, toView: self.triggerView, isRotated: true) { [weak self] in
             self?.saveView.removeFromSuperview()
             self?.view.backgroundColor = .clear
             self?.homeIcon.isHidden = false
             if let icon = self?.homeIcon {
-                self?.animationManager.zoomingAnimation(ofView: icon, withShake: true) { [weak self] in
+                self?.animationManager?.zoomingAnimation(ofView: icon, withShake: true) { [weak self] in
                     self?.dismiss(animated: true)
                 }
             }
@@ -144,11 +141,15 @@ extension AlertViewController: AlertDisplayLogic {
     
     func displayIntensityData(viewModel: AlertModel.GetWorkoutIntensity.ViewModel) {
         setupIntensity(data: (viewModel.sets, viewModel.reps, viewModel.weekDays))
-        setupSaveView()
     }
     
     func displayAlert(viewModel: AlertModel.ShowAlert.ViewModel) {
         setupAlertView(withTitle: viewModel.alertText, success: viewModel.success)
+    }
+    
+    func displayRepRangeAlert(viewModel: AlertModel.ShowRepRangeAlert.ViewModel) {
+        saveViewTitle.text = viewModel.text
+        saveViewTitle.textColor = viewModel.textColor
     }
 }
 
@@ -160,14 +161,14 @@ extension AlertViewController: UIPickerViewDelegate {
         case setsAndRepsPickerView:
             switch component {
             case 0:
-                return sets[row]
+                return setsData[row]
             case 1:
-                return reps[row]
+                return repsData[row]
             default:
                 return nil
             }
         case weekDayPickerView:
-            return weekDays[row]
+            return weekDaysData[row]
         default:
             return nil
         }
@@ -177,7 +178,11 @@ extension AlertViewController: UIPickerViewDelegate {
         let currentSet = setsAndRepsPickerView.selectedRow(inComponent: 0)
         let currentRep = setsAndRepsPickerView.selectedRow(inComponent: 1)
         let currentWeekDay = weekDayPickerView.selectedRow(inComponent: 0)
-        selectedData = (sets: Int(sets[currentSet]) ?? 0, reps: Int(reps[currentRep]) ?? 0, weekDay: weekDays[currentWeekDay])
+        selectedData = (
+            sets: Int(setsData[currentSet]) ?? CustomTitle.zero,
+            reps: Int(repsData[currentRep]) ?? CustomTitle.zero,
+            weekDay: weekDaysData[currentWeekDay]
+        )
         if let repRange = selectedData?.reps {
             repRangeAlert(repCount: repRange)
         }
@@ -203,14 +208,14 @@ extension AlertViewController: UIPickerViewDataSource {
         case setsAndRepsPickerView:
             switch component {
             case 0:
-                return sets.count
+                return setsData.count
             case 1:
-                return reps.count
+                return repsData.count
             default:
                 return 0
             }
         case weekDayPickerView:
-            return weekDays.count
+            return weekDaysData.count
         default:
             return 0
         }

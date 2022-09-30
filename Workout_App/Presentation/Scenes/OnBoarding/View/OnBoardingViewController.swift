@@ -24,7 +24,7 @@ final class OnBoardingViewController: UIViewController {
     var router: OnBoardingRoutingLogic?
     
     //MARK: - Screen Data
-    private var onBoardingScreens = [OnBoardingModel]()
+    private var onBoardingScreensData = [OnBoardingModel]()
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -58,9 +58,9 @@ final class OnBoardingViewController: UIViewController {
         continueBtn.maskCurved(highly: true)
         continueBtn.layer.borderWidth = 2
         continueBtn.layer.borderColor = UIColor.ColorKey.skyBlue?.cgColor
-        continueBtn.tintColor = pageControl.page == onBoardingScreens.count-1 ? .white : UIColor.ColorKey.skyBlue
-        continueBtn.backgroundColor = pageControl.page == onBoardingScreens.count-1 ? UIColor.ColorKey.skyBlue : .white
-        continueBtn.setTitle(pageControl.page == onBoardingScreens.count-1 ? ButtonTitle.getStarted : ButtonTitle.continueNext, for: .normal)
+        continueBtn.tintColor = pageControl.page == onBoardingScreensData.count-1 ? .white : UIColor.ColorKey.skyBlue
+        continueBtn.backgroundColor = pageControl.page == onBoardingScreensData.count-1 ? UIColor.ColorKey.skyBlue : .white
+        continueBtn.setTitle(pageControl.page == onBoardingScreensData.count-1 ? ButtonTitle.getStarted : ButtonTitle.continueNext, for: .normal)
     }
     
     private func setupCollectionView() {
@@ -71,7 +71,7 @@ final class OnBoardingViewController: UIViewController {
     }
     
     private func setupOnboardingScreen(data: [OnBoardingModel]) {
-        self.onBoardingScreens = data
+        self.onBoardingScreensData = data
         onBoardingCollectionView.reloadData()
     }
     
@@ -113,12 +113,12 @@ extension OnBoardingViewController: UICollectionViewDelegate {
 extension OnBoardingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        onBoardingScreens.count
+        onBoardingScreensData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as OnBoardingCell
-        let currentScreen = onBoardingScreens[indexPath.row]
+        let currentScreen = onBoardingScreensData[indexPath.row]
         cell.configure(with: currentScreen)
         
         return cell

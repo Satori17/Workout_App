@@ -23,7 +23,7 @@ final class CategoryViewController: UIViewController {
     var router: (CategoryRoutingLogic & CategoryDataPassing)?
     
     //MARK: - Categories Data
-    private var allCategories = [CategoryViewModel]()
+    private var categoriesData = [CategoryViewModel]()
     
     //MARK: - Activity Indicator Manager
     private lazy var activityIndicator = ActivityIndicatorManager.shared
@@ -49,7 +49,7 @@ final class CategoryViewController: UIViewController {
     }
     
     private func setupCategory(data: [CategoryViewModel]) {
-        self.allCategories = data
+        self.categoriesData = data
         categoriesTableView.reloadData()
         activityIndicator.stopAnimating()
     }
@@ -85,7 +85,7 @@ extension CategoryViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCategory = allCategories[indexPath.row]
+        let currentCategory = categoriesData[indexPath.row]
         let request = CategoryModel.ShowCategoryWorkouts.Request(id: currentCategory.id, name: currentCategory.name)
         interactor?.showCategoryWorkouts(request: request)
     }
@@ -95,12 +95,12 @@ extension CategoryViewController: UITableViewDelegate {
 extension CategoryViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        allCategories.count
+        categoriesData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as CategoryCell
-        let currentCategory = allCategories[indexPath.row]
+        let currentCategory = categoriesData[indexPath.row]
         cell.configure(with: currentCategory)
         
         return cell

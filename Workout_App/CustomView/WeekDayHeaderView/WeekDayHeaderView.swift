@@ -42,14 +42,14 @@ class WeekDayHeaderView: UIView {
         didSet {
             var dictionary = [String: Int]()
             workoutCategories.forEach({
-                dictionary[$0] = (dictionary[$0] ?? 0) + 1
+                dictionary[$0] = (dictionary[$0] ?? CustomTitle.zero) + 1
             })
             let mode = dictionary.filter({$0.value == dictionary.values.max()}).keys
             workoutCategories = mode.map { "\($0), " }
         }
     }
     private var notificationDescription: String {
-        var textData = "\(workoutCategories.reduce("", +))"
+        var textData = "\(workoutCategories.reduce(CustomTitle.empty, +))"
         textData.removeLast(2)
         let descriptionText = "\(textData) day!"
         

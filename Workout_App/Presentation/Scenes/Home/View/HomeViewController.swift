@@ -28,11 +28,11 @@ final class HomeViewController: UIViewController {
     var router: (HomeRoutingLogic & HomeDataPassing)?
     
     //MARK: - Notification Manager
-    private let notificationManager = NotificationManager()
+    var notificationManager: NotificationManager?
     
     //MARK: - Saved Workouts Data
-    private var coreWorkouts = [[CoreWorkoutViewModel]]()
-    private var weekDays = [WeekDayModel]()
+    private var coreWorkoutsData = [[CoreWorkoutViewModel]]()
+    private var weekDaysData = [WeekDayModel]()
     
     //MARK: - Object Lifecycle
     required init?(coder: NSCoder) {
@@ -64,14 +64,14 @@ final class HomeViewController: UIViewController {
     }
     
     private func setupSavedWorkouts(data: [[CoreWorkoutViewModel]], weekDays: [WeekDayModel]) {
-        self.coreWorkouts = data
-        self.weekDays = weekDays
+        self.coreWorkoutsData = data
+        self.weekDaysData = weekDays
         reloadTableData()
     }
     
     //MARK: - Request Methods
     private func checkUserPermission() {
-        notificationManager.checkUserPermission { [weak self] granted in
+        notificationManager?.checkUserPermission { [weak self] granted in
             let request = HomeModel.checkUserPermission.Request(granted: granted)
             self?.interactor?.checkUserPermission(request: request)
         }
@@ -92,7 +92,7 @@ extension HomeViewController: notificationReceivedProtocol {
     
     func dismissCheckMark(cell: HomeWorkoutCell) {
         if let indexPath = savedWorkoutsTableView.indexPath(for: cell) {
-            let currentSavedWorkout = coreWorkouts[indexPath.section][indexPath.row]
+            let currentSavedWorkout = coreWorkoutsData[indexPath.section][indexPath.row]
             interactor?.toggleMissedWorkout(false, weekDay: currentSavedWorkout.weekDay.name, id: currentSavedWorkout.id)
             DispatchQueue.main.asyncAfter(deadline: .now()+0.5) { [weak self] in
                 if let selectedIndex = self?.homeSegmentControl.selectedSegmentIndex {
@@ -104,7 +104,7 @@ extension HomeViewController: notificationReceivedProtocol {
     
     func appearMissedWorkouts(cell: HomeWorkoutCell, weekDay: String) {
         if let indexPath = savedWorkoutsTableView.indexPath(for: cell) {
-            let currentSavedWorkout = coreWorkouts[indexPath.section][indexPath.row]
+            let currentSavedWorkout = coreWorkoutsData[indexPath.section][indexPath.row]
             if currentSavedWorkout.weekDay.name == weekDay {
                 interactor?.toggleMissedWorkout(true, weekDay: currentSavedWorkout.weekDay.name, id: currentSavedWorkout.id)
                 DispatchQueue.main.async { [weak self] in
@@ -127,7 +127,7 @@ extension HomeViewController: updateHeaderDataProtocol {
 extension HomeViewController: HomeDisplayLogic {
     
     func displayCheckUserPermission(viewModel: HomeModel.checkUserPermission.ViewModel) {
-        notificationManager.deniedNotificationAlert(onVC: self)
+        notificationManager?.deniedNotificationAlert(onVC: self)
     }
     
     func displayCoreWorkouts(viewModel: HomeModel.GetSavedWorkouts.ViewModel) {
@@ -164,7 +164,7 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let currentWorkout = coreWorkouts[indexPath.section][indexPath.row]
+        let currentWorkout = coreWorkoutsData[indexPath.section][indexPath.row]
         let request = HomeModel.ShowSavedWorkoutDetails.Request(savedWorkout: currentWorkout)
         interactor?.getSavedWorkoutDetails(request: request)
     }
@@ -175,8 +175,8 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = WeekDayHeaderView()
-        view.configure(weekDay: weekDays[section])
-        view.workoutCategories = coreWorkouts[section].map({$0.category.name})
+        view.configure(weekDay: weekDaysData[section])
+        view.workoutCategories = coreWorkoutsData[section].map({$0.category.name})
         view.delegate = self
         
         return view
@@ -191,16 +191,16 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        weekDays.count
+        weekDaysData.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        coreWorkouts[section].count
+        coreWorkoutsData[section].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as HomeWorkoutCell
-        let currentWorkout = coreWorkouts[indexPath.section][indexPath.row]
+        let currentWorkout = coreWorkoutsData[indexPath.section][indexPath.row]
         cell.configure(with: currentWorkout)
         cell.delegate = self
         
@@ -209,12 +209,12 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete, homeSegmentControl.selectedSegmentIndex == 0 {
-            let currentWorkout = coreWorkouts[indexPath.section][indexPath.row]
+            let currentWorkout = coreWorkoutsData[indexPath.section][indexPath.row]
             interactor?.removeWorkout(withId: currentWorkout.id)
-            self.coreWorkouts[indexPath.section].remove(at: indexPath.row)
-            if coreWorkouts[indexPath.section].isEmpty {
-                coreWorkouts.remove(at: indexPath.section)
-                weekDays.remove(at: indexPath.section)
+            self.coreWorkoutsData[indexPath.section].remove(at: indexPath.row)
+            if coreWorkoutsData[indexPath.section].isEmpty {
+                coreWorkoutsData.remove(at: indexPath.section)
+                weekDaysData.remove(at: indexPath.section)
             }
             self.reloadTableData()
         }

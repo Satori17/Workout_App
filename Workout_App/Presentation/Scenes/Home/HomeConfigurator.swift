@@ -33,5 +33,9 @@ final class HomeConfigurator {
         //MARK: - Worker
         let worker = HomeWorker(storageManager: storageManager)
         interactor.worker = worker
+        
+        //MARK: - Notification Manager
+        let notificationManager = NotificationManager()
+        vc.notificationManager = notificationManager
     }
 }

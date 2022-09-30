@@ -48,7 +48,7 @@ extension WorkoutsPresenter {
     private func getDisplayed(workoutsData: WorkoutModel.GetWorkouts.Response) -> [WorkoutViewModel] {
         let displayedWorkouts = workoutsData.workouts.map {
             WorkoutViewModel(
-                id: $0.id ?? 0,
+                id: $0.id ?? CustomTitle.zero,
                 name: $0.name ?? CustomTitle.empty,
                 description: formattedDescriptionnn(ofWorkout: $0),
                 category: formattedCategories(ofWorkout: $0),
@@ -127,7 +127,7 @@ extension WorkoutsPresenter {
         if let equipment = workout.equipment {
             let equipmentsArray = equipment.map {
                 EquipmentDisplayable(
-                    id: $0.id ?? 0,
+                    id: $0.id ?? CustomTitle.zero,
                     name: $0.name ?? CustomTitle.empty
                 )
             }
@@ -211,8 +211,8 @@ extension WorkoutsPresenter {
         if let comments = workout.comments {
             let commentsArray = comments.map {
                 CommentDisplayable(
-                    id: $0.id ?? 0,
-                    exercise: $0.exercise ?? 0,
+                    id: $0.id ?? CustomTitle.zero,
+                    exercise: $0.exercise ?? CustomTitle.zero,
                     comment: "🔘 \($0.comment ?? CustomTitle.empty)"
                 )
             }

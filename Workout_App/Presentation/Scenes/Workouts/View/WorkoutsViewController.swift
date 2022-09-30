@@ -24,7 +24,7 @@ final class WorkoutsViewController: UIViewController {
     var router: (WorkoutsRoutingLogic & WorkoutsDataPassing)?
     
     //MARK: - Workouts Data
-    private var workouts = [WorkoutViewModel]()
+    private var workoutsData = [WorkoutViewModel]()
     
     //MARK: - Activity Indicator Manager
     let activityIndicator = ActivityIndicatorManager.shared
@@ -53,7 +53,7 @@ final class WorkoutsViewController: UIViewController {
     }
     
     private func setupWorkouts(data: [WorkoutViewModel]) {
-        self.workouts = data
+        self.workoutsData = data
         workoutsCollectionView.reloadData()
         activityIndicator.stopAnimating()
     }
@@ -81,7 +81,7 @@ final class WorkoutsViewController: UIViewController {
 extension WorkoutsViewController: WorkoutDetailsDelegate {
     func getWorkoutDetails(cell: WorkoutCell) {
         if let indexPath = workoutsCollectionView.indexPath(for: cell) {
-            let currentWorkout = workouts[indexPath.row]
+            let currentWorkout = workoutsData[indexPath.row]
             let request = WorkoutModel.ShowWorkoutDetails.Request(workout: currentWorkout, isAnimated: true)
             interactor?.showWorkoutDetails(request: request)
         }
@@ -112,7 +112,7 @@ extension WorkoutsViewController: WorkoutsDisplayLogic {
 extension WorkoutsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let currentWorkout = workouts[indexPath.row]
+        let currentWorkout = workoutsData[indexPath.row]
         
         return UIContextMenuConfiguration(identifier: nil, previewProvider: { [weak self] in
             return self?.router?.instantiateDetailsVC(withWorkout: currentWorkout)
@@ -126,12 +126,12 @@ extension WorkoutsViewController: UICollectionViewDelegate {
 extension WorkoutsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        workouts.count
+        workoutsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as WorkoutCell
-        let currentWorkout = workouts[indexPath.row]
+        let currentWorkout = workoutsData[indexPath.row]
         cell.configure(with: currentWorkout)
         cell.delegate = self
         

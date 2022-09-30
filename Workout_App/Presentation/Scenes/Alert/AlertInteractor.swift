@@ -10,6 +10,7 @@ import UIKit
 protocol AlertBusinessLogic {
     func saveWorkout(request: AlertModel.SaveWorkout.Request)
     func showAlert(request: AlertModel.ShowAlert.Request)
+    func showRepRangeAlert(request: AlertModel.ShowRepRangeAlert.Request)
 }
 
 protocol AlertDataStore {
@@ -57,5 +58,10 @@ extension AlertInteractor: AlertBusinessLogic {
                 presenter?.presentWorkoutIntensityData(response: response)
             }
         }
+    }
+    
+    func showRepRangeAlert(request: AlertModel.ShowRepRangeAlert.Request) {
+        let response = request.repCount >= 5 ? AlertModel.ShowRepRangeAlert.Response(text: SaveTitle.initialText, textColor: SaveTitle.initialColor) : AlertModel.ShowRepRangeAlert.Response(text: SaveTitle.alertText, textColor: SaveTitle.alertColor)
+        presenter?.presentRepRangeAlert(response: response)
     }
 }
