@@ -131,7 +131,7 @@ extension WorkoutStorageManager: WorkoutStorageManagerLogic {
     func getAllMissedWorkouts() throws -> [CoreWorkout] {
         guard let managedContext = managedContext else { throw StorageManagerError.managedContextFailed }
         let request = CoreWorkout.fetchRequest()
-        request.predicate = NSPredicate(format: "isMissed = %i", true)
+        request.predicate = NSPredicate(format: PredicateKeys.isMissed, true)
         
         do {
             let result = try managedContext.fetch(request)

@@ -338,11 +338,11 @@
 			children = (
 				583005D028C8E0A700912DA8 /* View */,
 				583005D328C8E0D700912DA8 /* AlertConfigurator.swift */,
-				583005C428C8E0A300912DA8 /* AlertPresenter.swift */,
-				583005C528C8E0A300912DA8 /* AlertWorker.swift */,
-				583005C628C8E0A300912DA8 /* AlertRouter.swift */,
-				583005C728C8E0A300912DA8 /* AlertModels.swift */,
 				583005C928C8E0A300912DA8 /* AlertInteractor.swift */,
+				583005C428C8E0A300912DA8 /* AlertPresenter.swift */,
+				583005C628C8E0A300912DA8 /* AlertRouter.swift */,
+				583005C528C8E0A300912DA8 /* AlertWorker.swift */,
+				583005C728C8E0A300912DA8 /* AlertModels.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -462,11 +462,11 @@
 			children = (
 				5845914928C4BFC30055AE0A /* View */,
 				5845915928C4C2C20055AE0A /* HomeConfigurator.swift */,
-				5845914A28C4BFF90055AE0A /* HomePresenter.swift */,
-				5845914B28C4BFF90055AE0A /* HomeWorker.swift */,
-				5845914C28C4BFF90055AE0A /* HomeRouter.swift */,
-				5845914D28C4BFF90055AE0A /* HomeModels.swift */,
 				5845914F28C4BFF90055AE0A /* HomeInteractor.swift */,
+				5845914A28C4BFF90055AE0A /* HomePresenter.swift */,
+				5845914C28C4BFF90055AE0A /* HomeRouter.swift */,
+				5845914B28C4BFF90055AE0A /* HomeWorker.swift */,
+				5845914D28C4BFF90055AE0A /* HomeModels.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -476,11 +476,11 @@
 			children = (
 				58D8ACA9289B1D1B008BF876 /* View */,
 				58D8ACAB289B2D18008BF876 /* WorkoutsConfigurator.swift */,
-				58D8AC9D289B1D06008BF876 /* WorkoutsPresenter.swift */,
-				58D8AC9E289B1D06008BF876 /* WorkoutsWorker.swift */,
-				58D8AC9F289B1D06008BF876 /* WorkoutsRouter.swift */,
-				58D8ACA0289B1D06008BF876 /* WorkoutsModels.swift */,
 				58D8ACA2289B1D06008BF876 /* WorkoutsInteractor.swift */,
+				58D8AC9D289B1D06008BF876 /* WorkoutsPresenter.swift */,
+				58D8AC9F289B1D06008BF876 /* WorkoutsRouter.swift */,
+				58D8AC9E289B1D06008BF876 /* WorkoutsWorker.swift */,
+				58D8ACA0289B1D06008BF876 /* WorkoutsModels.swift */,
 			);
 			path = Workouts;
 			sourceTree = "<group>";
@@ -490,11 +490,11 @@
 			children = (
 				58E986A5289994A000C1F69F /* View */,
 				58D8AC8628999735008BF876 /* CategoryConfigurator.swift */,
-				58E9868B28952C2700C1F69F /* CategoryPresenter.swift */,
-				58E9868C28952C2700C1F69F /* CategoryWorker.swift */,
-				58E9868D28952C2700C1F69F /* CategoryRouter.swift */,
-				58E9868E28952C2700C1F69F /* CategoryModels.swift */,
 				58E9869028952C2700C1F69F /* CategoryInteractor.swift */,
+				58E9868B28952C2700C1F69F /* CategoryPresenter.swift */,
+				58E9868D28952C2700C1F69F /* CategoryRouter.swift */,
+				58E9868C28952C2700C1F69F /* CategoryWorker.swift */,
+				58E9868E28952C2700C1F69F /* CategoryModels.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -517,10 +517,10 @@
 			children = (
 				583FD04A28A063CC0025B44D /* View */,
 				583FD05928A068E70025B44D /* WorkoutDetailConfigurator.swift */,
+				583FD05228A0644B0025B44D /* WorkoutDetailInteractor.swift */,
 				583FD04D28A0644B0025B44D /* WorkoutDetailPresenter.swift */,
 				583FD04F28A0644B0025B44D /* WorkoutDetailRouter.swift */,
 				583FD05028A0644B0025B44D /* WorkoutDetailModels.swift */,
-				583FD05228A0644B0025B44D /* WorkoutDetailInteractor.swift */,
 			);
 			path = WorkoutDetail;
 			sourceTree = "<group>";
@@ -574,11 +574,11 @@
 			children = (
 				5863354F28D6D4D0000F5A82 /* View */,
 				5863355028D6D4ED000F5A82 /* OnBoardingConfigurator.swift */,
-				5863354328D66610000F5A82 /* OnBoardingPresenter.swift */,
-				5863354428D66610000F5A82 /* OnBoardingWorker.swift */,
-				5863354528D66610000F5A82 /* OnBoardingRouter.swift */,
-				5863354628D66610000F5A82 /* OnBoardingModels.swift */,
 				5863354828D66610000F5A82 /* OnBoardingInteractor.swift */,
+				5863354328D66610000F5A82 /* OnBoardingPresenter.swift */,
+				5863354528D66610000F5A82 /* OnBoardingRouter.swift */,
+				5863354428D66610000F5A82 /* OnBoardingWorker.swift */,
+				5863354628D66610000F5A82 /* OnBoardingModels.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";

@@ -29,7 +29,7 @@ final class NotificationManager {
         }
     }
     
-    func createNotification(withTitle title: String, description text: String, weekDay: Int, hourDate: Date) {
+    func createNotification(withTitle title: String, description text: String, weekDay: Int, hourDate: Date, completionHandler: @escaping (String) -> Void) {
         //content setup
         let content = UNMutableNotificationContent()
         content.title = title
@@ -58,7 +58,7 @@ final class NotificationManager {
         //scheduling request
         notificationCenter.add(notificationRequest) { error in
             guard error == nil else {
-                print(NotificationError.requestFailed)
+                completionHandler(NotificationError.requestFailed.rawValue)
                 return
             }
         }
@@ -82,6 +82,15 @@ final class NotificationManager {
                     UIApplication.shared.open(settingsUrl)
                 }
             }))
+            vc.present(alert, animated: true)
+        }
+    }
+    
+    func errorNotificationAlert(onVC vc: UIViewController = UIViewController(), text: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            
             vc.present(alert, animated: true)
         }
     }

@@ -69,6 +69,15 @@ final class HomeViewController: UIViewController {
         reloadTableData()
     }
     
+    private func setupHeader(view: WeekDayHeaderView, section: Int) -> UIView {
+        view.configure(weekDay: weekDaysData[section])
+        view.workoutCategories = coreWorkoutsData[section].map({$0.category.name})
+        view.viewController = self
+        view.delegate = self
+        
+        return view
+    }
+    
     //MARK: - Request Methods
     private func checkUserPermission() {
         notificationManager?.checkUserPermission { [weak self] granted in
@@ -175,11 +184,7 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = WeekDayHeaderView()
-        view.configure(weekDay: weekDaysData[section])
-        view.workoutCategories = coreWorkoutsData[section].map({$0.category.name})
-        view.delegate = self
-        
-        return view
+        return setupHeader(view: view, section: section)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

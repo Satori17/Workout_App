@@ -11,4 +11,5 @@ enum PredicateKeys {
     static let idEquals = "id = %i"
     static let weekDayEquals = "weekDay.name == %@"
     static let and = " AND "
+    static let isMissed = "isMissed = %i"
 }

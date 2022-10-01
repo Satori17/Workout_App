@@ -32,6 +32,7 @@ final class AlertViewController: UIViewController {
     
     //MARK: - Gradient Mask
     private let gradientMaskLayer = CAGradientLayer()
+    private let gradientMaskLayer2 = CAGradientLayer()
     
     //MARK: - Save Alert Data
     private var setsData = [String]()
@@ -226,11 +227,11 @@ extension AlertViewController: UIPickerViewDataSource {
 extension AlertViewController {
     
     private func getAlertView(success: Bool) {
-        alertView.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: self.view.frame.width-40, height: success ? self.view.frame.height/6 : self.view.frame.height/4)
+        alertView.frame = CGRect(x: self.view.frame.midX, y: self.view.frame.midY, width: self.view.frame.width-40, height: success ? self.view.frame.height/6.5 : self.view.frame.height/4)
         alertView.center = self.view.center
         alertView.clipsToBounds = true
         alertView.backgroundColor = .white
-        alertView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
+        alertView.withAppDesign(layer: gradientMaskLayer2, curvedCorners: true)
         self.view.addSubview(alertView)
     }
     
