@@ -16,6 +16,7 @@ final class CategoryViewControllerTests: XCTestCase {
     
     //MARK: - Test Lifecycle
     override func setUp() {
+        super.setUp()
         window = UIWindow()
         setupCategoryVC()
     }
@@ -62,7 +63,42 @@ final class CategoryViewControllerTests: XCTestCase {
         //Then
         XCTAssert(tableViewSpy.reloadDataCalled, "getCategories() should reload the tableView")
     }
-
+    
+    //MARK: - New
+    func testNumberOfRowsShouldEqualNumberOfCategoriesToDisplay() {
+        // Given
+        loadView()
+        
+        let tableViewSpy = TableViewSpy()
+        let categoriesDataMock: [CategoryViewModel] = [CategoryViewModel(id: 0, name: "test")]
+        sut.displayCategories(viewModel: CategoryModel.GetCategories.ViewModel(displayedCategories: categoriesDataMock))
+        
+        //When
+        let numberOfRows = sut.tableView(tableViewSpy, numberOfRowsInSection: 1)
+        
+        //Then
+        XCTAssertEqual(numberOfRows, categoriesDataMock.count, "The number of tableView rows should equal the number of movies to display")
+    }
+    
+    //MARK: - New
+    func testShouldConfigureCategoryCellToDisplayCategories() {
+        // Given
+        loadView()
+        let tableViewSpy = TableViewSpy()
+        tableViewSpy.registerNib(class: CategoryCell.self)
+        let categoriesDataMock: [CategoryViewModel] = [CategoryViewModel(id: 0, name: "test")]
+        let viewModel = CategoryModel.GetCategories.ViewModel(displayedCategories: categoriesDataMock)
+        sut.displayCategories(viewModel: viewModel)
+        
+        //When
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = sut.tableView(tableViewSpy, cellForRowAt: indexPath) as? CategoryCell
+        
+        //Then
+        XCTAssertEqual(cell?.categoryNameLabel.text, "\(CustomTitle.space)test", "categoriesTableView cell should display category name properly")
+        XCTAssertEqual(cell?.categoryImageView.image, UIImage(), "categoriesTableView cell should display category images depend on its name properly" )
+    }
+    
     func testdidFailDisplayCategoryShouldCallRouteToShowAlert() {
         //Given
         loadView()
@@ -113,7 +149,6 @@ final class CategoryViewControllerTests: XCTestCase {
 private final class TableViewSpy: UITableView {
     
     var reloadDataCalled = false
-
     override func reloadData() {
         super .reloadData()
         reloadDataCalled = true

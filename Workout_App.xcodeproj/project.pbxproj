@@ -62,6 +62,7 @@
 		5845915E28C4CFB90055AE0A /* WeekDayHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845915D28C4CFB90055AE0A /* WeekDayHeaderView.xib */; };
 		5845916228C4D0870055AE0A /* HomeWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */; };
 		5845916328C4D0870055AE0A /* HomeWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */; };
+		584F037328EA2F120026A0AE /* CategoryWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584F037228EA2F120026A0AE /* CategoryWorkerTests.swift */; };
 		58564D7A28DB7D6C00935521 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 58564D7928DB7D6C00935521 /* SDWebImageSVGCoder */; };
 		58564D7C28DB7D6C00935521 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 58564D7B28DB7D6C00935521 /* Lottie */; };
 		5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354028D52CBE000F5A82 /* AlertKeys.swift */; };
@@ -215,6 +216,7 @@
 		5845915D28C4CFB90055AE0A /* WeekDayHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekDayHeaderView.xib; sourceTree = "<group>"; };
 		5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkoutCell.swift; sourceTree = "<group>"; };
 		5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeWorkoutCell.xib; sourceTree = "<group>"; };
+		584F037228EA2F120026A0AE /* CategoryWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWorkerTests.swift; sourceTree = "<group>"; };
 		5863354028D52CBE000F5A82 /* AlertKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertKeys.swift; sourceTree = "<group>"; };
 		5863354328D66610000F5A82 /* OnBoardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPresenter.swift; sourceTree = "<group>"; };
 		5863354428D66610000F5A82 /* OnBoardingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingWorker.swift; sourceTree = "<group>"; };
@@ -674,9 +676,10 @@
 			isa = PBXGroup;
 			children = (
 				587E6AD728D9074500ADB9CC /* CategoryViewControllerTests.swift */,
+				587E6ADD28D9B4D700ADB9CC /* CategoryInteractorTests.swift */,
 				587E6AE328D9CE7400ADB9CC /* CategoryPresenterTests.swift */,
 				587E6ADF28D9C54900ADB9CC /* CategoryRouterTests.swift */,
-				587E6ADD28D9B4D700ADB9CC /* CategoryInteractorTests.swift */,
+				584F037228EA2F120026A0AE /* CategoryWorkerTests.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1137,6 +1140,7 @@
 				587E6ADE28D9B4D700ADB9CC /* CategoryInteractorTests.swift in Sources */,
 				587E6AD828D9074500ADB9CC /* CategoryViewControllerTests.swift in Sources */,
 				587E6AE028D9C54900ADB9CC /* CategoryRouterTests.swift in Sources */,
+				584F037328EA2F120026A0AE /* CategoryWorkerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

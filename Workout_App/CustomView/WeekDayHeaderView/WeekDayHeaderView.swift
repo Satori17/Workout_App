@@ -25,7 +25,7 @@ class WeekDayHeaderView: UIView {
     //MARK: - Managers
     private var animationManager: AnimationManager?
     private var notificationManager: NotificationManager?
-    private var storageManager: WorkoutStorageManager?
+    private var storageManager: WorkoutStorageManagerLogic?
     
     //MARK: - UserDefaults
     private let userDefaults = UserDefaults.standard
@@ -41,16 +41,12 @@ class WeekDayHeaderView: UIView {
     //MARK: - Categories data for notification description text
     var workoutCategories = [String]() {
         didSet {
-          workoutCategories = getMode(from: workoutCategories)
+            workoutCategories = getMode(from: workoutCategories)
         }
     }
     
     private var notificationDescription: String {
-        var textData = "\(workoutCategories.reduce(CustomTitle.empty, +))"
-        textData.removeLast(2)
-        let descriptionText = "\(textData) day!"
-        
-        return descriptionText
+        getNotificationDescription()
     }
     
     //MARK: - Updating delegate
@@ -166,6 +162,14 @@ class WeekDayHeaderView: UIView {
         let result = mode.map { "\($0), " }
         
         return result
+    }
+    
+    private func getNotificationDescription() -> String {
+        var textData = "\(workoutCategories.reduce(CustomTitle.empty, +))"
+        textData.removeLast(2)
+        let descriptionText = "\(textData) day!"
+        
+        return descriptionText
     }
     
     private func reminderActions(completion: @escaping () -> ()) {

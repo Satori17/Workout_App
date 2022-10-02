@@ -15,6 +15,7 @@ final class CategoryPresenterTests: XCTestCase {
     
     //MARK: - Test Lifecycle
     override func setUp() {
+        super.setUp()
         setupCategoryPresenter()
     }
     

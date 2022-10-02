@@ -48,7 +48,7 @@ final class WorkoutsViewControllerTests: XCTestCase {
         //Then
         XCTAssert(workoutsBusinessLogicSpy.getWorkoutsCalled, "viewDidLoad through setupView should ask interactor to fetch workouts")
     }
-  
+    
     func testGetWorkoutsShouldReloadCollectionView() {
         //Given
         loadView()

@@ -15,6 +15,7 @@ final class CategoryInteractorTests: XCTestCase {
     
     //MARK: - Test Lifecycle
     override func setUp() {
+        super.setUp()
         setupCategoryInteractor()
     }
     

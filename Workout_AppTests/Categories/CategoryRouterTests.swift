@@ -17,6 +17,7 @@ final class CategoryRouterTests: XCTestCase {
     
     //MARK: - Test Lifecycle
     override func setUp() {
+        super.setUp()
         setupCategoryRouter()
     }
     
