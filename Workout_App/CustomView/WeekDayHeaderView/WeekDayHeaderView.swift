@@ -191,7 +191,7 @@ class WeekDayHeaderView: UIView {
         return currentTime
     }
     
-    //general method of scheduling notification
+    //MARK: - Notification Helper Methods
     private func addWeekDayNotification() {
         if let weekDay = weekDayLabel.text,
            let selectedWeekDay = WeekDayKeys.weekDaysDict[weekDay] {
@@ -202,7 +202,23 @@ class WeekDayHeaderView: UIView {
         }
     }
     
-    //general method of saving scheduled weekDay
+    private func removeWeekDayNotification() {
+        notificationManager?.removePendingNotification(key: weekDayLabel.text)
+    }
+    
+    private func checkIfHasNotification(weekDay: String?) {
+        var buttonsToAppear = [UIButton]()
+        if let weekDay = weekDay,
+           let _ = userDefaults.string(forKey: weekDay) {
+            buttonsToAppear = [editReminderBtn]
+        } else {
+            buttonsToAppear = [cancelReminderBtn, saveReminderBtn]
+            datePicker.isEnabled = true
+        }
+        animationManager?.toggleAppearence(ofButtons: buttonsToAppear)
+    }
+    
+    //MARK: - Storage Manager Helper Methods
     private func saveScheduled(weekDay: String?) {
         do {
             if let weekDay = weekDay {
@@ -214,12 +230,6 @@ class WeekDayHeaderView: UIView {
         }
     }
     
-    //general method of removing notification
-    private func removeWeekDayNotification() {
-        notificationManager?.removePendingNotification(key: weekDayLabel.text)
-    }
-    
-    //general method of removing scheduled weekDay
     private func removeScheduled(weekDay: String?) {
         do {
             if let weekDay = weekDay {
@@ -231,27 +241,14 @@ class WeekDayHeaderView: UIView {
         }
     }
     
-    //toggles set reminder button appearence with data
+    //MARK: - HeaderView Helper Methods
     private func toggleSetReminderBtn() {
         setReminderBtn.isSelected = !setReminderBtn.isSelected
-        let text = setReminderBtn.isSelected ? "\(getChosenTime())" : "+"
+        let text = setReminderBtn.isSelected ? "\(getChosenTime())" : CustomTitle.plus
         setReminderBtn.setTitle(text, for: .normal)
         DispatchQueue.main.async {
             self.delegate?.getScheduledTime()
         }
-    }
-    
-    //checks if weekDay has notification scheduled already
-    private func checkIfHasNotification(weekDay: String?) {
-        var buttonsToAppear = [UIButton]()
-        if let weekDay = weekDay,
-           let _ = userDefaults.string(forKey: weekDay) {
-            buttonsToAppear = [editReminderBtn]
-        } else {
-            buttonsToAppear = [cancelReminderBtn, saveReminderBtn]
-            datePicker.isEnabled = true
-        }
-        animationManager?.toggleAppearence(ofButtons: buttonsToAppear)
     }
     
     //adding animation depend on scheduled weekDay is editing or creating new notification

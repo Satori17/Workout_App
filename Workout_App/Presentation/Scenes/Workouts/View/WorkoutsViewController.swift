@@ -33,7 +33,6 @@ final class WorkoutsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        activityIndicator.startAnimating()
     }
     
     //MARK: - Setup Methods
@@ -42,6 +41,7 @@ final class WorkoutsViewController: UIViewController {
         activityIndicator.setupActivityIndicator(self)
         makeDataRequest()
         setupCollectionView()
+        activityIndicator.startAnimating()
     }
     
     private func setupCollectionView() {
@@ -63,7 +63,7 @@ final class WorkoutsViewController: UIViewController {
         interactor?.getWorkouts(request: WorkoutModel.GetWorkouts.Request())
     }
     
-    private func makeContextMenu(for workout: WorkoutViewModel) -> UIMenu {
+    private func makeContextMenuRequest(for workout: WorkoutViewModel) -> UIMenu {
         let addWorkout = UIAction(title: ContextMenuTitle.addWorkout, image: UIImage(systemName: ContextMenuImage.addIcon)) { [weak self] action in
             let request = WorkoutModel.ShowSaveAlert.Request(workout: workout)
             self?.interactor?.showSaveAlert(request: request)
@@ -117,7 +117,7 @@ extension WorkoutsViewController: UICollectionViewDelegate {
         return UIContextMenuConfiguration(identifier: nil, previewProvider: { [weak self] in
             return self?.router?.instantiateDetailsVC(withWorkout: currentWorkout)
         }, actionProvider: { action in
-            return self.makeContextMenu(for: currentWorkout)
+            return self.makeContextMenuRequest(for: currentWorkout)
         })
     }
 }
