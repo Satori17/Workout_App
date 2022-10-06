@@ -30,5 +30,9 @@ final class CategoryConfigurator {
         //MARK: - Worker
         let worker = CategoryWorker()
         interactor.worker = worker
+        
+        //MARK: - Activity Indicator
+        let activityIndicator = ActivityIndicatorManager(vc)
+        vc.activityIndicator = activityIndicator
     }
 }

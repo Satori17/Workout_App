@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WorkoutUrlBuilder: Request, DataUrl {
+final class WorkoutUrlBuilder: Request, DataUrl {
     
     static let shared = WorkoutUrlBuilder()
     

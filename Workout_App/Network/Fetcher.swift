@@ -7,7 +7,7 @@
 
 import UIKit
 
-class Fetcher {
+final class Fetcher {
     
     static let shared = Fetcher()
     let session = URLSession(configuration: .default)

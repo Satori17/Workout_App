@@ -26,7 +26,7 @@ final class CategoryViewController: UIViewController {
     private var categoriesData = [CategoryViewModel]()
     
     //MARK: - Activity Indicator Manager
-    private lazy var activityIndicator = ActivityIndicatorManager.shared
+    var activityIndicator: activityIndicatorLogic?
     
     //MARK: - Object Lifecycle
     required init?(coder: NSCoder) {
@@ -38,20 +38,19 @@ final class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        activityIndicator.startAnimating()
     }
     
     //MARK: - Setup Methods
     private func setupView() {
+        activityIndicator?.startAnimating()
         categoriesTableView.registerNib(class: CategoryCell.self)
-        activityIndicator.setupActivityIndicator(self)
         makeDataRequest()
     }
     
     private func setupCategory(data: [CategoryViewModel]) {
         self.categoriesData = data
         categoriesTableView.reloadData()
-        activityIndicator.stopAnimating()
+        activityIndicator?.stopAnimating()
     }
     
     //MARK: - Request Methods
@@ -59,7 +58,6 @@ final class CategoryViewController: UIViewController {
         interactor?.getCategories(request: CategoryModel.GetCategories.Request())
     }
 }
-
 
 //MARK: - Display Logic protocol
 extension CategoryViewController: CategoryDisplayLogic {    

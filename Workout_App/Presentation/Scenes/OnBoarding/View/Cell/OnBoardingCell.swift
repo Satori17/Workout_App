@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-class OnBoardingCell: UICollectionViewCell {
+final class OnBoardingCell: UICollectionViewCell {
 
     //MARK: - IBOutlets
     @IBOutlet weak var animatedView: AnimationView!

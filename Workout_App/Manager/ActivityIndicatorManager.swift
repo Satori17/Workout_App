@@ -7,9 +7,12 @@
 
 import UIKit
 
+protocol activityIndicatorLogic {
+    func startAnimating()
+    func stopAnimating()
+}
+
 final class ActivityIndicatorManager {
-    
-    static let shared = ActivityIndicatorManager()
     
     //MARK: - Properties
     private let activityIndicator = UIActivityIndicatorView()
@@ -17,33 +20,26 @@ final class ActivityIndicatorManager {
     private let backgroundView = UIView()
     private let gradientMaskLayer = CAGradientLayer()
     
-    private init() {}
-    
-    //MARK: - Methods
-    func startAnimating() {
-        activityIndicator.startAnimating()
+    init(_ vc: UIViewController) {
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator.hidesWhenStopped = true
+            self?.activityIndicator.style = UIActivityIndicatorView.Style.large
+            self?.activityIndicator.center = vc.view.center
+            guard let backgroundView = self?.backgroundView(vc: vc),
+                  let effectView = self?.setupEffectView(),
+                  let activityIndicator = self?.activityIndicator else { return }
+            backgroundView.addSubview(effectView)
+            backgroundView.addSubview(activityIndicator)
+            vc.view.addSubview(backgroundView)
+        }
     }
     
-    func stopAnimating() {
-        activityIndicator.stopAnimating()
-        backgroundView.isHidden = true
-    }
-    
-    func setupActivityIndicator(_ vc: UIViewController) {
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = UIActivityIndicatorView.Style.large
-        activityIndicator.center = vc.view.center
-        let backgroundView = backgroundView(vc: vc)
-        backgroundView.addSubview(setupEffectView())
-        backgroundView.addSubview(activityIndicator)
-        vc.view.addSubview(backgroundView)
-    }
-    
+    //MARK: - Setup Methods
     private func backgroundView(vc: UIViewController) -> UIView {
         backgroundView.isHidden = false
         backgroundView.frame = vc.view.frame
         backgroundView.withAppDesign(layer: gradientMaskLayer, curvedCorners: true)
-
+        
         return backgroundView
     }
     
@@ -53,5 +49,18 @@ final class ActivityIndicatorManager {
         effectView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
         
         return effectView
+    }
+}
+
+//MARK: - Activity Indicator Logic
+extension ActivityIndicatorManager: activityIndicatorLogic {
+    
+    func startAnimating() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopAnimating() {
+        activityIndicator.stopAnimating()
+        backgroundView.isHidden = true
     }
 }

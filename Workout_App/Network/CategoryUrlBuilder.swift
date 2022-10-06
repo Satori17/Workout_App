@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryUrlBuilder: Request, DataUrl {
+final class CategoryUrlBuilder: Request, DataUrl {
     
     static let shared = CategoryUrlBuilder()
     

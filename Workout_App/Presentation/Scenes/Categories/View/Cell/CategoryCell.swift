@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryCell: UITableViewCell {
+final class CategoryCell: UITableViewCell {
     
     //MARK: - IBOutlets
     @IBOutlet weak var fakeView: UIView!

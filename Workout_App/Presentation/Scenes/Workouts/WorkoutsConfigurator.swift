@@ -30,5 +30,10 @@ final class WorkoutsConfigurator {
         //MARK: - Worker
         let worker = WorkoutsWorker()
         interactor.worker = worker
+        
+        //MARK: - Activity Indicator
+        let activityIndicator = ActivityIndicatorManager(vc)
+        vc.activityIndicator = activityIndicator
+        
     }
 }

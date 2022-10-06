@@ -11,7 +11,7 @@ protocol WorkoutDetailsDelegate: AnyObject {
     func getWorkoutDetails(cell: WorkoutCell)
 }
 
-class WorkoutCell: UICollectionViewCell {
+final class WorkoutCell: UICollectionViewCell {
     
     //MARK: - IBOutlets
     @IBOutlet weak var workoutImageView: UIImageView!

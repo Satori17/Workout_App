@@ -12,7 +12,7 @@ protocol notificationReceivedProtocol: AnyObject {
     func dismissCheckMark(cell: HomeWorkoutCell)
 }
 
-class HomeWorkoutCell: UITableViewCell {
+final class HomeWorkoutCell: UITableViewCell {
     
     //MARK: - IBOutlets
     @IBOutlet weak var fakeView: UIView!

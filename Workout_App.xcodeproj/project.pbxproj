@@ -63,8 +63,8 @@
 		5845916228C4D0870055AE0A /* HomeWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845916028C4D0870055AE0A /* HomeWorkoutCell.swift */; };
 		5845916328C4D0870055AE0A /* HomeWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5845916128C4D0870055AE0A /* HomeWorkoutCell.xib */; };
 		584F037328EA2F120026A0AE /* CategoryWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584F037228EA2F120026A0AE /* CategoryWorkerTests.swift */; };
-		58564D7A28DB7D6C00935521 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 58564D7928DB7D6C00935521 /* SDWebImageSVGCoder */; };
-		58564D7C28DB7D6C00935521 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 58564D7B28DB7D6C00935521 /* Lottie */; };
+		585A3A4428EF917D00709759 /* SDWebImageSVGCoder in Frameworks */ = {isa = PBXBuildFile; productRef = 585A3A4328EF917D00709759 /* SDWebImageSVGCoder */; };
+		585A3A4628EF918100709759 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 585A3A4528EF918100709759 /* Lottie */; };
 		5863354128D52CBE000F5A82 /* AlertKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354028D52CBE000F5A82 /* AlertKeys.swift */; };
 		5863354928D66610000F5A82 /* OnBoardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354328D66610000F5A82 /* OnBoardingPresenter.swift */; };
 		5863354A28D66610000F5A82 /* OnBoardingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5863354428D66610000F5A82 /* OnBoardingWorker.swift */; };
@@ -304,8 +304,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58564D7A28DB7D6C00935521 /* SDWebImageSVGCoder in Frameworks */,
-				58564D7C28DB7D6C00935521 /* Lottie in Frameworks */,
+				585A3A4428EF917D00709759 /* SDWebImageSVGCoder in Frameworks */,
+				585A3A4628EF918100709759 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,8 +885,8 @@
 			);
 			name = Workout_App;
 			packageProductDependencies = (
-				58564D7928DB7D6C00935521 /* SDWebImageSVGCoder */,
-				58564D7B28DB7D6C00935521 /* Lottie */,
+				585A3A4328EF917D00709759 /* SDWebImageSVGCoder */,
+				585A3A4528EF918100709759 /* Lottie */,
 			);
 			productName = Workout_App;
 			productReference = 5877DC4A288859DF003A3086 /* Workout_App.app */;
@@ -1493,12 +1493,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		58564D7928DB7D6C00935521 /* SDWebImageSVGCoder */ = {
+		585A3A4328EF917D00709759 /* SDWebImageSVGCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 58E9867E2894622800C1F69F /* XCRemoteSwiftPackageReference "SDWebImageSVGCoder" */;
 			productName = SDWebImageSVGCoder;
 		};
-		58564D7B28DB7D6C00935521 /* Lottie */ = {
+		585A3A4528EF918100709759 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 587E6AB728D6EFE900ADB9CC /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;

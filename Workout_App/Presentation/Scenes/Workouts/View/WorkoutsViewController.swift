@@ -27,7 +27,7 @@ final class WorkoutsViewController: UIViewController {
     private var workoutsData = [WorkoutViewModel]()
     
     //MARK: - Activity Indicator Manager
-    let activityIndicator = ActivityIndicatorManager.shared
+    var activityIndicator: activityIndicatorLogic?
     
     //MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -38,10 +38,9 @@ final class WorkoutsViewController: UIViewController {
     //MARK: - Setup Methods
     private func setupView() {
         navigationController?.navigationBar.prefersLargeTitles = false
-        activityIndicator.setupActivityIndicator(self)
         makeDataRequest()
         setupCollectionView()
-        activityIndicator.startAnimating()
+        activityIndicator?.startAnimating()
     }
     
     private func setupCollectionView() {
@@ -55,7 +54,7 @@ final class WorkoutsViewController: UIViewController {
     private func setupWorkouts(data: [WorkoutViewModel]) {
         self.workoutsData = data
         workoutsCollectionView.reloadData()
-        activityIndicator.stopAnimating()
+        activityIndicator?.stopAnimating()
     }
     
     //MARK: - Request Methods
