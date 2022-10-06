@@ -11,6 +11,8 @@ protocol updateHeaderDataProtocol: AnyObject {
     func getScheduledTime()
 }
 
+//Working to redesign missed workouts appearing logic
+
 final class WeekDayHeaderView: UIView {
     
     //MARK: - IBOutlets
