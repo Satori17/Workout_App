@@ -44,7 +44,7 @@ extension UIView {
     //MARK: - Main method of app design
     func withAppDesign(layer: CAGradientLayer, color: UIColor = UIColor.Gradient.lightGrayOption, curvedCorners: Bool) {
         self.layer.cornerRadius = curvedCorners ? 25 : 0
-        self.layer.borderWidth = 1
+        self.layer.borderWidth = curvedCorners ? 1 : 0
         self.layer.borderColor = UIColor.Gradient.lightGrayOption.cgColor
         self.gradientForView(with: layer, firstColor: UIColor.Gradient.skyBlueOption, secondColor: color)
     }

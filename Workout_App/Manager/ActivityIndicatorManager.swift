@@ -21,6 +21,11 @@ final class ActivityIndicatorManager {
     private let gradientMaskLayer = CAGradientLayer()
     
     init(_ vc: UIViewController) {
+        setupActivityIndicator(vc)
+    }
+    
+    //MARK: - Setup Methods
+    private func setupActivityIndicator(_ vc: UIViewController) {
         DispatchQueue.main.async { [weak self] in
             self?.activityIndicator.hidesWhenStopped = true
             self?.activityIndicator.style = UIActivityIndicatorView.Style.large
@@ -34,7 +39,6 @@ final class ActivityIndicatorManager {
         }
     }
     
-    //MARK: - Setup Methods
     private func backgroundView(vc: UIViewController) -> UIView {
         backgroundView.isHidden = false
         backgroundView.frame = vc.view.frame

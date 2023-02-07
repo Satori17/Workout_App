@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol notificationReceivedProtocol: AnyObject {
+protocol notificationReceivedDelegate: AnyObject {
     func appearMissedWorkouts(cell: HomeWorkoutCell, weekDay: String)
     func dismissCheckMark(cell: HomeWorkoutCell)
 }
@@ -22,11 +22,15 @@ final class HomeWorkoutCell: UITableViewCell {
     @IBOutlet weak var workoutSetsAndRepsLabel: UILabel!
     @IBOutlet weak var checkmarkBtn: UIButton!
     
-    //MARK: - Properties
+    //MARK: - Mask Layers
     private let gradientMaskLayer = CAGradientLayer()
     private let gradientMaskLayer2 = CAGradientLayer()
+    
+    //MARK: - Timer Helper Properties
     private let timer = Timer()
-    weak var delegate: notificationReceivedProtocol?
+    
+    //MARK: - Notification Receiving Delegate
+    weak var delegate: notificationReceivedDelegate?
     
     //MARK: - Cell Lifecycle
     override func awakeFromNib() {

@@ -12,6 +12,7 @@ extension UIImageView {
     
     enum ImageKey {
         static let placeholder = "image_placeholder"
+        static let cardio = "Cardio"
     }
     
     func loadFrom(URLAddress: String) {
