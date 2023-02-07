@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-protocol WorkoutStorageManagerLogic {
+protocol WorkoutStorageManagerLogic: AnyObject {
     func getAllWorkouts() throws -> [CoreWorkout]
     func addWorkout(fromModel model: Displayable, sets: Int, reps: Int, weekDay: WeekDayModel) throws -> CoreWorkout
     func removeWorkout(withId id: Int) throws
@@ -143,16 +143,16 @@ extension WorkoutStorageManager: WorkoutStorageManagerLogic {
 }
 
 //MARK: - configurator Methods
-extension WorkoutStorageManager {
+private extension WorkoutStorageManager {
     
-    private func categoryConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
+    func categoryConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
         let categoryObject = CoreCategory(context: managedContext)
         categoryObject.id = Int64(model.category.id)
         categoryObject.name = model.category.name
         workout.category = categoryObject
     }
     
-    private func musclesConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext, isSecondary: Bool) {
+    func musclesConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext, isSecondary: Bool) {
         if !isSecondary {
             model.muscles.forEach {
                 let musclesObject = CoreMuscle(context: managedContext)
@@ -174,7 +174,7 @@ extension WorkoutStorageManager {
         }
     }
     
-    private func equipmentConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
+    func equipmentConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
         model.equipment.forEach {
             let equipmentObject = CoreEquipment(context: managedContext)
             equipmentObject.id = Int64($0.id)
@@ -183,7 +183,7 @@ extension WorkoutStorageManager {
         }
     }
     
-    private func languageConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
+    func languageConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
         let languageObject = CoreLanguage(context: managedContext)
         languageObject.id = Int64(model.language.id)
         languageObject.shortName = model.language.shortName
@@ -191,7 +191,7 @@ extension WorkoutStorageManager {
         workout.language = languageObject
     }
     
-    private func imagesConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
+    func imagesConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
         model.images.forEach {
             let imageObject = CoreImage(context: managedContext)
             imageObject.image = $0.image
@@ -200,7 +200,7 @@ extension WorkoutStorageManager {
         }
     }
     
-    private func commentsConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
+    func commentsConfigurator(ofWorkout workout: CoreWorkout, withModel model: Displayable, managedContext: NSManagedObjectContext) {
         model.comments.forEach {
             let commentObject = CoreComment(context: managedContext)
             commentObject.id = Int64($0.id)
@@ -210,7 +210,7 @@ extension WorkoutStorageManager {
         }
     }
     
-    private func weekDaysConfigurator(ofWorkout workout: CoreWorkout, withModel model: WeekDayModel, managedContext: NSManagedObjectContext) {
+    func weekDaysConfigurator(ofWorkout workout: CoreWorkout, withModel model: WeekDayModel, managedContext: NSManagedObjectContext) {
         let weekDayObject = CoreWeekDay(context: managedContext)
         weekDayObject.name = model.name
         weekDayObject.scheduledTime = model.scheduledTime
