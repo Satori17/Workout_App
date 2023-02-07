@@ -67,9 +67,9 @@ extension HomeInteractor: HomeBusinessLogic {
 }
 
 //MARK: - Helper methods for saved and missed workouts
-extension HomeInteractor {
+private extension HomeInteractor {
     
-    private func getSavedWorkouts() {
+    func getSavedWorkouts() {
         worker?.fetchSavedWorkouts(completion: { result in
             switch result {
             case .success(let savedWorkouts):
@@ -81,7 +81,7 @@ extension HomeInteractor {
         })
     }
     
-    private func getMissedWorkouts() {
+    func getMissedWorkouts() {
         worker?.fetchMissedWorkouts(completion: { result in
             switch result {
             case .success(let missedWorkouts):

@@ -11,6 +11,8 @@ protocol updateHeaderDataProtocol: AnyObject {
     func getScheduledTime()
 }
 
+//Working to redesign missed workouts appearing logic
+
 final class WeekDayHeaderView: UIView {
     
     //MARK: - IBOutlets
@@ -264,17 +266,13 @@ final class WeekDayHeaderView: UIView {
     //adds timer for views to be dismissed
     private func dismissViewToInitialState() {
         timer.setDismissTimer(duration: 3) { [weak self] in
-            if let datePicker = self?.datePicker,
-               let setReminder = self?.setReminderBtn,
-               let editBtn = self?.editReminderBtn,
-               let backgroundView = self?.reminderBackgroundView {
-                if !datePicker.isEnabled {
-                    //checks duration between last and previous tap on edit button
-                    if let startDate = self?.startDate {
-                        let timeInterval = Date().timeIntervalSince(startDate)
-                        if timeInterval > 3 {
-                            self?.animationManager?.toggleAppearence(ofViews: [datePicker, setReminder, editBtn], actorView: backgroundView)
-                        }
+            guard let self else { return }
+            if !self.datePicker.isEnabled {
+                //checks duration between last and previous tap on edit button
+                if let startDate = self.startDate {
+                    let timeInterval = Date().timeIntervalSince(startDate)
+                    if timeInterval > 3 {
+                        self.animationManager?.toggleAppearence(ofViews: [self.datePicker, self.setReminderBtn, self.editReminderBtn], actorView: self.reminderBackgroundView)
                     }
                 }
             }

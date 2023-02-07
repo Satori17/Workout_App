@@ -32,6 +32,7 @@ final class CategoryCell: UITableViewCell {
     
     //MARK: - Methods
     func configure(with categories: CategoryViewModel) {
+        categoryImageView.contentMode = categories.name == UIImageView.ImageKey.cardio ? .scaleAspectFit : .center
         categoryNameLabel.text =  "\(CustomTitle.space)\(categories.name)"
         categoryImageView.image = categories.image
     }
