@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol activityIndicatorLogic {
+protocol activityIndicatorLogic: AnyObject {
     func startAnimating()
     func stopAnimating()
 }
